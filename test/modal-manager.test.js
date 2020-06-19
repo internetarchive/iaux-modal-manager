@@ -1,8 +1,9 @@
 import {
-  html, fixture, expect
+  html, fixture, expect, elementUpdated
 } from '@open-wc/testing';
 
 import '../lib/modal-manager';
+import { ModalConfig } from '../lib/modal-config';
 
 describe('Modal Manager', () => {
   it('defaults to closed', async () => {
@@ -11,5 +12,41 @@ describe('Modal Manager', () => {
     `);
 
     expect(el.mode).to.equal('closed');
+  });
+
+  it('can be closed by calling closeModal', async () => {
+    const el = await fixture(html`
+      <modal-manager mode='modal'></modal-manager>
+    `);
+
+    el.closeModal();
+    await el.elementUpdated;
+
+    expect(el.mode).to.equal('closed');
+  });
+
+  it('can be closed by clicking on the backdrop', async () => {
+    const el = await fixture(html`
+      <modal-manager mode='modal'></modal-manager>
+    `);
+
+    const backdrop = el.shadowRoot.querySelector('.backdrop');
+    const clickEvent = new MouseEvent('click');
+
+    backdrop.dispatchEvent(clickEvent);
+    await el.elementUpdated;
+
+    expect(el.mode).to.equal('closed');
+  });
+
+  it('can show a modal', async () => {
+    const el = await fixture(html`
+      <modal-manager></modal-manager>
+    `);
+
+    const config = new ModalConfig();
+    el.showModal(config);
+    await el.elementUpdated;
+    expect(el.mode).to.equal('modal');
   });
 });
