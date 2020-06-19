@@ -13,8 +13,7 @@ install:
   - npm install -g codecov
 
 script:
-  - lerna bootstrap
-  - lerna run test
+  - npm test
 
 after_success:
   - codecov
