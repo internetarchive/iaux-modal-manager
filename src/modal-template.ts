@@ -78,7 +78,6 @@ export class ModalTemplate extends LitElement {
         position: absolute;
         height: 100%;
         width: 100%;
-        /* outline: 2px solid blue; */
       }
 
       .head-spacer {
@@ -87,8 +86,6 @@ export class ModalTemplate extends LitElement {
 
       .modal-container {
         border-radius: ${modalCornerRadius};
-        position: absolute;
-        height: calc(100% - 50px);
         width: 100%;
       }
 
@@ -128,14 +125,13 @@ export class ModalTemplate extends LitElement {
         padding: 10px;
         color: #333;
         margin-bottom: 25px;
-        overflow-y: auto;
-        max-height: calc(100% - 135px);
-        min-height: 100px;
+        min-height: 50px;
       }
 
       .content {
-        /* position: absolute; */
-        /* height: 100%; */
+        overflow-y: auto;
+        max-height: 300px;
+        padding: 5px;
       }
 
       .headline {

@@ -7,6 +7,7 @@ import {
   TemplateResult,
   property,
   query,
+  PropertyValues,
 } from 'lit-element';
 
 import './modal-template';
@@ -65,6 +66,27 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
     this.customModalContent = customModalContent;
   }
 
+  updated(changed: PropertyValues): void {
+    if (changed.has('mode')) {
+      this.handleModeChange();
+    }
+  }
+
+  private originalBodyOverflow?: string;
+
+  private handleModeChange(): void {
+    switch (this.mode) {
+      case ModalManagerMode.Modal:
+        this.originalBodyOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+      break;
+
+      case ModalManagerMode.Closed:
+        document.body.style.overflow = this.originalBodyOverflow ?? 'auto';
+      break;
+    }
+  }
+
   private closeButtonPressed(): void {
     this.mode = ModalManagerMode.Closed;
   }
@@ -74,26 +96,12 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
     const modalBackdropColor = css`var(--modalBackdropColor, rgba(10, 10, 10, 0.9))`;
 
     return css`
-      /* :host {
-        display: none;
-        overflow: auto;
-        overflow-y: scroll;
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        z-index: 50001;
-        font-family: 'Helvetica Neue', Helvetica, sans-serif;
-      } */
-
       .container {
         width: 100%;
         height: 100%;
       }
 
       .backdrop {
-        /* display: none; */
         position: fixed;
         top: 0;
         left: 0;
@@ -111,9 +119,6 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
         z-index: 2000;
         width: 300px;
         max-width: 90%;
-        height: 500px;
-        max-height: 90%;
-        /* outline: 1px solid red; */
       }
     `;
   }
