@@ -1,114 +1,120 @@
 [![Build Status](https://travis-ci.com/internetarchive/iaux-modal-manager.svg?branch=master)](https://travis-ci.com/internetarchive/iaux-modal-manager) [![codecov](https://codecov.io/gh/internetarchive/iaux-modal-manager/branch/master/graph/badge.svg)](https://codecov.io/gh/internetarchive/iaux-modal-manager)
 
-# \<donation-form>
+# Modal Manager Component
 
-A Radio Player that displays closed captioning and allows searching.
+A modal manager built on LitElement with support for custom content and light DOM elements.
 
-![Radio Player](./assets/img/donation-form.png "Radio Player Demo")
+![Modal Manager](./assets/modal-screenshot.jpg "Modal Manager Demo")
 
 ## Installation
 ```bash
-npm add @internetarchive/donation-form
+npm install --save @internetarchive/modal-manager
 ```
 
 ## Usage
-```js
-// donation-form.js
-import RadioPlayer from '@internetarchive/donation-form';
-export default RadioPlayer;
-```
-
 ```html
 <!-- index.html -->
 <script type="module">
-  import './donation-form.js';
+  import '@internetarchive/modal-manager';
+  import { ModalConfig } from '@internetarchive/modal-manager';
 </script>
 
 <style>
-  donation-form {
-    line-height: 1.5rem;
-    color: white;
+  /* add the following styles to ensure proper modal visibility */
+  modal-manager {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 250;
+  }
 
-    --timeColor: white;
-    --timeColumnWidth: 3rem;
-    --transcriptHeight: 200px;
+  modal-manager[mode='closed'] {
+    display: none;
+  }
 
-    --autoScrollButtonFontColor: black;
-    --autoScrollButtonBackgroundColor: white;
-
-    --normalTextColor: gray;
-    --activeTextColor: white;
-    --searchResultInactiveBorderColor: gray;
-    --searchResultActiveBorderColor: green;
-
-    --trackColor: black;
-    --trackBorder: 1px solid white;
+  modal-manager[mode='modal'] {
+    display: block;
   }
 </style>
 
-<donation-form></donation-form>
+<modal-manager></modal-manager>
 
 <script>
-  // Configure the radio player
+  // show a simple modal
+  const manager = document.querySelector('modal-manager');
+  const config = new ModalConfig();
+  config.headline = 'Hi, Everybody!';
+  config.message = 'Hi, Doctor Nick!';
+  manager.showModal(config)
 
-  const radioPlayer = document.querySelector('donation-form');
+  // to hide the modal call `closeModal()`:
+  manager.closeModal();
+</script>
+```
 
-  radioPlayer.addEventListener('searchRequested', e => {
-    console.log('Search requested', e.detail.searchTerm);
-  });
+## Advanced Usage
 
-  radioPlayer.addEventListener('searchCleared', e => {
-    console.log('Search cleared');
-  });
+### Markup Content
 
-  radioPlayer.addEventListener('playbackPaused', e => {
-    console.log('Playback paused');
-  });
+You can pass in custom HTML into the `ModalConfig`:
 
-  radioPlayer.addEventListener('playbackStarted', e => {
-    console.log('Playback started');
-  });
-
-  radioPlayer.addEventListener('currentTimeChanged', e => {
-    console.log('Current time changed', e.detail.currentTime);
-  });
-
-  radioPlayer.addEventListener('timeChangedFromScrub', e => {
-    console.log('New time', e.detail.newTime);
-  });
-
-  radioPlayer.addEventListener('transcriptEntrySelected', e => {
-    console.log('New time', e.detail.newTime);
-  });
-
-  radioPlayer.addEventListener('canplay', e => {
-    console.log('Media can play');
-  });
-
-  const quickSearchTerms = [];
-
-  const audioSource = new AudioSource(
-    'https://ia803005.us.archive.org/30/items/BBC_Radio_2_20190502_180000/BBC_Radio_2_20190502_180000.mp3',
-    'audio/mpeg',
-  );
-
-  const radioConfig = new RadioPlayerConfig(
-    'Voice of America',
-    '7:00pm',
-    './logo.jpg',
-    './waveform.png',
-    [audioSource],
-    quickSearchTerms,
-  );
-
-  const transcriptEntries: TranscriptEntryConfig[] = [...];
-
-  const transcriptConfig = new TranscriptConfig(transcriptEntries);
-
-  radioPlayer.config = radioConfig;
-  radioPlayer.transcriptConfig = transcriptConfig
+```html
+<script type="module">
+  import { html } from 'lit-html';
 </script>
 
+<modal-manager></modal-manager>
+
+<script>
+  const manager = document.querySelector('modal-manager');
+  const config = new ModalConfig();
+  config.title = 'Internet Archive';
+  config.subtitle = '';
+  config.headline = 'Thanks for your Support!';
+  config.message = html`
+    <p>Thanks for your donation!</p>
+    <p>Please click <a href="">here</a> to complete!</p>
+  `;
+  config.headerColor = '#36A483';
+  manager.showModal(config);
+</script>
+```
+
+### Custom Content
+
+Display completely custom content in the modal body, including light DOM content like a PayPal button.
+
+```html
+<modal-manager></modal-manager>
+
+<script>
+  const manager = document.querySelector('modal-manager');
+  const config = new ModalConfig();
+  const customContent = html`
+    Can contain any markup, including web components. Event listeners also work. Try clicking on the picture.
+    <div style="text-align: center">
+      <a href="https://fillmurray.com" style="display: block">Fill Murray</a>
+      <img src="100x100.jpg" @click=${showBillAlert} />
+    </div>
+  `;
+
+  modalManager.showModal(config, customContent);
+</script>
+```
+
+### Config Options
+
+All of the config options:
+
+```javascript
+const config = new ModalConfig();
+config.title = 'Internet Archive';
+config.subtitle = '';
+config.headline = 'Thanks for your Support!';
+config.message = 'Thank you for supporting the Internet Archive!';
+config.headerColor = '#36A483';
+config.showProcessingIndicator = false;
+config.processingImageMode = 'processing'; // or `complete`
 ```
 
 # Development
@@ -120,7 +126,7 @@ npm install
 
 ## Start Development Server
 ```bash
-npm start  // start development server and typescript compiler
+npm start
 ```
 
 ## Testing
@@ -131,11 +137,6 @@ npm test
 ## Testing via browserstack
 ```bash
 npm test:bs
-```
-
-## Demoing using storybook
-```bash
-npm storybook
 ```
 
 ## Linting
