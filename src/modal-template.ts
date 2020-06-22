@@ -14,6 +14,12 @@ import { ModalConfig } from './modal-config';
 
 import closeIcon from './assets/close-icon';
 
+/**
+ * Some some colors that can be used for the header
+ *
+ * @export
+ * @enum {number}
+ */
 export enum ModalHeaderColors {
   Blue = '#497fbf',
   Green = '#55A183',
@@ -60,6 +66,12 @@ export class ModalTemplate extends LitElement {
     `;
   }
 
+  /**
+   * Dispatch the `closeButtonPressed` event to the consumer
+   *
+   * @private
+   * @memberof ModalTemplate
+   */
   private handleCloseButton(): void {
     const event = new Event('closeButtonPressed');
     this.dispatchEvent(event);
@@ -98,7 +110,6 @@ export class ModalTemplate extends LitElement {
         border-bottom: 0;
         text-align: center;
         padding-bottom: 0.5em;
-        /* box-shadow: 0 12px 30px 0 rgba(0, 0, 0, 0.5), inset 0 1px 0 0 hsla(0, 0%, 100%, .65); */
       }
 
       header h1 {
