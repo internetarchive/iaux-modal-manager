@@ -49,4 +49,25 @@ describe('Modal Manager', () => {
     await el.elementUpdated;
     expect(el.mode).to.equal('modal');
   });
+
+  it('mode is set to closed when close button is pressed', async () => {
+    const el = await fixture(html`
+      <modal-manager></modal-manager>
+    `);
+
+    const config = new ModalConfig();
+    el.showModal(config);
+    await el.elementUpdated;
+
+    expect(el.mode).to.equal('modal');
+
+    const modal = el.shadowRoot.querySelector('modal-template');
+    const closeButton = modal.shadowRoot.querySelector('.close-button');
+    const clickEvent = new MouseEvent('click');
+    closeButton.dispatchEvent(clickEvent);
+
+    await el.elementUpdated;
+
+    expect(el.mode).to.equal('closed');
+  });
 });

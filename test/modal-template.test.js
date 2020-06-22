@@ -15,8 +15,8 @@ describe('Modal Template', () => {
     const headline = el.shadowRoot.querySelector('.headline');
     const message = el.shadowRoot.querySelector('.message');
 
-    expect(headline).to.not.exist; // equal(undefined);
-    expect(message).to.not.exist; // equal(undefined);
+    expect(headline).to.not.exist;
+    expect(message).to.not.exist;
     expect('hidden' in processingLogo.classList);
   });
 
@@ -45,8 +45,10 @@ describe('Modal Template', () => {
     expect('hidden' in processingLogo.classList).to.equal(false);
   });
 
-  it('shows a headline and message if they exist in the config', async () => {
+  it('shows the properties from the config', async () => {
     const config = new ModalConfig();
+    config.title = 'Boop';
+    config.subtitle = 'Bop';
     config.headline = 'Foo';
     config.message = 'Bar';
 
@@ -54,8 +56,17 @@ describe('Modal Template', () => {
       <modal-template .config=${config}></modal-template>
     `);
 
+    const title = el.shadowRoot.querySelector('h1');
+    const subtitle = el.shadowRoot.querySelector('h2');
+
     const headline = el.shadowRoot.querySelector('.headline');
     const message = el.shadowRoot.querySelector('.message');
+
+    expect(title).to.exist;
+    expect(title.innerText).to.equal('Boop');
+
+    expect(subtitle).to.exist;
+    expect(subtitle.innerText).to.equal('Bop');
 
     expect(headline).to.exist;
     expect(headline.innerText).to.equal('Foo');
