@@ -15,6 +15,7 @@
   "scripts": {
     "prepare": "npm run build",
     "build": "tsc -p tsconfig.build.json",
+    "docs": "typedoc",
     "start": "concurrently \"tsc --watch\" \"es-dev-server --app-index demo/index.html --node-resolve --open --watch --http2 --preserve-symlinks\"",
     "start:compatibility": "concurrently \"tsc --watch\" \"es-dev-server --app-index demo/index.html --node-resolve --open --watch --compatibility all --preserve-symlinks\"",
     "lint:eslint": "eslint --ext .ts . --ignore-path .gitignore",
@@ -51,6 +52,7 @@
     "karma-coverage": "^2.0.1",
     "lint-staged": "^8.0.0",
     "polymer-cli": "^1.9.11",
+    "typedoc": "^0.17.7",
     "typescript": "^3.9.5",
     "webpack-merge": "^4.1.5"
   },
