@@ -88,8 +88,9 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
 
   /** @inheritdoc */
   updated(changed: PropertyValues): void {
+    /* istanbul ignore else */
     if (changed.has('mode')) {
-      this.handleModeChange();
+      this.emitModeChangeEvent();
     }
   }
 
@@ -103,25 +104,15 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
     this.mode = ModalManagerMode.Closed;
   }
 
-  private originalBodyOverflow?: string;
-
   /**
-   * When the mode parameter changes, update any dependencies on that mode
+   * Emit a modeChange event
    *
    * @private
    * @memberof ModalManager
    */
-  private handleModeChange(): void {
-    switch (this.mode) {
-      case ModalManagerMode.Modal:
-        this.originalBodyOverflow = document.body.style.overflow;
-        document.body.style.overflow = 'hidden';
-      break;
-
-      case ModalManagerMode.Closed:
-        document.body.style.overflow = this.originalBodyOverflow ?? 'auto';
-      break;
-    }
+  private emitModeChangeEvent(): void {
+    const event = new CustomEvent('modeChanged', { detail: { mode: this.mode }});
+    this.dispatchEvent(event);
   }
 
   /**

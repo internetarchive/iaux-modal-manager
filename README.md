@@ -37,7 +37,8 @@ npm install --save @internetarchive/modal-manager
   }
 </style>
 
-<modal-manager></modal-manager>
+<!-- handle the mode change in your app by making the of -->
+<modal-manager @modeChanged=${modalModeChanged}></modal-manager>
 
 <script>
   // show a simple modal
@@ -49,6 +50,21 @@ npm install --save @internetarchive/modal-manager
 
   // to hide the modal call `closeModal()`:
   manager.closeModal();
+
+  // handle the modal opening and closing overflow
+  function modalModeChanged(e) {
+    const mode = e.detail.mode;
+    switch (mode) {
+      case 'modal':
+        document.body.style.overflow = 'hidden';
+        break;
+      case 'closed':
+        document.body.style.overflow = 'auto';
+        break;
+      default:
+        break;
+    }
+  }
 </script>
 ```
 

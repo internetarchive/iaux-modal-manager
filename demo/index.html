@@ -52,7 +52,7 @@
 
     render(
       html`
-        <modal-manager>
+        <modal-manager @modeChanged=${modalModeChanged}>
         </modal-manager>
 
         <div class="actions">
@@ -82,6 +82,20 @@
     );
 
     const modalManager = document.querySelector('modal-manager');
+
+    function modalModeChanged(e) {
+      const mode = e.detail.mode;
+      switch (mode) {
+        case 'modal':
+          document.body.style.overflow = 'hidden';
+          break;
+        case 'closed':
+          document.body.style.overflow = 'auto';
+          break;
+        default:
+          break;
+      }
+    }
 
     function showModal() {
       const config = new ModalConfig();

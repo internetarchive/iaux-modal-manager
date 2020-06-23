@@ -1,5 +1,5 @@
 import {
-  html, fixture, expect, elementUpdated
+  html, fixture, expect, oneEvent
 } from '@open-wc/testing';
 
 import '../lib/modal-manager';
@@ -37,6 +37,32 @@ describe('Modal Manager', () => {
     await el.elementUpdated;
 
     expect(el.mode).to.equal('closed');
+  });
+
+  it('emits a modeChanged event when opening', async () => {
+    const el = await fixture(html`
+      <modal-manager></modal-manager>
+    `);
+
+    const config = new ModalConfig();
+
+    setTimeout(() => { el.showModal(config); });
+    const response = await oneEvent(el, 'modeChanged');
+    expect(response.detail.mode).to.equal('modal');
+  });
+
+  it('emits a modeChanged event when closing', async () => {
+    const el = await fixture(html`
+      <modal-manager></modal-manager>
+    `);
+
+    const config = new ModalConfig();
+    el.showModal(config);
+    await el.elementUpdated;
+
+    setTimeout(() => { el.closeModal() });
+    const response = await oneEvent(el, 'modeChanged');
+    expect(response.detail.mode).to.equal('closed');
   });
 
   it('can show a modal', async () => {
