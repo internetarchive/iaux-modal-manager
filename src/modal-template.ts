@@ -14,18 +14,6 @@ import { ModalConfig } from './modal-config';
 
 import closeIcon from './assets/close-icon';
 
-/**
- * Some some colors that can be used for the header
- *
- * @export
- * @enum {number}
- */
-export enum ModalHeaderColors {
-  Blue = '#497fbf',
-  Green = '#55A183',
-  Red = '#691916'
-}
-
 @customElement('modal-template')
 export class ModalTemplate extends LitElement {
   @property({ type: Object }) config: ModalConfig = new ModalConfig();

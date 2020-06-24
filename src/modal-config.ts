@@ -1,6 +1,6 @@
 import { TemplateResult, html } from 'lit-html';
 
-import { ModalHeaderColors } from './modal-template';
+import { ModalHeaderColors } from './modal-header-colors';
 
 export class ModalConfig {
   /**
