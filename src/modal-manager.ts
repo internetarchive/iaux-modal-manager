@@ -19,7 +19,7 @@ export enum ModalManagerMode {
   Closed = 'closed'
 }
 
-export interface ModalManagerInterface {
+export interface ModalManagerInterface extends LitElement {
   /**
    * Show a modal from a given ModalConfig
    *
