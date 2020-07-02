@@ -25,6 +25,7 @@ export interface ModalManagerInterface extends LitElement {
    *
    * @param config ModalConfig
    * @param customModalContent TemplateResult | undefined
+   * @param modalClosedCallback () => void | undefined an optional callback when the modal is closed
    */
   showModal(options: {
     config: ModalConfig;
