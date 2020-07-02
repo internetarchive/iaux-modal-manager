@@ -61,7 +61,7 @@
           <button @click=${showCustomContentModal}>Custom Content Modal</button>
           <button @click=${showProcessingModal}>Processing Modal</button>
           <button @click=${showCompleteModal}>Processing Complete Modal</button>
-          <button @click=${showModalClosedCallbackModal}>Modal Closed Callback</button>
+          <button @click=${showUserClosedModalCallbackModal}>Modal Closed Callback</button>
           <button @click=${showModalUserCannotClose}>Unclosable Modal</button>
           <button @click=${showOverflowModal}>Text-heavy Modal</button>
         </div>
@@ -180,13 +180,13 @@
       });
     }
 
-    function showModalClosedCallbackModal() {
+    function showUserClosedModalCallbackModal() {
       const config = new ModalConfig();
       config.message = 'When you close this modal another will open.'
 
       modalManager.showModal({
         config,
-        modalClosedCallback: () => {
+        userClosedModalCallback: () => {
           const config = new ModalConfig();
           config.message = 'I\'m another modal';
           config.headerColor = '#497fbf';

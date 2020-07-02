@@ -25,12 +25,12 @@ export interface ModalManagerInterface extends LitElement {
    *
    * @param config ModalConfig
    * @param customModalContent TemplateResult | undefined
-   * @param modalClosedCallback () => void | undefined an optional callback when the modal is closed
+   * @param userClosedModalCallback () => void | undefined an optional callback when the modal is closed
    */
   showModal(options: {
     config: ModalConfig;
     customModalContent?: TemplateResult;
-    modalClosedCallback?: () => void;
+    userClosedModalCallback?: () => void;
   }): Promise<void>;
 
   /**
@@ -76,19 +76,18 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
   /** @inheritdoc */
   closeModal(): void {
     this.mode = ModalManagerMode.Closed;
-    this.callModalClosedCallback();
   }
 
   private allowUserToClose = true;
 
-  private modalClosedCallback?: () => void;
+  private userClosedModalCallback?: () => void;
 
-  private callModalClosedCallback(): void {
+  private callUserClosedModalCallback(): void {
     // we assign the callback to a temp var and undefine it before calling it
     // otherwise, we run into the potential for an infinite loop if the
-    // callback triggers another `showModal()`, which would execute `modalClosedCallback`
-    const callback = this.modalClosedCallback;
-    this.modalClosedCallback = undefined;
+    // callback triggers another `showModal()`, which would execute `userClosedModalCallback`
+    const callback = this.userClosedModalCallback;
+    this.userClosedModalCallback = undefined;
     if (callback) callback();
   }
 
@@ -96,11 +95,10 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
   async showModal(options: {
     config: ModalConfig;
     customModalContent?: TemplateResult;
-    modalClosedCallback?: () => void;
+    userClosedModalCallback?: () => void;
   }): Promise<void> {
-    this.closeModal();
     this.allowUserToClose = options.config.allowUserToClose;
-    this.modalClosedCallback = options.modalClosedCallback;
+    this.userClosedModalCallback = options.userClosedModalCallback;
     this.modalTemplate.config = options.config;
     this.customModalContent = options.customModalContent;
     this.mode = ModalManagerMode.Modal;
@@ -123,6 +121,7 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
   private backdropClicked(): void {
     if (this.allowUserToClose) {
       this.closeModal();
+      this.callUserClosedModalCallback();
     }
   }
 
@@ -145,6 +144,7 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
    */
   private closeButtonPressed(): void {
     this.closeModal();
+    this.callUserClosedModalCallback();
   }
 
   /** @inheritdoc */
