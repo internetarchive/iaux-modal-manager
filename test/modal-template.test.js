@@ -45,6 +45,28 @@ describe('Modal Template', () => {
     expect('hidden' in processingLogo.classList).to.equal(false);
   });
 
+  it('shows the close button if configured to', async () => {
+    const config = new ModalConfig();
+    config.allowUserToClose = true;
+    const el = await fixture(html`
+      <modal-template .config=${config}></modal-template>
+    `);
+
+    const closeButton = el.shadowRoot.querySelector('.close-button');
+    expect(closeButton).to.exist;
+  });
+
+  it('hides the close button if configured to', async () => {
+    const config = new ModalConfig();
+    config.allowUserToClose = false;
+    const el = await fixture(html`
+      <modal-template .config=${config}></modal-template>
+    `);
+
+    const closeButton = el.shadowRoot.querySelector('.close-button');
+    expect(closeButton).to.not.exist;
+  });
+
   it('shows the properties from the config', async () => {
     const config = new ModalConfig();
     config.title = 'Boop';

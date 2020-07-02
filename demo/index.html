@@ -62,6 +62,7 @@
           <button @click=${showProcessingModal}>Processing Modal</button>
           <button @click=${showCompleteModal}>Processing Complete Modal</button>
           <button @click=${showModalClosedCallbackModal}>Modal Closed Callback</button>
+          <button @click=${showModalUserCannotClose}>Unclosable Modal</button>
           <button @click=${showOverflowModal}>Text-heavy Modal</button>
         </div>
 
@@ -191,6 +192,18 @@
           modalManager.showModal({ config });
         }
       });
+    }
+
+    function showModalUserCannotClose() {
+      console.debug('showModa');
+      const config = new ModalConfig();
+      config.message = 'User cannot close this. Will close automatically in 2 seconds.';
+      config.allowUserToClose = false;
+      modalManager.showModal({
+        config
+      });
+
+      setTimeout(modalManager.closeModal.bind(modalManager), 2000);
     }
   </script>
 </body>

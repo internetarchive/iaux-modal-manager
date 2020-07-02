@@ -78,6 +78,8 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
     this.callModalClosedCallback();
   }
 
+  private allowUserToClose = true;
+
   private modalClosedCallback?: () => void;
 
   private callModalClosedCallback(): void {
@@ -96,6 +98,7 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
     modalClosedCallback?: () => void;
   }): Promise<void> {
     this.closeModal();
+    this.allowUserToClose = options.config.allowUserToClose;
     this.modalClosedCallback = options.modalClosedCallback;
     this.modalTemplate.config = options.config;
     this.customModalContent = options.customModalContent;
@@ -117,7 +120,9 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
    * @memberof ModalManager
    */
   private backdropClicked(): void {
-    this.closeModal();
+    if (this.allowUserToClose) {
+      this.closeModal();
+    }
   }
 
   /**

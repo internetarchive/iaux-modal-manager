@@ -147,4 +147,42 @@ describe('Modal Manager', () => {
 
     expect(el.mode).to.equal('closed');
   });
+
+  it('allows the user to close by clicking on the backdrop if configured to', async () => {
+    const el = await fixture(html`
+      <modal-manager></modal-manager>
+    `);
+
+    const config = new ModalConfig();
+    config.allowUserToClose = true;
+    el.showModal({ config });
+    await el.elementUpdated;
+
+    const backdrop = el.shadowRoot.querySelector('.backdrop');
+    const clickEvent = new MouseEvent('click');
+    backdrop.dispatchEvent(clickEvent);
+
+    await el.elementUpdated;
+
+    expect(el.mode).to.equal('closed');
+  });
+
+  it('dont\'t allow the user to close by clicking on the backdrop if configured to', async () => {
+    const el = await fixture(html`
+      <modal-manager></modal-manager>
+    `);
+
+    const config = new ModalConfig();
+    config.allowUserToClose = false;
+    el.showModal({ config });
+    await el.elementUpdated;
+
+    const backdrop = el.shadowRoot.querySelector('.backdrop');
+    const clickEvent = new MouseEvent('click');
+    backdrop.dispatchEvent(clickEvent);
+
+    await el.elementUpdated;
+
+    expect(el.mode).to.equal('modal');
+  });
 });

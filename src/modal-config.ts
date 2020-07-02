@@ -57,6 +57,13 @@ export class ModalConfig {
   processingImageMode = 'processing';
 
   /**
+   * Allow the user to close the modal. Hides the close X and disables backdrop click.
+   *
+   * @memberof ModalConfig
+   */
+  allowUserToClose = true;
+
+  /**
    * A default error state configuration
    *
    * @readonly
