@@ -61,6 +61,7 @@
           <button @click=${showCustomContentModal}>Custom Content Modal</button>
           <button @click=${showProcessingModal}>Processing Modal</button>
           <button @click=${showCompleteModal}>Processing Complete Modal</button>
+          <button @click=${showModalClosedCallbackModal}>Modal Closed Callback</button>
           <button @click=${showOverflowModal}>Text-heavy Modal</button>
         </div>
 
@@ -102,14 +103,18 @@
       config.headline = 'Success';
       config.message = 'Thank you for your support!';
 
-      modalManager.showModal(config);
+      modalManager.showModal({
+        config
+      });
     }
 
     function showErrorModal() {
       const config = ModalConfig.errorConfig;
       config.message = 'An error occurred while processing your donation.';
 
-      modalManager.showModal(config);
+      modalManager.showModal({
+        config
+      });
     }
 
     function showCustomContentModal() {
@@ -124,7 +129,10 @@
         </div>
       `;
 
-      modalManager.showModal(config, someContent);
+      modalManager.showModal({
+        config,
+        customModalContent: someContent
+      });
     }
 
     function showBillAlert() {
@@ -145,14 +153,18 @@
 
       config.headerColor = '#36A483';
 
-      modalManager.showModal(config);
+      modalManager.showModal({
+        config
+      });
     }
 
     function showProcessingModal() {
       const config = new ModalConfig();
       config.headerColor = '#497fbf';
       config.showProcessingIndicator = true;
-      modalManager.showModal(config);
+      modalManager.showModal({
+        config
+      });
 
       setTimeout(showCompleteModal, 1500);
     }
@@ -161,7 +173,24 @@
       const config = new ModalConfig();
       config.showProcessingIndicator = true;
       config.processingImageMode = 'complete';
-      modalManager.showModal(config);
+      modalManager.showModal({
+        config
+      });
+    }
+
+    function showModalClosedCallbackModal() {
+      const config = new ModalConfig();
+      config.message = 'When you close this modal another will open.'
+
+      modalManager.showModal({
+        config,
+        modalClosedCallback: () => {
+          const config = new ModalConfig();
+          config.message = 'I\'m another modal';
+          config.headerColor = '#497fbf';
+          modalManager.showModal({ config });
+        }
+      });
     }
   </script>
 </body>

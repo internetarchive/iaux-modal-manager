@@ -17,7 +17,7 @@ export class ModalConfig {
    * @type {(TemplateResult | undefined)}
    * @memberof ModalConfig
    */
-  subtitle: TemplateResult | undefined;
+  subtitle?: TemplateResult;
 
   /**
    * The headline shown at the top of the content section
@@ -25,7 +25,7 @@ export class ModalConfig {
    * @type {(TemplateResult | undefined)}
    * @memberof ModalConfig
    */
-  headline: TemplateResult | undefined;
+  headline?: TemplateResult;
 
   /**
    * The text shown below the headline in the content section
@@ -33,7 +33,7 @@ export class ModalConfig {
    * @type {(TemplateResult | undefined)}
    * @memberof ModalConfig
    */
-  message: TemplateResult | undefined;
+  message?: TemplateResult;
 
   /**
    * The color of the header
