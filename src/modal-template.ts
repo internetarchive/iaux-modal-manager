@@ -20,35 +20,42 @@ export class ModalTemplate extends LitElement {
 
   render(): TemplateResult {
     return html`
-    <div class="modal-wrapper">
-      <div class="head-spacer"></div>
-      <div class="modal-container">
-        <header style="background-color: ${this.config.headerColor}">
-          ${this.config.allowUserToClose ? this.closeButtonTemplate : ''}
-          <div class="logo-icon">
-            <img src="https://archive.org/images/logo_arches.png">
-          </div>
-          <h1>${this.config.title}</h1>
-          <h2>${this.config.subtitle}</h2>
-        </header>
-        <div class="body">
-          <div class="content">
-            <div class="processing-logo ${this.config.showProcessingIndicator ? '' : 'hidden'}">
-              <ia-activity-indicator .mode=${this.config.processingImageMode}></ia-activity-indicator>
+      <div class="modal-wrapper">
+        <div class="modal-container">
+          <header style="background-color: ${this.config.headerColor}">
+            ${this.config.allowUserToClose ? this.closeButtonTemplate : ''}
+            <div class="logo-icon">
+              <img src="https://archive.org/images/logo_arches.png" />
             </div>
+            <h1>${this.config.title}</h1>
+            <h2>${this.config.subtitle}</h2>
+          </header>
+          <div class="body">
+            <div class="content">
+              <div class="processing-logo ${this.config.showProcessingIndicator ? '' : 'hidden'}">
+                <ia-activity-indicator
+                  .mode=${this.config.processingImageMode}
+                ></ia-activity-indicator>
+              </div>
 
-            ${this.config.headline ? html`<h1 class="headline">${this.config.headline}</h1>` : ''}
+              ${this.config.headline
+                ? html`
+                    <h1 class="headline">${this.config.headline}</h1>
+                  `
+                : ''}
+              ${this.config.message
+                ? html`
+                    <p class="message">${this.config.message}</p>
+                  `
+                : ''}
 
-            ${this.config.message ? html`<p class="message">${this.config.message}</p>` : ''}
-
-            <div class="slot-container">
-              <slot>
-              </slot>
+              <div class="slot-container">
+                <slot> </slot>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
     `;
   }
 
@@ -74,30 +81,24 @@ export class ModalTemplate extends LitElement {
   static get styles(): CSSResult {
     const modalCornerRadius = css`var(--modalCornerRadius, 10px)`;
     const modalBorder = css`var(--modalBorder, 2px solid black)`;
+    // if the content of the modal is too big to fit on screen, this sets the bottom margin
+    // it's not exact, but a close estimation
+    const modalBottomMarginCss = css`var(--modalBottomMargin, 25px)`;
 
     return css`
       .hidden {
         display: none;
       }
 
-      .modal-wrapper {
-        position: absolute;
-        height: 100%;
-        width: 100%;
-      }
-
-      .head-spacer {
-        height: 50px;
-      }
-
       .modal-container {
         border-radius: ${modalCornerRadius};
         width: 100%;
+        margin-top: 50px;
       }
 
       header {
         position: relative;
-        background-color: #36A483;
+        background-color: #36a483;
         color: white;
         border-radius: calc(${modalCornerRadius}) calc(${modalCornerRadius}) 0 0;
         border: ${modalBorder};
@@ -135,7 +136,11 @@ export class ModalTemplate extends LitElement {
 
       .content {
         overflow-y: auto;
-        max-height: 300px;
+        /* --containerHeight gets dynamically updated by the modal manager as the window
+           gets resized so subtracting 225px gives space to the header and footer so we have
+           a bit of margin around the modal for our scrollable area */
+        max-height: calc(var(--containerHeight) - (200px + ${modalBottomMarginCss}));
+        min-height: 50px;
         padding: 5px;
       }
 
@@ -158,7 +163,7 @@ export class ModalTemplate extends LitElement {
       .logo-icon img {
         border-radius: 100%;
         border: 3px solid #fff;
-        box-shadow: 0 0 0 1px rgba(0,0,0,.18), 0 2px 2px 0 rgba(0,0,0,.08);
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.18), 0 2px 2px 0 rgba(0, 0, 0, 0.08);
         margin-top: -29px;
         width: 65px;
       }
@@ -174,7 +179,7 @@ export class ModalTemplate extends LitElement {
         padding: 0;
         cursor: pointer;
         background-color: white;
-        box-shadow: 0 0 0 1px rgba(0,0,0,.18), 0 4px 4px 0 rgba(0,0,0,.08);
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.18), 0 4px 4px 0 rgba(0, 0, 0, 0.08);
       }
 
       .processing-logo {

@@ -17,7 +17,7 @@
     "build": "tsc -p tsconfig.build.json",
     "build:watch": "tsc --watch",
     "docs": "typedoc",
-    "start": "concurrently \"npm run build:watch\" \"es-dev-server --app-index demo/index.html --node-resolve --open --watch --http2 --preserve-symlinks\"",
+    "start": "concurrently \"npm run build:watch\" \"es-dev-server --app-index demo/index.html --node-resolve --open --watch --preserve-symlinks\"",
     "start:compatibility": "concurrently \"npm run build:watch\" \"es-dev-server --app-index demo/index.html --node-resolve --open --watch --compatibility all --preserve-symlinks\"",
     "lint:eslint": "eslint --ext .ts . --ignore-path .gitignore",
     "format:eslint": "eslint --ext .ts . --fix --ignore-path .gitignore",
@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "@internetarchive/ia-activity-indicator": "^0.0.1",
+    "@juggle/resize-observer": "^3.2.0",
     "lit-element": "^2.2.1",
     "lit-html": "^1.0.0"
   },
@@ -43,6 +44,7 @@
     "@open-wc/testing-karma": "^3.0.0",
     "@open-wc/testing-karma-bs": "^1.0.0",
     "@types/form-data": "^2.5.0",
+    "@types/resize-observer-browser": "^0.1.3",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
     "concurrently": "^4.1.2",

@@ -9,6 +9,9 @@ import {
   query,
   PropertyValues,
 } from 'lit-element';
+import { ResizeObserver as Polyfill } from '@juggle/resize-observer';
+
+const ResizeObserver = window.ResizeObserver || Polyfill;
 
 import './modal-template';
 import { ModalTemplate } from './modal-template';
@@ -16,7 +19,7 @@ import { ModalConfig } from './modal-config';
 
 export enum ModalManagerMode {
   Modal = 'modal',
-  Closed = 'closed'
+  Closed = 'closed',
 }
 
 export interface ModalManagerInterface extends LitElement {
@@ -61,6 +64,10 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
 
   @query('modal-template') private modalTemplate!: ModalTemplate;
 
+  @query('.container') private container!: HTMLElement;
+
+  private resizeObserver?: ResizeObserver;
+
   /** @inheritdoc */
   render(): TemplateResult {
     return html`
@@ -71,6 +78,16 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
         </modal-template>
       </div>
     `;
+  }
+
+  firstUpdated(): void {
+    this.resizeObserver = new ResizeObserver(entries => {
+      for (const entry of entries) {
+        this.modalTemplate.style.setProperty('--containerHeight', `${entry.contentRect.height}px`);
+      }
+    });
+
+    this.resizeObserver.observe(this.container);
   }
 
   /** @inheritdoc */
@@ -132,7 +149,7 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
    * @memberof ModalManager
    */
   private emitModeChangeEvent(): void {
-    const event = new CustomEvent('modeChanged', { detail: { mode: this.mode }});
+    const event = new CustomEvent('modeChanged', { detail: { mode: this.mode } });
     this.dispatchEvent(event);
   }
 
