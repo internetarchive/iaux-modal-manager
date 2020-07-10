@@ -23,7 +23,7 @@ export class ModalTemplate extends LitElement {
       <div class="modal-wrapper">
         <div class="modal-container">
           <header style="background-color: ${this.config.headerColor}">
-            ${this.config.allowUserToClose ? this.closeButtonTemplate : ''}
+            ${this.config.showCloseButton ? this.closeButtonTemplate : ''}
             <div class="logo-icon">
               <img src="https://archive.org/images/logo_arches.png" />
             </div>
@@ -70,7 +70,7 @@ export class ModalTemplate extends LitElement {
     this.dispatchEvent(event);
   }
 
-  get closeButtonTemplate(): TemplateResult {
+  private get closeButtonTemplate(): TemplateResult {
     return html`
       <button type="button" class="close-button" @click=${this.handleCloseButton}>
         ${closeIcon}

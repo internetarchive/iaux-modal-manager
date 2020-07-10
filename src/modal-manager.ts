@@ -9,9 +9,6 @@ import {
   query,
   PropertyValues,
 } from 'lit-element';
-import { ResizeObserver as Polyfill } from '@juggle/resize-observer';
-
-const ResizeObserver = window.ResizeObserver || Polyfill;
 
 import './modal-template';
 import { ModalTemplate } from './modal-template';
@@ -64,10 +61,6 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
 
   @query('modal-template') private modalTemplate!: ModalTemplate;
 
-  @query('.container') private container!: HTMLElement;
-
-  private resizeObserver?: ResizeObserver;
-
   /** @inheritdoc */
   render(): TemplateResult {
     return html`
@@ -80,22 +73,12 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
     `;
   }
 
-  firstUpdated(): void {
-    this.resizeObserver = new ResizeObserver(entries => {
-      for (const entry of entries) {
-        this.modalTemplate.style.setProperty('--containerHeight', `${entry.contentRect.height}px`);
-      }
-    });
-
-    this.resizeObserver.observe(this.container);
-  }
-
   /** @inheritdoc */
   closeModal(): void {
     this.mode = ModalManagerMode.Closed;
   }
 
-  private allowUserToClose = true;
+  private closeOnBackdropClick = true;
 
   private userClosedModalCallback?: () => void;
 
@@ -114,7 +97,7 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
     customModalContent?: TemplateResult;
     userClosedModalCallback?: () => void;
   }): Promise<void> {
-    this.allowUserToClose = options.config.allowUserToClose;
+    this.closeOnBackdropClick = options.config.closeOnBackdropClick;
     this.userClosedModalCallback = options.userClosedModalCallback;
     this.modalTemplate.config = options.config;
     this.customModalContent = options.customModalContent;
@@ -136,7 +119,7 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
    * @memberof ModalManager
    */
   private backdropClicked(): void {
-    if (this.allowUserToClose) {
+    if (this.closeOnBackdropClick) {
       this.closeModal();
       this.callUserClosedModalCallback();
     }
@@ -167,6 +150,7 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
   /** @inheritdoc */
   static get styles(): CSSResult {
     const modalBackdropColor = css`var(--modalBackdropColor, rgba(10, 10, 10, 0.9))`;
+    const modalWidth = css`var(--modalWidth, 300px)`;
 
     return css`
       .container {
@@ -190,7 +174,7 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
         left: 50%;
         transform: translate(-50%, 0);
         z-index: 2000;
-        width: 300px;
+        width: ${modalWidth};
         max-width: 90%;
       }
     `;

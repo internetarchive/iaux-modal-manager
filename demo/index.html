@@ -47,13 +47,13 @@
 
   <script type="module">
     import { html, render } from 'lit-html';
-    import '../lib/modal-manager.js';
+    import '../lib/modal-manager-controller.js';
     import { ModalConfig } from '../lib/modal-config.js';
 
     render(
       html`
-        <modal-manager @modeChanged=${modalModeChanged}>
-        </modal-manager>
+        <modal-manager-controller>
+        </modal-manager-controller>
 
         <div class="actions">
           <button @click=${showModal}>Modal</button>
@@ -63,6 +63,7 @@
           <button @click=${showCompleteModal}>Processing Complete Modal</button>
           <button @click=${showUserClosedModalCallbackModal}>Modal Closed Callback</button>
           <button @click=${showModalUserCannotClose}>Unclosable Modal</button>
+          <button @click=${showModalUserCannotClickBackdrop}>Unclickable Backdrop</button>
           <button @click=${showOverflowModal}>Text-heavy Modal</button>
         </div>
 
@@ -83,28 +84,14 @@
       document.querySelector('#demo')
     );
 
-    const modalManager = document.querySelector('modal-manager');
-
-    function modalModeChanged(e) {
-      const mode = e.detail.mode;
-      switch (mode) {
-        case 'modal':
-          document.body.style.overflow = 'hidden';
-          break;
-        case 'closed':
-          document.body.style.overflow = 'auto';
-          break;
-        default:
-          break;
-      }
-    }
+    const modalController = document.querySelector('modal-manager-controller');
 
     function showModal() {
       const config = new ModalConfig();
       config.headline = 'Success';
       config.message = 'Thank you for your support!';
 
-      modalManager.showModal({
+      modalController.showModal({
         config
       });
     }
@@ -113,7 +100,7 @@
       const config = ModalConfig.errorConfig;
       config.message = 'An error occurred while processing your donation.';
 
-      modalManager.showModal({
+      modalController.showModal({
         config
       });
     }
@@ -130,7 +117,7 @@
         </div>
       `;
 
-      modalManager.showModal({
+      modalController.showModal({
         config,
         customModalContent: someContent
       });
@@ -154,7 +141,7 @@
 
       config.headerColor = '#36A483';
 
-      modalManager.showModal({
+      modalController.showModal({
         config
       });
     }
@@ -163,8 +150,9 @@
       const config = new ModalConfig();
       config.headerColor = '#497fbf';
       config.showProcessingIndicator = true;
-      config.allowUserToClose = false;
-      modalManager.showModal({
+      config.showCloseButton = false;
+      config.closeOnBackdropClick = false;
+      modalController.showModal({
         config
       });
 
@@ -175,7 +163,7 @@
       const config = new ModalConfig();
       config.showProcessingIndicator = true;
       config.processingImageMode = 'complete';
-      modalManager.showModal({
+      modalController.showModal({
         config
       });
     }
@@ -184,27 +172,37 @@
       const config = new ModalConfig();
       config.message = 'When you close this modal another will open.'
 
-      modalManager.showModal({
+      modalController.showModal({
         config,
         userClosedModalCallback: () => {
           const config = new ModalConfig();
           config.message = 'I\'m another modal';
           config.headerColor = '#497fbf';
-          modalManager.showModal({ config });
+          modalController.showModal({ config });
         }
       });
     }
 
     function showModalUserCannotClose() {
-      console.debug('showModa');
       const config = new ModalConfig();
       config.message = 'User cannot close this. Will close automatically in 2 seconds.';
-      config.allowUserToClose = false;
-      modalManager.showModal({
+      config.showCloseButton = false;
+      config.closeOnBackdropClick = false;
+      modalController.showModal({
         config
       });
 
-      setTimeout(modalManager.closeModal.bind(modalManager), 2000);
+      setTimeout(modalController.closeModal.bind(modalController), 2000);
+    }
+
+    function showModalUserCannotClickBackdrop() {
+      const config = new ModalConfig();
+      config.message = 'Clicking on the backdrop will not close this.';
+      config.showCloseButton = true;
+      config.closeOnBackdropClick = false;
+      modalController.showModal({
+        config
+      });
     }
   </script>
 </body>
