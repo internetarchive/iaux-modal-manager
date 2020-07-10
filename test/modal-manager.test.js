@@ -194,7 +194,7 @@ describe('Modal Manager', () => {
     `);
 
     const config = new ModalConfig();
-    config.allowUserToClose = false;
+    config.closeOnBackdropClick = false;
     el.showModal({ config });
     await el.elementUpdated;
 

@@ -58,7 +58,7 @@ describe('Modal Template', () => {
 
   it('hides the close button if configured to', async () => {
     const config = new ModalConfig();
-    config.allowUserToClose = false;
+    config.showCloseButton = false;
     const el = await fixture(html`
       <modal-template .config=${config}></modal-template>
     `);
