@@ -1,6 +1,6 @@
 import { expect } from '@open-wc/testing';
 
-import { ModalConfig } from  '../lib/modal-config';
+import { ModalConfig } from '../src/modal-config';
 
 describe('Modal Config', () => {
   it('has a static error config', async () => {

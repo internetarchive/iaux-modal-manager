@@ -7,5 +7,5 @@
 export enum ModalHeaderColors {
   Blue = '#497fbf',
   Green = '#55A183',
-  Red = '#691916'
+  Red = '#691916',
 }

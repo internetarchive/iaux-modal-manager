@@ -28,7 +28,7 @@ import { ModalConfig } from './modal-config';
  * @implements {ModalManagerInterface}
  */
 @customElement('modal-manager-controller')
-export class ModalManagerController extends LitElement implements ModalManagerInterface {
+export class ModalManagerController extends LitElement {
   @query('modal-manager') private modalManager!: ModalManagerInterface;
 
   /** @inheritdoc */
@@ -53,10 +53,16 @@ export class ModalManagerController extends LitElement implements ModalManagerIn
 
   firstUpdated(): void {
     window.addEventListener('resize', () => {
-      this.modalManager.style.setProperty('--containerHeight', `${window.innerHeight}px`);
-    })
+      this.modalManager.style.setProperty(
+        '--containerHeight',
+        `${window.innerHeight}px`
+      );
+    });
 
-    this.modalManager.style.setProperty('--containerHeight', `${window.innerHeight}px`);
+    this.modalManager.style.setProperty(
+      '--containerHeight',
+      `${window.innerHeight}px`
+    );
   }
 
   private modalModeChanged(e: CustomEvent): void {

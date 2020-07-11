@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_modal_config_.html">&quot;modal-config&quot;</a>
+					<a href="../modules/_src_modal_config_.html">&quot;src/modal-config&quot;</a>
 				</li>
 				<li>
-					<a href="_modal_config_.modalconfig.html">ModalConfig</a>
+					<a href="_src_modal_config_.modalconfig.html">ModalConfig</a>
 				</li>
 			</ul>
 			<h1>Class ModalConfig</h1>
@@ -84,20 +84,21 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_modal_config_.modalconfig.html#allowusertoclose" class="tsd-kind-icon">allow<wbr>User<wbr>ToClose</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_modal_config_.modalconfig.html#headercolor" class="tsd-kind-icon">header<wbr>Color</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_modal_config_.modalconfig.html#headline" class="tsd-kind-icon">headline</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_modal_config_.modalconfig.html#message" class="tsd-kind-icon">message</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_modal_config_.modalconfig.html#processingimagemode" class="tsd-kind-icon">processing<wbr>Image<wbr>Mode</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_modal_config_.modalconfig.html#showprocessingindicator" class="tsd-kind-icon">show<wbr>Processing<wbr>Indicator</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_modal_config_.modalconfig.html#subtitle" class="tsd-kind-icon">subtitle</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_modal_config_.modalconfig.html#title" class="tsd-kind-icon">title</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_modal_config_.modalconfig.html#closeonbackdropclick" class="tsd-kind-icon">close<wbr>OnBackdrop<wbr>Click</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_modal_config_.modalconfig.html#headercolor" class="tsd-kind-icon">header<wbr>Color</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_modal_config_.modalconfig.html#headline" class="tsd-kind-icon">headline</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_modal_config_.modalconfig.html#message" class="tsd-kind-icon">message</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_modal_config_.modalconfig.html#processingimagemode" class="tsd-kind-icon">processing<wbr>Image<wbr>Mode</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_modal_config_.modalconfig.html#showclosebutton" class="tsd-kind-icon">show<wbr>Close<wbr>Button</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_modal_config_.modalconfig.html#showprocessingindicator" class="tsd-kind-icon">show<wbr>Processing<wbr>Indicator</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_modal_config_.modalconfig.html#subtitle" class="tsd-kind-icon">subtitle</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_modal_config_.modalconfig.html#title" class="tsd-kind-icon">title</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-static"><a href="_modal_config_.modalconfig.html#errorconfig" class="tsd-kind-icon">error<wbr>Config</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-static"><a href="_src_modal_config_.modalconfig.html#errorconfig" class="tsd-kind-icon">error<wbr>Config</a></li>
 							</ul>
 						</section>
 					</div>
@@ -106,17 +107,17 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="allowusertoclose" class="tsd-anchor"></a>
-					<h3>allow<wbr>User<wbr>ToClose</h3>
-					<div class="tsd-signature tsd-kind-icon">allow<wbr>User<wbr>ToClose<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></div>
+					<a name="closeonbackdropclick" class="tsd-anchor"></a>
+					<h3>close<wbr>OnBackdrop<wbr>Click</h3>
+					<div class="tsd-signature tsd-kind-icon">close<wbr>OnBackdrop<wbr>Click<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/internetarchive/iaux-modal-manager/blob/1e78b39/src/modal-config.ts#L64">src/modal-config.ts:64</a></li>
+							<li>Defined in src/modal-config.ts:71</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Allow the user to close the modal. Hides the close X and disables backdrop click.</p>
+							<p>Close the modal if the user taps on the background</p>
 						</div>
 						<dl class="tsd-comment-tags">
 							<dt>memberof</dt>
@@ -131,7 +132,7 @@
 					<div class="tsd-signature tsd-kind-icon">header<wbr>Color<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;#36A483&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/internetarchive/iaux-modal-manager/blob/1e78b39/src/modal-config.ts#L43">src/modal-config.ts:43</a></li>
+							<li>Defined in src/modal-config.ts:43</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -151,7 +152,7 @@
 					<div class="tsd-signature tsd-kind-icon">headline<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TemplateResult</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/internetarchive/iaux-modal-manager/blob/1e78b39/src/modal-config.ts#L28">src/modal-config.ts:28</a></li>
+							<li>Defined in src/modal-config.ts:28</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -171,7 +172,7 @@
 					<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TemplateResult</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/internetarchive/iaux-modal-manager/blob/1e78b39/src/modal-config.ts#L36">src/modal-config.ts:36</a></li>
+							<li>Defined in src/modal-config.ts:36</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -191,7 +192,7 @@
 					<div class="tsd-signature tsd-kind-icon">processing<wbr>Image<wbr>Mode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;processing&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/internetarchive/iaux-modal-manager/blob/1e78b39/src/modal-config.ts#L57">src/modal-config.ts:57</a></li>
+							<li>Defined in src/modal-config.ts:57</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -206,12 +207,32 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="showclosebutton" class="tsd-anchor"></a>
+					<h3>show<wbr>Close<wbr>Button</h3>
+					<div class="tsd-signature tsd-kind-icon">show<wbr>Close<wbr>Button<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/modal-config.ts:64</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Show the close button</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>memberof</dt>
+							<dd><p>ModalConfig</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="showprocessingindicator" class="tsd-anchor"></a>
 					<h3>show<wbr>Processing<wbr>Indicator</h3>
 					<div class="tsd-signature tsd-kind-icon">show<wbr>Processing<wbr>Indicator<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/internetarchive/iaux-modal-manager/blob/1e78b39/src/modal-config.ts#L50">src/modal-config.ts:50</a></li>
+							<li>Defined in src/modal-config.ts:50</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -231,7 +252,7 @@
 					<div class="tsd-signature tsd-kind-icon">subtitle<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TemplateResult</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/internetarchive/iaux-modal-manager/blob/1e78b39/src/modal-config.ts#L20">src/modal-config.ts:20</a></li>
+							<li>Defined in src/modal-config.ts:20</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -251,7 +272,7 @@
 					<div class="tsd-signature tsd-kind-icon">title<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TemplateResult</span><span class="tsd-signature-symbol"> = html&#x60;Internet Archive&#x60;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/internetarchive/iaux-modal-manager/blob/1e78b39/src/modal-config.ts#L12">src/modal-config.ts:12</a></li>
+							<li>Defined in src/modal-config.ts:12</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -272,13 +293,13 @@
 					<a name="errorconfig" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> error<wbr>Config</h3>
 					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> errorConfig<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_modal_config_.modalconfig.html" class="tsd-signature-type">ModalConfig</a></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> errorConfig<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_modal_config_.modalconfig.html" class="tsd-signature-type">ModalConfig</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/internetarchive/iaux-modal-manager/blob/1e78b39/src/modal-config.ts#L74">src/modal-config.ts:74</a></li>
+									<li>Defined in src/modal-config.ts:81</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -295,7 +316,7 @@
 									</dd>
 								</dl>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="_modal_config_.modalconfig.html" class="tsd-signature-type">ModalConfig</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_src_modal_config_.modalconfig.html" class="tsd-signature-type">ModalConfig</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -307,17 +328,23 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_index_.html">&quot;index&quot;</a>
+					</li>
 					<li class="current tsd-kind-module">
-						<a href="../modules/_modal_config_.html">&quot;modal-<wbr>config&quot;</a>
+						<a href="../modules/_src_modal_config_.html">&quot;src/modal-<wbr>config&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/_modal_header_colors_.html">&quot;modal-<wbr>header-<wbr>colors&quot;</a>
+						<a href="../modules/_src_modal_header_colors_.html">&quot;src/modal-<wbr>header-<wbr>colors&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/_modal_manager_.html">&quot;modal-<wbr>manager&quot;</a>
+						<a href="../modules/_src_modal_manager_.html">&quot;src/modal-<wbr>manager&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/_modal_template_.html">&quot;modal-<wbr>template&quot;</a>
+						<a href="../modules/_src_modal_manager_controller_.html">&quot;src/modal-<wbr>manager-<wbr>controller&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_src_modal_template_.html">&quot;src/modal-<wbr>template&quot;</a>
 					</li>
 				</ul>
 			</nav>
@@ -326,34 +353,37 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-module">
-						<a href="_modal_config_.modalconfig.html" class="tsd-kind-icon">Modal<wbr>Config</a>
+						<a href="_src_modal_config_.modalconfig.html" class="tsd-kind-icon">Modal<wbr>Config</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_modal_config_.modalconfig.html#allowusertoclose" class="tsd-kind-icon">allow<wbr>User<wbr>ToClose</a>
+								<a href="_src_modal_config_.modalconfig.html#closeonbackdropclick" class="tsd-kind-icon">close<wbr>OnBackdrop<wbr>Click</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_modal_config_.modalconfig.html#headercolor" class="tsd-kind-icon">header<wbr>Color</a>
+								<a href="_src_modal_config_.modalconfig.html#headercolor" class="tsd-kind-icon">header<wbr>Color</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_modal_config_.modalconfig.html#headline" class="tsd-kind-icon">headline</a>
+								<a href="_src_modal_config_.modalconfig.html#headline" class="tsd-kind-icon">headline</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_modal_config_.modalconfig.html#message" class="tsd-kind-icon">message</a>
+								<a href="_src_modal_config_.modalconfig.html#message" class="tsd-kind-icon">message</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_modal_config_.modalconfig.html#processingimagemode" class="tsd-kind-icon">processing<wbr>Image<wbr>Mode</a>
+								<a href="_src_modal_config_.modalconfig.html#processingimagemode" class="tsd-kind-icon">processing<wbr>Image<wbr>Mode</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_modal_config_.modalconfig.html#showprocessingindicator" class="tsd-kind-icon">show<wbr>Processing<wbr>Indicator</a>
+								<a href="_src_modal_config_.modalconfig.html#showclosebutton" class="tsd-kind-icon">show<wbr>Close<wbr>Button</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_modal_config_.modalconfig.html#subtitle" class="tsd-kind-icon">subtitle</a>
+								<a href="_src_modal_config_.modalconfig.html#showprocessingindicator" class="tsd-kind-icon">show<wbr>Processing<wbr>Indicator</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_modal_config_.modalconfig.html#title" class="tsd-kind-icon">title</a>
+								<a href="_src_modal_config_.modalconfig.html#subtitle" class="tsd-kind-icon">subtitle</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_src_modal_config_.modalconfig.html#title" class="tsd-kind-icon">title</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
-								<a href="_modal_config_.modalconfig.html#errorconfig" class="tsd-kind-icon">error<wbr>Config</a>
+								<a href="_src_modal_config_.modalconfig.html#errorconfig" class="tsd-kind-icon">error<wbr>Config</a>
 							</li>
 						</ul>
 					</li>
@@ -386,6 +416,5 @@
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>

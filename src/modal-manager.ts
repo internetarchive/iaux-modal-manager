@@ -21,6 +21,11 @@ export enum ModalManagerMode {
 
 export interface ModalManagerInterface extends LitElement {
   /**
+   * The current modal mode. Can be set or get.
+   */
+  mode: ModalManagerMode;
+
+  /**
    * Show a modal from a given ModalConfig
    *
    * @param config ModalConfig
@@ -49,7 +54,8 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
    * @type {ModalManagerMode}
    * @memberof ModalManager
    */
-  @property({ type: String, reflect: true }) mode: ModalManagerMode = ModalManagerMode.Closed;
+  @property({ type: String, reflect: true }) mode: ModalManagerMode =
+    ModalManagerMode.Closed;
 
   /**
    * Custom content to display in the modal's content slot
@@ -132,7 +138,9 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
    * @memberof ModalManager
    */
   private emitModeChangeEvent(): void {
-    const event = new CustomEvent('modeChanged', { detail: { mode: this.mode } });
+    const event = new CustomEvent('modeChanged', {
+      detail: { mode: this.mode },
+    });
     this.dispatchEvent(event);
   }
 

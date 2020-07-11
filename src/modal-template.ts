@@ -32,21 +32,21 @@ export class ModalTemplate extends LitElement {
           </header>
           <div class="body">
             <div class="content">
-              <div class="processing-logo ${this.config.showProcessingIndicator ? '' : 'hidden'}">
+              <div
+                class="processing-logo ${this.config.showProcessingIndicator
+                  ? ''
+                  : 'hidden'}"
+              >
                 <ia-activity-indicator
                   .mode=${this.config.processingImageMode}
                 ></ia-activity-indicator>
               </div>
 
               ${this.config.headline
-                ? html`
-                    <h1 class="headline">${this.config.headline}</h1>
-                  `
+                ? html` <h1 class="headline">${this.config.headline}</h1> `
                 : ''}
               ${this.config.message
-                ? html`
-                    <p class="message">${this.config.message}</p>
-                  `
+                ? html` <p class="message">${this.config.message}</p> `
                 : ''}
 
               <div class="slot-container">
@@ -72,7 +72,11 @@ export class ModalTemplate extends LitElement {
 
   private get closeButtonTemplate(): TemplateResult {
     return html`
-      <button type="button" class="close-button" @click=${this.handleCloseButton}>
+      <button
+        type="button"
+        class="close-button"
+        @click=${this.handleCloseButton}
+      >
         ${closeIcon}
       </button>
     `;
@@ -139,7 +143,9 @@ export class ModalTemplate extends LitElement {
         /* --containerHeight gets dynamically updated by the modal manager as the window
            gets resized so subtracting 225px gives space to the header and footer so we have
            a bit of margin around the modal for our scrollable area */
-        max-height: calc(var(--containerHeight) - (200px + ${modalBottomMarginCss}));
+        max-height: calc(
+          var(--containerHeight) - (200px + ${modalBottomMarginCss})
+        );
         min-height: 50px;
         padding: 5px;
       }
@@ -163,7 +169,8 @@ export class ModalTemplate extends LitElement {
       .logo-icon img {
         border-radius: 100%;
         border: 3px solid #fff;
-        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.18), 0 2px 2px 0 rgba(0, 0, 0, 0.08);
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.18),
+          0 2px 2px 0 rgba(0, 0, 0, 0.08);
         margin-top: -29px;
         width: 65px;
       }
@@ -179,7 +186,8 @@ export class ModalTemplate extends LitElement {
         padding: 0;
         cursor: pointer;
         background-color: white;
-        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.18), 0 4px 4px 0 rgba(0, 0, 0, 0.08);
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.18),
+          0 4px 4px 0 rgba(0, 0, 0, 0.08);
       }
 
       .processing-logo {
