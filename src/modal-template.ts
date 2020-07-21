@@ -87,6 +87,8 @@ export class ModalTemplate extends LitElement {
     // if the content of the modal is too big to fit on screen, this sets the bottom margin
     // it's not exact, but a close estimation
     const modalBottomMarginCss = css`var(--modalBottomMargin, 25px)`;
+    const modalTopMarginCss = css`var(--modalTopMargin, 50px)`;
+    const modalHeaderBottomPaddingCss = css`var(--modalHeaderBottomPadding, 0.5em)`;
 
     return css`
       .hidden {
@@ -96,7 +98,7 @@ export class ModalTemplate extends LitElement {
       .modal-container {
         border-radius: ${modalCornerRadius};
         width: 100%;
-        margin-top: 50px;
+        margin-top: ${modalTopMarginCss};
       }
 
       header {
@@ -107,7 +109,7 @@ export class ModalTemplate extends LitElement {
         border: ${modalBorder};
         border-bottom: 0;
         text-align: center;
-        padding-bottom: 0.5em;
+        padding-bottom: ${modalHeaderBottomPaddingCss};
       }
 
       header h1 {
