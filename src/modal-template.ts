@@ -29,7 +29,7 @@ export class ModalTemplate extends LitElement {
             <h1>${this.config.title}</h1>
             <h2>${this.config.subtitle}</h2>
           </header>
-          <div class="body">
+          <section class="modal-body">
             <div class="content">
               <div
                 class="processing-logo ${this.config.showProcessingIndicator
@@ -52,7 +52,7 @@ export class ModalTemplate extends LitElement {
                 <slot> </slot>
               </div>
             </div>
-          </div>
+          </section>
         </div>
       </div>
     `;
@@ -126,7 +126,7 @@ export class ModalTemplate extends LitElement {
         font-size: 12px;
       }
 
-      .body {
+      .modal-body {
         background-color: #f5f5f7;
         border-radius: 0 0 calc(${modalCornerRadius}) calc(${modalCornerRadius});
         border: ${modalBorder};
