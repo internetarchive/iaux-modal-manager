@@ -9,10 +9,9 @@ import {
 } from 'lit-element';
 
 import '@internetarchive/ia-activity-indicator/ia-activity-indicator';
+import closeIcon from '@internetarchive/icon-close';
 
 import { ModalConfig } from './modal-config';
-
-import closeIcon from './assets/close-icon';
 
 @customElement('modal-template')
 export class ModalTemplate extends LitElement {
