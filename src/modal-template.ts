@@ -94,6 +94,9 @@ export class ModalTemplate extends LitElement {
     const modalTopMarginCss = css`var(--modalTopMargin, 50px)`;
     const modalHeaderBottomPaddingCss = css`var(--modalHeaderBottomPadding, 0.5em)`;
 
+    const modalBottomPadding = css`var(--modalBottomPadding, 20px)`;
+    const scrollOffset = css`var(--modalScrollOffset, 5px)`;
+
     const titleFontSize = css`var(--modalTitleFontSize, 18px)`;
     const subtitleFontSize = css`var(--modalSubtitleFontSize, 12px)`;
     const headlineFontSize = css`var(--modalHeadlineFontSize, 18px)`;
@@ -151,7 +154,7 @@ export class ModalTemplate extends LitElement {
         border-radius: 0 0 calc(${modalCornerRadius}) calc(${modalCornerRadius});
         border: ${modalBorder};
         border-top: 0;
-        padding: 0 10px 20px 10px;
+        padding: 0 10px calc(${modalBottomPadding} - ${scrollOffset}) 10px;
         color: #333;
         margin-bottom: 25px;
         min-height: 50px;
@@ -166,7 +169,7 @@ export class ModalTemplate extends LitElement {
           var(--containerHeight) - (200px + ${modalBottomMarginCss})
         );
         min-height: 50px;
-        padding: 0;
+        padding: 0 0 calc(${scrollOffset}) 0; /* the 5px bottom margin prevents a small scrollbar from occurring */
       }
 
       .headline {
