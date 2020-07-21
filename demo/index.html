@@ -86,7 +86,9 @@
 
     function showErrorModal() {
       const config = new ModalConfig();
+      config.headline = 'Error'
       config.message = 'An error occurred while processing your donation.';
+      config.headerColor = '#691916';
 
       modalController.showModal({
         config
