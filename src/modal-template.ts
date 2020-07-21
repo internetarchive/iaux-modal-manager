@@ -100,7 +100,17 @@ export class ModalTemplate extends LitElement {
     const messageFontSize = css`var(--modalMessageFontSize, 14px)`;
 
     return css`
-      .hidden {
+      .processing-logo {
+        margin: auto;
+        width: 75px;
+        height: 75px;
+      }
+
+      .processing-logo.hidden {
+        height: 10px;
+      }
+
+      .processing-logo.hidden ia-activity-indicator {
         display: none;
       }
 
@@ -197,12 +207,6 @@ export class ModalTemplate extends LitElement {
         background-color: white;
         box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.18),
           0 4px 4px 0 rgba(0, 0, 0, 0.08);
-      }
-
-      .processing-logo {
-        margin: auto;
-        width: 75px;
-        height: 75px;
       }
     `;
   }
