@@ -26,8 +26,12 @@ export class ModalTemplate extends LitElement {
             <div class="logo-icon">
               <img src="https://archive.org/images/logo_arches.png" />
             </div>
-            <h1>${this.config.title}</h1>
-            <h2>${this.config.subtitle}</h2>
+            ${this.config.title
+              ? html`<h1 class="title">${this.config.title}</h1>`
+              : ''}
+            ${this.config.subtitle
+              ? html`<h2 class="subtitle">${this.config.subtitle}</h2>`
+              : ''}
           </header>
           <section class="modal-body">
             <div class="content">
@@ -90,6 +94,11 @@ export class ModalTemplate extends LitElement {
     const modalTopMarginCss = css`var(--modalTopMargin, 50px)`;
     const modalHeaderBottomPaddingCss = css`var(--modalHeaderBottomPadding, 0.5em)`;
 
+    const titleFontSize = css`var(--modalTitleFontSize, 18px)`;
+    const subtitleFontSize = css`var(--modalSubtitleFontSize, 12px)`;
+    const headlineFontSize = css`var(--modalHeadlineFontSize, 18px)`;
+    const messageFontSize = css`var(--modalMessageFontSize, 14px)`;
+
     return css`
       .hidden {
         display: none;
@@ -112,20 +121,19 @@ export class ModalTemplate extends LitElement {
         padding-bottom: ${modalHeaderBottomPaddingCss};
       }
 
-      header h1 {
+      .title {
         margin: 0;
         padding: 0;
-        padding-top: 0.25em;
-        font-size: 18px;
+        font-size: ${titleFontSize};
         font-weight: bold;
       }
 
-      header h2 {
+      .subtitle {
         margin: 0;
         padding: 0;
         font-weight: normal;
         padding-top: 0;
-        font-size: 12px;
+        font-size: ${subtitleFontSize};
       }
 
       .modal-body {
@@ -133,7 +141,7 @@ export class ModalTemplate extends LitElement {
         border-radius: 0 0 calc(${modalCornerRadius}) calc(${modalCornerRadius});
         border: ${modalBorder};
         border-top: 0;
-        padding: 10px;
+        padding: 0 10px 20px 10px;
         color: #333;
         margin-bottom: 25px;
         min-height: 50px;
@@ -148,22 +156,22 @@ export class ModalTemplate extends LitElement {
           var(--containerHeight) - (200px + ${modalBottomMarginCss})
         );
         min-height: 50px;
-        padding: 5px;
+        padding: 0;
       }
 
       .headline {
-        font-size: 18px;
+        font-size: ${headlineFontSize};
         font-weight: bold;
         text-align: center;
         line-height: 1.2em;
         margin: 0;
-        padding: 0.5rem 0 0 0;
+        padding: 0;
       }
 
       .message {
-        margin: 0.5rem 0 0 0;
+        margin: 10px 0 0 0;
         text-align: center;
-        font-size: 14px;
+        font-size: ${messageFontSize};
         line-height: 1.4em;
       }
 
@@ -178,8 +186,8 @@ export class ModalTemplate extends LitElement {
 
       .close-button {
         position: absolute;
-        right: 16px;
-        top: 16px;
+        right: 12px;
+        top: 12px;
         width: 20px;
         height: 20px;
         border-radius: 100%;
