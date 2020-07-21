@@ -44,6 +44,7 @@
 
         <div class="actions">
           <button @click=${showModal}>Modal</button>
+          <button @click=${showAllFeaturesModal}>All Features</button>
           <button @click=${showErrorModal}>Error Modal</button>
           <button @click=${showCustomContentModal}>Custom Content Modal</button>
           <button @click=${showProcessingModal}>Processing Modal</button>
@@ -84,11 +85,41 @@
     }
 
     function showErrorModal() {
-      const config = ModalConfig.errorConfig;
+      const config = new ModalConfig();
       config.message = 'An error occurred while processing your donation.';
 
       modalController.showModal({
         config
+      });
+    }
+
+    function showBillAlert() {
+      alert('Bill <3 You');
+    }
+
+    function buttonPress() {
+      alert('You pressed a button.');
+    }
+
+    function showAllFeaturesModal() {
+      const config = new ModalConfig();
+      config.title = html`Donation Received`;
+      config.subtitle = html`Thanks a bunch!`;
+      config.headline = html`A Headline that catches attention!`;
+      config.message = html`A long informative message for your users that let them know about something`;
+      config.headerColor = 'purple';
+      config.showProcessingIndicator = true;
+      config.processingImageMode = 'done';
+
+      const someContent = html`
+        <div style="text-align: center; margin-top: 10px;">
+          <button @click=${buttonPress}>I'm A Button To Press</button>
+        </div>
+      `;
+
+      modalController.showModal({
+        config,
+        customModalContent: someContent
       });
     }
 
@@ -110,10 +141,6 @@
       });
     }
 
-    function showBillAlert() {
-      alert('Bill <3 You');
-    }
-
     function showOverflowModal() {
       const config = new ModalConfig();
 
@@ -133,6 +160,15 @@
       });
     }
 
+    function showCompleteModal() {
+      const config = new ModalConfig();
+      config.showProcessingIndicator = true;
+      config.processingImageMode = 'complete';
+      modalController.showModal({
+        config
+      });
+    }
+
     function showProcessingModal() {
       const config = new ModalConfig();
       config.headerColor = '#497fbf';
@@ -144,15 +180,6 @@
       });
 
       setTimeout(showCompleteModal, 1500);
-    }
-
-    function showCompleteModal() {
-      const config = new ModalConfig();
-      config.showProcessingIndicator = true;
-      config.processingImageMode = 'complete';
-      modalController.showModal({
-        config
-      });
     }
 
     function showUserClosedModalCallbackModal() {
