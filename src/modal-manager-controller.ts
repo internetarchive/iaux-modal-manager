@@ -28,7 +28,8 @@ import { ModalConfig } from './modal-config';
  * @implements {ModalManagerInterface}
  */
 @customElement('modal-manager-controller')
-export class ModalManagerController extends LitElement {
+export class ModalManagerController extends LitElement
+  implements ModalManagerInterface {
   @query('modal-manager') private modalManager!: ModalManagerInterface;
 
   /** @inheritdoc */
@@ -36,6 +37,11 @@ export class ModalManagerController extends LitElement {
     return html`
       <modal-manager @modeChanged=${this.modalModeChanged}></modal-manager>
     `;
+  }
+
+  /** @inheritdoc */
+  getMode(): ModalManagerMode {
+    return this.modalManager.getMode();
   }
 
   // these are just convenience pass-throughs to the real modalManager

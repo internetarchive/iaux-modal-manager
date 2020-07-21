@@ -212,6 +212,6 @@ describe('Modal Manager', () => {
 
     await elementUpdated(el);
 
-    expect(el.mode).to.equal('modal');
+    expect(el.getMode()).to.equal('modal');
   });
 });

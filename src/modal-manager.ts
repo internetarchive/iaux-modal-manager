@@ -21,9 +21,9 @@ export enum ModalManagerMode {
 
 export interface ModalManagerInterface extends LitElement {
   /**
-   * The current modal mode. Can be set or get.
+   * Get the current modal mode. Can be set or get.
    */
-  mode: ModalManagerMode;
+  getMode(): ModalManagerMode;
 
   /**
    * Show a modal from a given ModalConfig
@@ -77,6 +77,11 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
         </modal-template>
       </div>
     `;
+  }
+
+  /** @inheritdoc */
+  getMode(): ModalManagerMode {
+    return this.mode;
   }
 
   /** @inheritdoc */
