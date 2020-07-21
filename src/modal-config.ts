@@ -1,7 +1,5 @@
 import { TemplateResult, html } from 'lit-html';
 
-import { ModalHeaderColors } from './modal-header-colors';
-
 export class ModalConfig {
   /**
    * The title that shows in the header
@@ -40,7 +38,7 @@ export class ModalConfig {
    *
    * @memberof ModalConfig
    */
-  headerColor = '#36A483';
+  headerColor = '#55A183';
 
   /**
    * Show or hide the processing indicator
@@ -69,19 +67,4 @@ export class ModalConfig {
    * @memberof ModalConfig
    */
   closeOnBackdropClick = true;
-
-  /**
-   * A default error state configuration
-   *
-   * @readonly
-   * @static
-   * @type {ModalConfig}
-   * @memberof ModalConfig
-   */
-  static get errorConfig(): ModalConfig {
-    const config = new ModalConfig();
-    config.headline = html`Error`;
-    config.headerColor = ModalHeaderColors.Red;
-    return config;
-  }
 }
