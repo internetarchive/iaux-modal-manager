@@ -102,6 +102,11 @@ export class ModalTemplate extends LitElement {
     const headlineFontSize = css`var(--modalHeadlineFontSize, 18px)`;
     const messageFontSize = css`var(--modalMessageFontSize, 14px)`;
 
+    const titleLineHeight = css`var(--modalTitleLineHeight, normal)`;
+    const subtitleLineHeight = css`var(--modalSubtitleLineHeight, normal)`;
+    const headlineLineHeight = css`var(--modalHeadlineLineHeight, normal)`;
+    const messageLineHeight = css`var(--modalMessageLineHeight, normal)`;
+
     return css`
       .processing-logo {
         margin: auto;
@@ -139,6 +144,7 @@ export class ModalTemplate extends LitElement {
         padding: 0;
         font-size: ${titleFontSize};
         font-weight: bold;
+        line-height: ${titleLineHeight};
       }
 
       .subtitle {
@@ -147,6 +153,7 @@ export class ModalTemplate extends LitElement {
         font-weight: normal;
         padding-top: 0;
         font-size: ${subtitleFontSize};
+        line-height: ${subtitleLineHeight};
       }
 
       .modal-body {
@@ -176,7 +183,7 @@ export class ModalTemplate extends LitElement {
         font-size: ${headlineFontSize};
         font-weight: bold;
         text-align: center;
-        line-height: 1.2em;
+        line-height: ${headlineLineHeight};
         margin: 0;
         padding: 0;
       }
@@ -185,7 +192,7 @@ export class ModalTemplate extends LitElement {
         margin: 10px 0 0 0;
         text-align: center;
         font-size: ${messageFontSize};
-        line-height: 1.4em;
+        line-height: ${messageLineHeight};
       }
 
       .logo-icon img {
