@@ -70,7 +70,7 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
   /** @inheritdoc */
   render(): TemplateResult {
     return html`
-      <div class="container ${this.mode}">
+      <div class="container">
         <div class="backdrop" @click=${this.backdropClicked}></div>
         <modal-template @closeButtonPressed=${this.closeButtonPressed}>
           ${this.customModalContent}

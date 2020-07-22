@@ -88,13 +88,6 @@ export class ModalManagerController extends LitElement
   /** @inheritdoc */
   static get styles(): CSSResult {
     return css`
-      modal-manager {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        z-index: 250;
-      }
-
       modal-manager[mode='closed'] {
         display: none;
       }
