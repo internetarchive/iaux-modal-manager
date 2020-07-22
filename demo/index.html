@@ -37,9 +37,17 @@
 
     /* eslint-disable @typescript-eslint/explicit-function-return-type */
 
+    const slotContent = html`
+      <div slot="slot-content-demo">
+        <slot name="slot-content-demo"></slot>
+      </div>`;
+
     render(
       html`
-        <modal-manager-controller>
+        <modal-manager-controller .slotContent=${slottedContent}>
+          <div slot="slot-content-demo">
+            <p>Slotted Content</p>
+          </div>
         </modal-manager-controller>
 
         <div class="actions">
@@ -47,6 +55,7 @@
           <button @click=${showAllFeaturesModal}>All Features</button>
           <button @click=${showErrorModal}>Error Modal</button>
           <button @click=${showCustomContentModal}>Custom Content Modal</button>
+          <button @click=${showSlottedContentModal}>Slotted Content Modal</button>
           <button @click=${showProcessingModal}>Processing Modal</button>
           <button @click=${showCompleteModal}>Processing Complete Modal</button>
           <button @click=${showUserClosedModalCallbackModal}>Modal Closed Callback</button>
@@ -135,6 +144,21 @@
           <a href="https://fillmurray.com" style="display: block">Fill Murray</a>
           <img src="100x100.jpg" @click=${showBillAlert} />
         </div>
+      `;
+
+      modalController.showModal({
+        config,
+        customModalContent: someContent
+      });
+    }
+
+    function showSlottedContentModal() {
+      const config = new ModalConfig();
+      config.title = 'Slotted Content';
+
+      const someContent = html`
+        Can slot content from the top-level:
+        <slot name="slot-content-demo"></slot>
       `;
 
       modalController.showModal({

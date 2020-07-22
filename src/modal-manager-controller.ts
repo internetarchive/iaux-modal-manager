@@ -6,6 +6,7 @@ import {
   CSSResult,
   TemplateResult,
   query,
+  property,
 } from 'lit-element';
 
 import { ModalManagerInterface, ModalManagerMode } from './modal-manager';
@@ -30,12 +31,16 @@ import { ModalConfig } from './modal-config';
 @customElement('modal-manager-controller')
 export class ModalManagerController extends LitElement
   implements ModalManagerInterface {
+  @property({ type: Object }) slotContent?: TemplateResult;
+
   @query('modal-manager') private modalManager!: ModalManagerInterface;
 
   /** @inheritdoc */
   render(): TemplateResult {
     return html`
-      <modal-manager @modeChanged=${this.modalModeChanged}></modal-manager>
+      <modal-manager @modeChanged=${this.modalModeChanged}>
+        ${this.slotContent}
+      </modal-manager>
     `;
   }
 
