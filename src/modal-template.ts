@@ -163,10 +163,10 @@ export class ModalTemplate extends LitElement {
       .content {
         overflow-y: auto;
         /* --containerHeight gets dynamically updated by the modal manager as the window
-           gets resized so subtracting 225px gives space to the header and footer so we have
-           a bit of margin around the modal for our scrollable area */
+           gets resized so subtracting 165px gives space to the header and footer so we have
+           a bit of margin around the modal for our scrollable area. This is just an estimate */
         max-height: calc(
-          var(--containerHeight) - (200px + ${modalBottomMarginCss})
+          var(--containerHeight) - (165px + ${modalBottomMarginCss})
         );
         min-height: 50px;
         padding: 0 0 calc(${scrollOffset}) 0; /* the 5px bottom margin prevents a small scrollbar from occurring */
