@@ -44,7 +44,7 @@
 
     render(
       html`
-        <modal-manager-controller .slotContent=${slottedContent}>
+        <modal-manager-controller .slotContent=${slotContent}>
           <div slot="slot-content-demo">
             <p>Slotted Content</p>
           </div>
@@ -116,7 +116,7 @@
       const config = new ModalConfig();
       config.title = html`Donation Received`;
       config.subtitle = html`Thanks a bunch!`;
-      config.headline = html`A Headline that catches attention!`;
+      config.headline = html`A Headline that catches attention and might spill over to multiple lines!`;
       config.message = html`A long informative message for your users that let them know about something`;
       config.headerColor = 'purple';
       config.showProcessingIndicator = true;
