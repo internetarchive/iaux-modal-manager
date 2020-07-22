@@ -163,7 +163,7 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
   /** @inheritdoc */
   static get styles(): CSSResult {
     const modalBackdropColor = css`var(--modalBackdropColor, rgba(10, 10, 10, 0.9))`;
-    const modalWidth = css`var(--modalWidth, 300px)`;
+    const modalWidth = css`var(--modalWidth, 320px)`;
 
     return css`
       .container {
