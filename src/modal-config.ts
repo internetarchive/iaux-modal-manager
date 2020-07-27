@@ -1,5 +1,11 @@
 import { TemplateResult, html } from 'lit-html';
 
+/**
+ * Configuration to show a modal
+ *
+ * @export
+ * @class ModalConfig
+ */
 export class ModalConfig {
   /**
    * The title that shows in the header

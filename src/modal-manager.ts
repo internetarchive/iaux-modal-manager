@@ -14,6 +14,12 @@ import './modal-template';
 import { ModalTemplate } from './modal-template';
 import { ModalConfig } from './modal-config';
 
+/**
+ * Various modes the modal can be in
+ *
+ * @export
+ * @enum {number}
+ */
 export enum ModalManagerMode {
   Modal = 'modal',
   Closed = 'closed',
@@ -21,7 +27,7 @@ export enum ModalManagerMode {
 
 export interface ModalManagerInterface extends LitElement {
   /**
-   * Get the current modal mode. Can be set or get.
+   * Get the current modal mode.
    */
   getMode(): ModalManagerMode;
 
@@ -65,6 +71,13 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
    */
   @property({ type: Object }) customModalContent?: TemplateResult;
 
+  /**
+   * Reference to the ModalTemplate DOM element
+   *
+   * @private
+   * @type {ModalTemplate}
+   * @memberof ModalManager
+   */
   @query('modal-template') private modalTemplate!: ModalTemplate;
 
   /** @inheritdoc */
@@ -89,10 +102,28 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
     this.mode = ModalManagerMode.Closed;
   }
 
+  /**
+   * Whether the modal should close if the user taps on the backdrop
+   *
+   * @private
+   * @memberof ModalManager
+   */
   private closeOnBackdropClick = true;
 
+  /**
+   * A callback if the user closes the modal
+   *
+   * @private
+   * @memberof ModalManager
+   */
   private userClosedModalCallback?: () => void;
 
+  /**
+   * Call the userClosedModalCallback and reset it if it exists
+   *
+   * @private
+   * @memberof ModalManager
+   */
   private callUserClosedModalCallback(): void {
     // we assign the callback to a temp var and undefine it before calling it
     // otherwise, we run into the potential for an infinite loop if the

@@ -15,8 +15,15 @@ import { ModalConfig } from './modal-config';
 
 @customElement('modal-template')
 export class ModalTemplate extends LitElement {
+  /**
+   * The ModalConfig that displayed the template
+   *
+   * @type {ModalConfig}
+   * @memberof ModalTemplate
+   */
   @property({ type: Object }) config: ModalConfig = new ModalConfig();
 
+  /** @inheritdoc */
   render(): TemplateResult {
     return html`
       <div class="modal-wrapper">
@@ -73,6 +80,14 @@ export class ModalTemplate extends LitElement {
     this.dispatchEvent(event);
   }
 
+  /**
+   * The close button template
+   *
+   * @readonly
+   * @private
+   * @type {TemplateResult}
+   * @memberof ModalTemplate
+   */
   private get closeButtonTemplate(): TemplateResult {
     return html`
       <button
@@ -85,7 +100,10 @@ export class ModalTemplate extends LitElement {
     `;
   }
 
+  /** @inheritdoc */
   static get styles(): CSSResult {
+    const processingImageSize = css`var(--processingImageSize, 75px)`;
+
     const modalCornerRadius = css`var(--modalCornerRadius, 10px)`;
     const modalBorder = css`var(--modalBorder, 2px solid black)`;
     // if the content of the modal is too big to fit on screen, this sets the bottom margin
@@ -110,8 +128,8 @@ export class ModalTemplate extends LitElement {
     return css`
       .processing-logo {
         margin: auto;
-        width: 75px;
-        height: 75px;
+        width: ${processingImageSize};
+        height: ${processingImageSize};
       }
 
       .processing-logo.hidden {
@@ -176,7 +194,7 @@ export class ModalTemplate extends LitElement {
           var(--containerHeight) - (165px + ${modalBottomMarginCss})
         );
         min-height: 50px;
-        padding: 0 0 calc(${scrollOffset}) 0; /* the 5px bottom margin prevents a small scrollbar from occurring */
+        padding: 0 0 calc(${scrollOffset}) 0;
       }
 
       .headline {
