@@ -31,8 +31,15 @@ import { ModalConfig } from './modal-config';
 @customElement('modal-manager-controller')
 export class ModalManagerController extends LitElement
   implements ModalManagerInterface {
+  /**
+   * Custom content to inject into the Modal Manager for passing through slotted content
+   *
+   * @type {TemplateResult}
+   * @memberof ModalManagerController
+   */
   @property({ type: Object }) slotContent?: TemplateResult;
 
+  /** Reference to the ModalManager DOM element */
   @query('modal-manager') private modalManager!: ModalManagerInterface;
 
   /** @inheritdoc */
@@ -49,7 +56,17 @@ export class ModalManagerController extends LitElement
     return this.modalManager.getMode();
   }
 
-  // these are just convenience pass-throughs to the real modalManager
+  /**
+   * Show a modal with a given configuration.
+   *
+   * @param {{
+   *     config: ModalConfig;
+   *     customModalContent?: TemplateResult;
+   *     userClosedModalCallback?: () => void;
+   *   }} options
+   * @returns {Promise<void>}
+   * @memberof ModalManagerController
+   */
   async showModal(options: {
     config: ModalConfig;
     customModalContent?: TemplateResult;
@@ -58,10 +75,17 @@ export class ModalManagerController extends LitElement
     return this.modalManager.showModal(options);
   }
 
+  /**
+   * Close the modal
+   *
+   * @returns {void}
+   * @memberof ModalManagerController
+   */
   closeModal(): void {
     return this.modalManager.closeModal();
   }
 
+  /** @inheritdoc */
   firstUpdated(): void {
     window.addEventListener('resize', () => {
       this.modalManager.style.setProperty(
@@ -76,6 +100,15 @@ export class ModalManagerController extends LitElement
     );
   }
 
+  /**
+   * Callback that handles when the ModalManager changes modes.
+   *
+   * This is where we do things like stop the document body from scrolling.
+   *
+   * @private
+   * @param {CustomEvent} e
+   * @memberof ModalManagerController
+   */
   private modalModeChanged(e: CustomEvent): void {
     const mode = e.detail.mode as ModalManagerMode;
     switch (mode) {
