@@ -86,6 +86,7 @@
 				<h3>Implemented by</h3>
 				<ul class="tsd-hierarchy">
 					<li><a href="../classes/_src_modal_manager_.modalmanager.html" class="tsd-signature-type">ModalManager</a></li>
+					<li><a href="../classes/_src_modal_manager_controller_.modalmanagercontroller.html" class="tsd-signature-type">ModalManagerController</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -98,7 +99,7 @@
 								<li class="tsd-kind-constructor tsd-parent-kind-interface tsd-is-inherited"><a href="_src_modal_manager_.modalmanagerinterface.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section ">
+						<section class="tsd-index-section tsd-is-inherited">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_modal_manager_.modalmanagerinterface.html#attribute_node" class="tsd-kind-icon">ATTRIBUTE_<wbr>NODE</a></li>
@@ -152,7 +153,6 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_modal_manager_.modalmanagerinterface.html#lastchild" class="tsd-kind-icon">last<wbr>Child</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_modal_manager_.modalmanagerinterface.html#lastelementchild" class="tsd-kind-icon">last<wbr>Element<wbr>Child</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_modal_manager_.modalmanagerinterface.html#localname" class="tsd-kind-icon">local<wbr>Name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_modal_manager_.modalmanagerinterface.html#mode" class="tsd-kind-icon">mode</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite tsd-is-inherited"><a href="_src_modal_manager_.modalmanagerinterface.html#namespaceuri" class="tsd-kind-icon">namespaceURI</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_modal_manager_.modalmanagerinterface.html#nextelementsibling" class="tsd-kind-icon">next<wbr>Element<wbr>Sibling</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_modal_manager_.modalmanagerinterface.html#nextsibling" class="tsd-kind-icon">next<wbr>Sibling</a></li>
@@ -329,6 +329,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_src_modal_manager_.modalmanagerinterface.html#getelementsbyclassname" class="tsd-kind-icon">get<wbr>Elements<wbr>ByClass<wbr>Name</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-inherited"><a href="_src_modal_manager_.modalmanagerinterface.html#getelementsbytagname" class="tsd-kind-icon">get<wbr>Elements<wbr>ByTag<wbr>Name</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_src_modal_manager_.modalmanagerinterface.html#getelementsbytagnamens" class="tsd-kind-icon">get<wbr>Elements<wbr>ByTag<wbr>NameNS</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_src_modal_manager_.modalmanagerinterface.html#getmode" class="tsd-kind-icon">get<wbr>Mode</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_src_modal_manager_.modalmanagerinterface.html#getrootnode" class="tsd-kind-icon">get<wbr>Root<wbr>Node</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_src_modal_manager_.modalmanagerinterface.html#hasattribute" class="tsd-kind-icon">has<wbr>Attribute</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_src_modal_manager_.modalmanagerinterface.html#hasattributens" class="tsd-kind-icon">has<wbr>AttributeNS</a></li>
@@ -411,7 +412,7 @@
 					</ul>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group ">
+			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="attribute_node" class="tsd-anchor"></a>
@@ -1097,21 +1098,6 @@
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Returns the local name.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="mode" class="tsd-anchor"></a>
-					<h3>mode</h3>
-					<div class="tsd-signature tsd-kind-icon">mode<span class="tsd-signature-symbol">:</span> <a href="../enums/_src_modal_manager_.modalmanagermode.html" class="tsd-signature-type">ModalManagerMode</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in src/modal-manager.ts:26</li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The current modal mode. Can be set or get.</p>
 						</div>
 					</div>
 				</section>
@@ -3634,7 +3620,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/modal-manager.ts:44</li>
+									<li>Defined in <a href="https://github.com/internetarchive/iaux-modal-manager/blob/c7714df/src/modal-manager.ts#L50">src/modal-manager.ts:50</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4308,6 +4294,28 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">HTMLCollectionOf</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Element</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getmode" class="tsd-anchor"></a>
+					<h3>get<wbr>Mode</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Mode<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../enums/_src_modal_manager_.modalmanagermode.html" class="tsd-signature-type">ModalManagerMode</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/internetarchive/iaux-modal-manager/blob/c7714df/src/modal-manager.ts#L32">src/modal-manager.ts:32</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the current modal mode.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../enums/_src_modal_manager_.modalmanagermode.html" class="tsd-signature-type">ModalManagerMode</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -5786,7 +5794,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/modal-manager.ts:35</li>
+									<li>Defined in <a href="https://github.com/internetarchive/iaux-modal-manager/blob/c7714df/src/modal-manager.ts#L41">src/modal-manager.ts:41</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -6206,9 +6214,6 @@
 					<li class=" tsd-kind-module">
 						<a href="../modules/_src_modal_config_.html">&quot;src/modal-<wbr>config&quot;</a>
 					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/_src_modal_header_colors_.html">&quot;src/modal-<wbr>header-<wbr>colors&quot;</a>
-					</li>
 					<li class="current tsd-kind-module">
 						<a href="../modules/_src_modal_manager_.html">&quot;src/modal-<wbr>manager&quot;</a>
 					</li>
@@ -6388,9 +6393,6 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="_src_modal_manager_.modalmanagerinterface.html#localname" class="tsd-kind-icon">local<wbr>Name</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_src_modal_manager_.modalmanagerinterface.html#mode" class="tsd-kind-icon">mode</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite tsd-is-inherited">
 								<a href="_src_modal_manager_.modalmanagerinterface.html#namespaceuri" class="tsd-kind-icon">namespaceURI</a>
@@ -6890,6 +6892,9 @@
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 								<a href="_src_modal_manager_.modalmanagerinterface.html#getelementsbytagnamens" class="tsd-kind-icon">get<wbr>Elements<wbr>ByTag<wbr>NameNS</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_src_modal_manager_.modalmanagerinterface.html#getmode" class="tsd-kind-icon">get<wbr>Mode</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 								<a href="_src_modal_manager_.modalmanagerinterface.html#getrootnode" class="tsd-kind-icon">get<wbr>Root<wbr>Node</a>
 							</li>
@@ -7073,7 +7078,6 @@
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 			<ul class="tsd-legend">
