@@ -10,10 +10,10 @@ export class ModalConfig {
   /**
    * The title that shows in the header
    *
-   * @type {TemplateResult}
+   * @type {(TemplateResult | undefined)}
    * @memberof ModalConfig
    */
-  title: TemplateResult = html`Internet Archive`;
+  title?: TemplateResult = html`Internet Archive`;
 
   /**
    * The subtitle shown in the header under the title

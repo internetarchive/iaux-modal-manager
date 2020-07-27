@@ -10,10 +10,25 @@ describe('Modal Template', () => {
     const processingLogo = el.shadowRoot?.querySelector('.processing-logo');
     const headline = el.shadowRoot?.querySelector('.headline');
     const message = el.shadowRoot?.querySelector('.message');
+    const title = el.shadowRoot?.querySelector('h1.title') as HTMLElement;
 
     expect(headline).to.not.exist;
     expect(message).to.not.exist;
+    expect(title).to.exist;
+    expect(title?.innerText).to.equal('Internet Archive');
     expect('hidden' in processingLogo!.classList);
+  });
+
+  it('does not show the title if one not provided', async () => {
+    const config = new ModalConfig();
+    config.title = undefined;
+
+    const el = await fixture(html`
+      <modal-template .config=${config}></modal-template>
+    `);
+
+    const title = el.shadowRoot?.querySelector('h1.title');
+    expect(title).to.not.exist;
   });
 
   it('emits closeButtonPressed event when close button is pressed', async () => {
