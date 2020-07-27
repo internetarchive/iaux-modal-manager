@@ -31,7 +31,10 @@ export class ModalTemplate extends LitElement {
           <header style="background-color: ${this.config.headerColor}">
             ${this.config.showCloseButton ? this.closeButtonTemplate : ''}
             <div class="logo-icon">
-              <img src="https://archive.org/images/logo_arches.png" />
+              <img
+                src="https://archive.org/images/logo_arches.png"
+                alt="Internet Archive Logo"
+              />
             </div>
             ${this.config.title
               ? html`<h1 class="title">${this.config.title}</h1>`
