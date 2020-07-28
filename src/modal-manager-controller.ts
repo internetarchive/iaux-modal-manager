@@ -9,6 +9,8 @@ import {
   property,
 } from 'lit-element';
 
+import { throttle } from 'throttle-debounce';
+
 import { ModalManagerInterface, ModalManagerMode } from './modal-manager';
 import './modal-manager';
 import { ModalConfig } from './modal-config';
@@ -85,21 +87,6 @@ export class ModalManagerController extends LitElement
     return this.modalManager.closeModal();
   }
 
-  /** @inheritdoc */
-  firstUpdated(): void {
-    window.addEventListener('resize', () => {
-      this.modalManager.style.setProperty(
-        '--containerHeight',
-        `${window.innerHeight}px`
-      );
-    });
-
-    this.modalManager.style.setProperty(
-      '--containerHeight',
-      `${window.innerHeight}px`
-    );
-  }
-
   /**
    * Callback that handles when the ModalManager changes modes.
    *
@@ -113,14 +100,52 @@ export class ModalManagerController extends LitElement
     const mode = e.detail.mode as ModalManagerMode;
     switch (mode) {
       case ModalManagerMode.Modal:
-        document.body.style.overflow = 'hidden';
+        this.startResizeListener();
+        this.stopDocumentScroll();
         break;
       case ModalManagerMode.Closed:
-        document.body.style.overflow = 'auto';
+        this.stopResizeListener();
+        this.resumeDocumentScroll();
         break;
       default:
         break;
     }
+  }
+
+  private windowResizeThrottler: throttle<() => void> = throttle(
+    100,
+    false,
+    this.updateModalContainerHeight
+  ).bind(this);
+
+  // This is a workaround for Safari. Safari does not update shadowRoot elements calculated
+  // based on the viewport size (ie. `calc(100vh - 10px)`). It does an initial calculation correctly,
+  // but resizing the window does not cause the calculation to update. Firefox and Chrome both handle
+  // this correctly.
+  // It doesn't matter what css variable you set, it is just forcing Safari to do an update.
+  // Also note that the value has to change on each update for Safari to do the update,
+  // ie. you can't just set a static value.
+  private updateModalContainerHeight(): void {
+    this.modalManager.style.setProperty(
+      '--containerHeight',
+      `${window.innerHeight}px`
+    );
+  }
+
+  private stopDocumentScroll(): void {
+    document.body.style.overflow = 'hidden';
+  }
+
+  private resumeDocumentScroll(): void {
+    document.body.style.overflow = 'auto';
+  }
+
+  private startResizeListener(): void {
+    window.addEventListener('resize', this.windowResizeThrottler);
+  }
+
+  private stopResizeListener(): void {
+    window.removeEventListener('resize', this.windowResizeThrottler);
   }
 
   /** @inheritdoc */
