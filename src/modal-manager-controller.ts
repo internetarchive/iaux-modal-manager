@@ -151,7 +151,7 @@ export class ModalManagerController extends LitElement
   /** @inheritdoc */
   static get styles(): CSSResult {
     return css`
-      modal-manager[mode='closed'] {
+      modal-manager {
         display: none;
       }
 
