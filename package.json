@@ -28,13 +28,15 @@
     "@internetarchive/ia-activity-indicator": "0.0.1",
     "@internetarchive/icon-close": "^0.3.0",
     "lit-element": "^2.2.1",
-    "lit-html": "^1.1.2"
+    "lit-html": "^1.1.2",
+    "throttle-debounce": "^2.2.1"
   },
   "devDependencies": {
     "@open-wc/eslint-config": "^2.0.0",
     "@open-wc/testing": "^2.0.0",
     "@open-wc/testing-karma": "^3.0.0",
     "@types/node": "13.11.1",
+    "@types/throttle-debounce": "^2.1.0",
     "@typescript-eslint/eslint-plugin": "^2.20.0",
     "@typescript-eslint/parser": "^2.20.0",
     "concurrently": "^5.1.0",
