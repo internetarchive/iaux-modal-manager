@@ -13,7 +13,7 @@ export class ModalConfig {
    * @type {(TemplateResult | undefined)}
    * @memberof ModalConfig
    */
-  title?: TemplateResult = html`Internet Archive`;
+  title?: TemplateResult;
 
   /**
    * The subtitle shown in the header under the title
@@ -58,7 +58,7 @@ export class ModalConfig {
    *
    * @memberof ModalConfig
    */
-  processingImageMode = 'processing';
+  processingImageMode = 'complete';
 
   /**
    * Show the close button
