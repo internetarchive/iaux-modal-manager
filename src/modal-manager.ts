@@ -21,7 +21,7 @@ import { ModalConfig } from './modal-config';
  * @enum {number}
  */
 export enum ModalManagerMode {
-  Modal = 'modal',
+  Open = 'open',
   Closed = 'closed',
 }
 
@@ -143,7 +143,7 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
     this.userClosedModalCallback = options.userClosedModalCallback;
     this.modalTemplate.config = options.config;
     this.customModalContent = options.customModalContent;
-    this.mode = ModalManagerMode.Modal;
+    this.mode = ModalManagerMode.Open;
   }
 
   /** @inheritdoc */

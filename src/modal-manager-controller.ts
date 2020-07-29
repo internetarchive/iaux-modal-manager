@@ -99,7 +99,7 @@ export class ModalManagerController extends LitElement
   private modalModeChanged(e: CustomEvent): void {
     const mode = e.detail.mode as ModalManagerMode;
     switch (mode) {
-      case ModalManagerMode.Modal:
+      case ModalManagerMode.Open:
         this.startResizeListener();
         this.stopDocumentScroll();
         break;
