@@ -10,6 +10,7 @@ import {
 
 import '@internetarchive/ia-activity-indicator/ia-activity-indicator';
 import closeIcon from '@internetarchive/icon-close';
+import iaLogo from '@internetarchive/icon-ia-logo';
 
 import { ModalConfig } from './modal-config';
 
@@ -31,10 +32,7 @@ export class ModalTemplate extends LitElement {
           <header style="background-color: ${this.config.headerColor}">
             ${this.config.showCloseButton ? this.closeButtonTemplate : ''}
             <div class="logo-icon">
-              <img
-                src="https://archive.org/images/logo_arches.png"
-                alt="Internet Archive Logo"
-              />
+              ${iaLogo}
             </div>
             ${this.config.title
               ? html`<h1 class="title">${this.config.title}</h1>`
@@ -105,23 +103,25 @@ export class ModalTemplate extends LitElement {
 
   /** @inheritdoc */
   static get styles(): CSSResult {
-    const processingImageSize = css`var(--processingImageSize, 75px)`;
+    const modalLogoSize = css`var(--modalLogoSize, 6.5rem)`;
 
-    const modalCornerRadius = css`var(--modalCornerRadius, 10px)`;
+    const processingImageSize = css`var(--processingImageSize, 7.5rem)`;
+
+    const modalCornerRadius = css`var(--modalCornerRadius, 1rem)`;
     const modalBorder = css`var(--modalBorder, 2px solid black)`;
     // if the content of the modal is too big to fit on screen, this sets the bottom margin
     // it's not exact, but a close estimation
-    const modalBottomMarginCss = css`var(--modalBottomMargin, 25px)`;
-    const modalTopMarginCss = css`var(--modalTopMargin, 50px)`;
+    const modalBottomMarginCss = css`var(--modalBottomMargin, 2.5rem)`;
+    const modalTopMarginCss = css`var(--modalTopMargin, 5rem)`;
     const modalHeaderBottomPaddingCss = css`var(--modalHeaderBottomPadding, 0.5em)`;
 
-    const modalBottomPadding = css`var(--modalBottomPadding, 20px)`;
+    const modalBottomPadding = css`var(--modalBottomPadding, 2rem)`;
     const scrollOffset = css`var(--modalScrollOffset, 5px)`;
 
-    const titleFontSize = css`var(--modalTitleFontSize, 1.4rem)`;
-    const subtitleFontSize = css`var(--modalSubtitleFontSize, 1rem)`;
-    const headlineFontSize = css`var(--modalHeadlineFontSize, 1.2rem)`;
-    const messageFontSize = css`var(--modalMessageFontSize, 1rem)`;
+    const titleFontSize = css`var(--modalTitleFontSize, 1.8rem)`;
+    const subtitleFontSize = css`var(--modalSubtitleFontSize, 1.4rem)`;
+    const headlineFontSize = css`var(--modalHeadlineFontSize, 1.6rem)`;
+    const messageFontSize = css`var(--modalMessageFontSize, 1.4rem)`;
 
     const titleLineHeight = css`var(--modalTitleLineHeight, normal)`;
     const subtitleLineHeight = css`var(--modalSubtitleLineHeight, normal)`;
@@ -136,7 +136,7 @@ export class ModalTemplate extends LitElement {
       }
 
       .processing-logo.hidden {
-        height: 10px;
+        height: 1rem;
       }
 
       .processing-logo.hidden ia-activity-indicator {
@@ -182,16 +182,16 @@ export class ModalTemplate extends LitElement {
         border-radius: 0 0 calc(${modalCornerRadius}) calc(${modalCornerRadius});
         border: ${modalBorder};
         border-top: 0;
-        padding: 0 10px calc(${modalBottomPadding} - ${scrollOffset}) 10px;
+        padding: 0 1rem calc(${modalBottomPadding} - ${scrollOffset}) 1rem;
         color: #333;
-        margin-bottom: 25px;
-        min-height: 50px;
+        margin-bottom: 2.5rem;
+        min-height: 5rem;
       }
 
       .content {
         overflow-y: auto;
-        max-height: calc(100vh - (165px + ${modalBottomMarginCss}));
-        min-height: 50px;
+        max-height: calc(100vh - (16.5rem + ${modalBottomMarginCss}));
+        min-height: 5rem;
         padding: 0 0 calc(${scrollOffset}) 0;
       }
 
@@ -205,27 +205,45 @@ export class ModalTemplate extends LitElement {
       }
 
       .message {
-        margin: 10px 0 0 0;
+        margin: 1rem 0 0 0;
         text-align: center;
         font-size: ${messageFontSize};
         line-height: ${messageLineHeight};
       }
 
-      .logo-icon img {
+      .logo-icon {
         border-radius: 100%;
         border: 3px solid #fff;
         box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.18),
           0 2px 2px 0 rgba(0, 0, 0, 0.08);
-        margin-top: -29px;
-        width: 65px;
+        width: ${modalLogoSize};
+        height: ${modalLogoSize};
+        margin: -2.9rem auto 0.5rem auto;
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .logo-icon svg {
+        width: calc(${modalLogoSize} * 0.65);
+        height: calc(${modalLogoSize} * 0.65);
+      }
+
+      .logo-icon svg .fill-color {
+        fill: white;
+      }
+
+      .logo-icon svg .stroke-color {
+        stroke: red;
       }
 
       .close-button {
         position: absolute;
-        right: 12px;
-        top: 12px;
-        width: 20px;
-        height: 20px;
+        right: 1.2rem;
+        top: 1.2rem;
+        width: 2rem;
+        height: 2rem;
         border-radius: 100%;
         border: 0;
         padding: 0;

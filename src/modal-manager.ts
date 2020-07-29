@@ -224,7 +224,11 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
   /** @inheritdoc */
   static get styles(): CSSResult {
     const modalBackdropColor = css`var(--modalBackdropColor, rgba(10, 10, 10, 0.9))`;
-    const modalWidth = css`var(--modalWidth, 320px)`;
+    const modalBackdropZindex = css`var(--modalBackdropZindex, 1000)`;
+
+    const modalWidth = css`var(--modalWidth, 32rem)`;
+    const modalMaxWidth = css`var(--modalMaxWidth, 95%)`;
+    const modalZindex = css`var(--modalZindex, 2000)`;
 
     return css`
       .container {
@@ -239,7 +243,7 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
         background-color: ${modalBackdropColor};
         width: 100%;
         height: 100%;
-        z-index: 1000;
+        z-index: ${modalBackdropZindex};
       }
 
       modal-template {
@@ -247,9 +251,9 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
         top: 0;
         left: 50%;
         transform: translate(-50%, 0);
-        z-index: 2000;
+        z-index: ${modalZindex};
         width: ${modalWidth};
-        max-width: 90%;
+        max-width: ${modalMaxWidth};
       }
     `;
   }
