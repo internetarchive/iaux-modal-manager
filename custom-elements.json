@@ -3,28 +3,142 @@
   "tags": [
     {
       "name": "modal-manager",
-      "description": "A component with a title and an action counter",
+      "description": "A LitElement modal manager",
       "properties": [
         {
-          "name": "title",
-          "type": "String",
-          "description": "The title of your component",
-          "default": "Hey there"
+          "name": "mode",
+          "type": "ModalManagerMode",
+          "description": "The current mode of the modal manager (open/closed)",
+          "default": "ModalManagerMode.Closed"
         },
         {
-          "name": "counter",
-          "type": "Number",
-          "description": "An action counter",
-          "default": 0
+          "name": "customModalContent",
+          "type": "TemplateResult",
+          "description": "Custom content to be displayed in the modal content slot",
+          "default": "undefined"
+        },
+        {
+          "name": "hostBridge",
+          "type": "ModalManagerHostBridgeInterface",
+          "description": "A handler for host-specific functionality like CSS modifications",
+          "default": "default ModalManagerHostBridge"
         }
       ],
-      "events": [],
+      "events": [
+        {
+          "name": "modeChanged",
+          "description": "Dispatched when the modal opens or closes"
+        }
+      ],
       "slots": [],
       "cssProperties": [
         {
-          "name": "--modal-manager-text-color",
-          "description": "Main Text Color",
-          "type": "Color"
+          "name": "--modalBackdropColor",
+          "description": "Backdrop color",
+          "type": "String",
+          "default": "rgba(10, 10, 10, 0.9)"
+        },
+        {
+          "name": "--modalWidth",
+          "description": "Modal width",
+          "type": "String",
+          "default": "320px"
+        },
+        {
+          "name": "--processingImageSize",
+          "description": "The processing image size",
+          "type": "String",
+          "default": "75px"
+        },
+        {
+          "name": "--modalCornerRadius",
+          "description": "Modal corner radius",
+          "type": "String",
+          "default": "25px"
+        },
+        {
+          "name": "--modalBorder",
+          "description": "The modal border",
+          "type": "String",
+          "default": "2px solid black"
+        },
+        {
+          "name": "--modalBottomMargin",
+          "description": "The space between the bottom of the screen and the bottom of the modal",
+          "type": "String",
+          "default": "25px"
+        },
+        {
+          "name": "--modalTopMargin",
+          "description": "The space between the top of the screen and the top of the modal",
+          "type": "String",
+          "default": "25px"
+        },
+        {
+          "name": "--modalHeaderBottomPadding",
+          "description": "The padding on the bottom of the modal header",
+          "type": "String",
+          "default": "0.5em"
+        },
+        {
+          "name": "--modalBottomPadding",
+          "description": "The padding on the bottom of the modal",
+          "type": "String",
+          "default": "20px"
+        },
+        {
+          "name": "--modalScrollOffset",
+          "description": "Adds a bit of extra padding to the scrollable area so the scrollbar doesn't always show",
+          "type": "String",
+          "default": "5px"
+        },
+        {
+          "name": "--modalTitleFontSize",
+          "description": "Modal title font size",
+          "type": "String",
+          "default": "18px"
+        },
+        {
+          "name": "--modalSubtitleFontSize",
+          "description": "Modal subtitle font size",
+          "type": "String",
+          "default": "12px"
+        },
+        {
+          "name": "--modalHeadlineFontSize",
+          "description": "Modal headline font size",
+          "type": "String",
+          "default": "16px"
+        },
+        {
+          "name": "--modalMessageFontSize",
+          "description": "Modal message font size",
+          "type": "String",
+          "default": "14px"
+        },
+        {
+          "name": "--modalTitleLineHeight",
+          "description": "Modal title line height",
+          "type": "String",
+          "default": "normal"
+        },
+        {
+          "name": "--modalSubtitleLineHeight",
+          "description": "Modal subtitle line height",
+          "type": "String",
+          "default": "normal"
+        },
+        {
+          "name": "--modalHeadlineLineHeight",
+          "description": "Modal headline line height",
+          "type": "String",
+          "default": "normal"
+        },
+        {
+          "name": "--modalMessageLineHeight",
+          "description": "Modal message line height",
+          "type": "String",
+          "default": "normal"
         }
       ]
     }
