@@ -8,7 +8,11 @@ import {
 
 import '../src/modal-manager';
 import { ModalConfig } from '../src/modal-config';
-import { ModalManager, ModalManagerInterface } from '../src/modal-manager';
+import {
+  ModalManager,
+  ModalManagerInterface,
+  ModalManagerMode,
+} from '../src/modal-manager';
 
 describe('Modal Manager', () => {
   it('defaults to closed', async () => {
@@ -21,7 +25,7 @@ describe('Modal Manager', () => {
 
   it('can be closed by calling closeModal', async () => {
     const el = (await fixture(html`
-      <modal-manager mode="modal"></modal-manager>
+      <modal-manager .mode=${ModalManagerMode.Open}></modal-manager>
     `)) as ModalManager;
 
     el.closeModal();
@@ -32,7 +36,7 @@ describe('Modal Manager', () => {
 
   it('can be closed by clicking on the backdrop', async () => {
     const el = (await fixture(html`
-      <modal-manager mode="modal"></modal-manager>
+      <modal-manager .mode=${ModalManagerMode.Open}></modal-manager>
     `)) as ModalManager;
 
     const backdrop = el.shadowRoot?.querySelector('.backdrop');
@@ -55,7 +59,7 @@ describe('Modal Manager', () => {
       el.showModal({ config });
     });
     const response = await oneEvent(el, 'modeChanged');
-    expect(response.detail.mode).to.equal('open');
+    expect(response.detail.mode).to.equal(ModalManagerMode.Open);
   });
 
   it('emits a modeChanged event when closing', async () => {
@@ -71,7 +75,7 @@ describe('Modal Manager', () => {
       el.closeModal();
     });
     const response = await oneEvent(el, 'modeChanged');
-    expect(response.detail.mode).to.equal('closed');
+    expect(response.detail.mode).to.equal(ModalManagerMode.Closed);
   });
 
   it('can show a modal', async () => {
@@ -82,7 +86,24 @@ describe('Modal Manager', () => {
     const config = new ModalConfig();
     el.showModal({ config });
     await elementUpdated(el);
-    expect(el.mode).to.equal('open');
+    expect(el.mode).to.equal(ModalManagerMode.Open);
+  });
+
+  it('sets the --containerHeight CSS property when the window resizes', async () => {
+    const el = (await fixture(html`
+      <modal-manager></modal-manager>
+    `)) as ModalManager;
+
+    const config = new ModalConfig();
+    el.showModal({ config });
+    await elementUpdated(el);
+    const event = new Event('resize');
+    const propBefore = el.style.getPropertyValue('--containerHeight');
+    expect(propBefore).to.equal('');
+    window.dispatchEvent(event);
+    await elementUpdated(el);
+    const propAfter = el.style.getPropertyValue('--containerHeight');
+    expect(propAfter).to.not.equal('');
   });
 
   it('calls the userClosedModalCallback when the user taps the backdrop', async () => {
@@ -92,7 +113,7 @@ describe('Modal Manager', () => {
 
     const config = new ModalConfig();
     let callbackCalled = false;
-    const callback = () => {
+    const callback = (): void => {
       callbackCalled = true;
     };
     el.showModal({

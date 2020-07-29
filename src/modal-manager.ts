@@ -13,6 +13,10 @@ import {
 import './modal-template';
 import { ModalTemplate } from './modal-template';
 import { ModalConfig } from './modal-config';
+import {
+  ModalManagerHostBridgeInterface,
+  ModalManagerHostBridge,
+} from './modal-manager-host-bridge';
 
 /**
  * Various modes the modal can be in
@@ -70,6 +74,21 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
    * @memberof ModalManager
    */
   @property({ type: Object }) customModalContent?: TemplateResult;
+
+  /**
+   * Thie hostBridge handles environmental-specific interactions such as adding classes
+   * to the body tag or event listeners needed to support the modal manager in the host environment.
+   *
+   * There is a default `ModalManagerHostBridge`, but consumers can override it with a custom
+   * `ModalManagerHostBridgeInterface`
+   *
+   * @type {ModalManagerHostBridgeInterface}
+   * @memberof ModalManager
+   */
+  @property({ type: Object })
+  hostBridge: ModalManagerHostBridgeInterface = new ModalManagerHostBridge(
+    this
+  );
 
   /**
    * Reference to the ModalTemplate DOM element
@@ -150,7 +169,7 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
   updated(changed: PropertyValues): void {
     /* istanbul ignore else */
     if (changed.has('mode')) {
-      this.emitModeChangeEvent();
+      this.handleModeChange();
     }
   }
 
@@ -165,6 +184,17 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
       this.closeModal();
       this.callUserClosedModalCallback();
     }
+  }
+
+  /**
+   * Handle the mode change
+   *
+   * @private
+   * @memberof ModalManager
+   */
+  private handleModeChange(): void {
+    this.hostBridge.handleModeChange(this.mode);
+    this.emitModeChangeEvent();
   }
 
   /**

@@ -21,24 +21,20 @@ npm install --save @internetarchive/modal-manager
 
 <style>
   /* add the following styles to ensure proper modal visibility */
-  modal-manager {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 250;
+  body.modal-manager-open {
+    overflow: hidden;
   }
 
-  modal-manager[mode='closed'] {
+  modal-manager {
     display: none;
   }
 
-  modal-manager[mode='modal'] {
+  modal-manager[mode='open'] {
     display: block;
   }
 </style>
 
-<!-- handle the mode change in your app by making the of -->
-<modal-manager @modeChanged=${modalModeChanged}></modal-manager>
+<modal-manager></modal-manager>
 
 <script>
   // show a simple modal
@@ -50,21 +46,6 @@ npm install --save @internetarchive/modal-manager
 
   // to hide the modal call `closeModal()`:
   manager.closeModal();
-
-  // handle the modal opening and closing overflow
-  function modalModeChanged(e) {
-    const mode = e.detail.mode;
-    switch (mode) {
-      case 'modal':
-        document.body.style.overflow = 'hidden';
-        break;
-      case 'closed':
-        document.body.style.overflow = 'auto';
-        break;
-      default:
-        break;
-    }
-  }
 </script>
 ```
 
@@ -148,11 +129,6 @@ npm start
 ## Testing
 ```bash
 npm test
-```
-
-## Testing via browserstack
-```bash
-npm test:bs
 ```
 
 ## Linting

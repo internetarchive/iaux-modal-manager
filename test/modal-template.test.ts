@@ -14,8 +14,7 @@ describe('Modal Template', () => {
 
     expect(headline).to.not.exist;
     expect(message).to.not.exist;
-    expect(title).to.exist;
-    expect(title?.innerText).to.equal('Internet Archive');
+    expect(title).to.not.exist;
     expect('hidden' in processingLogo!.classList);
   });
 

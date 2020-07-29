@@ -11,8 +11,16 @@
       font-family: Arial, Helvetica, sans-serif;
     }
 
-    .modal-manager-open {
+    body.modal-manager-open {
       overflow: hidden;
+    }
+
+    modal-manager {
+      display: none;
+    }
+
+    modal-manager[mode='open'] {
+      display: block;
     }
 
     #demo {
@@ -41,18 +49,13 @@
 
     /* eslint-disable @typescript-eslint/explicit-function-return-type */
 
-    const slotContent = html`
-      <div slot="slot-content-demo">
-        <slot name="slot-content-demo"></slot>
-      </div>`;
-
     render(
       html`
-        <modal-manager-controller .slotContent=${slotContent}>
+        <modal-manager>
           <div slot="slot-content-demo">
             <p>Slotted Content</p>
           </div>
-        </modal-manager-controller>
+        </modal-manager>
 
         <div class="actions">
           <button @click=${showModal}>Modal</button>
@@ -85,14 +88,14 @@
       document.querySelector('#demo')
     );
 
-    const modalController = document.querySelector('modal-manager-controller');
+    const modalManager = document.querySelector('modal-manager');
 
     function showModal() {
       const config = new ModalConfig();
       config.headline = 'Success';
       config.message = 'Thank you for your support!';
 
-      modalController.showModal({
+      modalManager.showModal({
         config
       });
     }
@@ -103,7 +106,7 @@
       config.message = 'An error occurred while processing your donation.';
       config.headerColor = '#691916';
 
-      modalController.showModal({
+      modalManager.showModal({
         config
       });
     }
@@ -132,7 +135,7 @@
         </div>
       `;
 
-      modalController.showModal({
+      modalManager.showModal({
         config,
         customModalContent: someContent
       });
@@ -150,7 +153,7 @@
         </div>
       `;
 
-      modalController.showModal({
+      modalManager.showModal({
         config,
         customModalContent: someContent
       });
@@ -165,7 +168,7 @@
         <slot name="slot-content-demo"></slot>
       `;
 
-      modalController.showModal({
+      modalManager.showModal({
         config,
         customModalContent: someContent
       });
@@ -185,7 +188,7 @@
 
       config.headerColor = '#36A483';
 
-      modalController.showModal({
+      modalManager.showModal({
         config
       });
     }
@@ -194,7 +197,7 @@
       const config = new ModalConfig();
       config.showProcessingIndicator = true;
       config.processingImageMode = 'complete';
-      modalController.showModal({
+      modalManager.showModal({
         config
       });
     }
@@ -205,7 +208,7 @@
       config.showProcessingIndicator = true;
       config.showCloseButton = false;
       config.closeOnBackdropClick = false;
-      modalController.showModal({
+      modalManager.showModal({
         config
       });
 
@@ -216,13 +219,13 @@
       const config = new ModalConfig();
       config.message = 'When you close this modal another will open.'
 
-      modalController.showModal({
+      modalManager.showModal({
         config,
         userClosedModalCallback: () => {
           const config = new ModalConfig();
           config.message = 'I\'m another modal';
           config.headerColor = '#497fbf';
-          modalController.showModal({ config });
+          modalManager.showModal({ config });
         }
       });
     }
@@ -232,11 +235,11 @@
       config.message = 'User cannot close this. Will close automatically in 2 seconds.';
       config.showCloseButton = false;
       config.closeOnBackdropClick = false;
-      modalController.showModal({
+      modalManager.showModal({
         config
       });
 
-      setTimeout(modalController.closeModal.bind(modalController), 2000);
+      setTimeout(modalManager.closeModal.bind(modalManager), 2000);
     }
 
     function showModalUserCannotClickBackdrop() {
@@ -244,7 +247,7 @@
       config.message = 'Clicking on the backdrop will not close this.';
       config.showCloseButton = true;
       config.closeOnBackdropClick = false;
-      modalController.showModal({
+      modalManager.showModal({
         config
       });
     }
