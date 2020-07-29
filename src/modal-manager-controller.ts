@@ -133,11 +133,11 @@ export class ModalManagerController extends LitElement
   }
 
   private stopDocumentScroll(): void {
-    document.body.style.overflow = 'hidden';
+    document.body.classList.add('modal-manager-open');
   }
 
   private resumeDocumentScroll(): void {
-    document.body.style.overflow = 'auto';
+    document.body.classList.remove('modal-manager-open');
   }
 
   private startResizeListener(): void {
