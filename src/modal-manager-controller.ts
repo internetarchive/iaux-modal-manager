@@ -155,7 +155,7 @@ export class ModalManagerController extends LitElement
         display: none;
       }
 
-      modal-manager[mode='modal'] {
+      modal-manager[mode='open'] {
         display: block;
       }
     `;
