@@ -1,8 +1,7 @@
 {
   "name": "@internetarchive/modal-manager",
-  "version": "0.0.0-alpha.19",
+  "version": "0.0.0-alpha.23",
   "description": "A Modal Manager Web Component",
-  "author": "modal-manager",
   "repository": {
     "type" : "git",
     "url" : "https://github.com/internetarchive/iaux-modal-manager.git"
