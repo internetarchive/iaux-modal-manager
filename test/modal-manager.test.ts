@@ -55,7 +55,7 @@ describe('Modal Manager', () => {
       el.showModal({ config });
     });
     const response = await oneEvent(el, 'modeChanged');
-    expect(response.detail.mode).to.equal('modal');
+    expect(response.detail.mode).to.equal('open');
   });
 
   it('emits a modeChanged event when closing', async () => {
@@ -82,7 +82,7 @@ describe('Modal Manager', () => {
     const config = new ModalConfig();
     el.showModal({ config });
     await elementUpdated(el);
-    expect(el.mode).to.equal('modal');
+    expect(el.mode).to.equal('open');
   });
 
   it('calls the userClosedModalCallback when the user taps the backdrop', async () => {
@@ -165,7 +165,7 @@ describe('Modal Manager', () => {
     el.showModal({ config });
     await elementUpdated(el);
 
-    expect(el.mode).to.equal('modal');
+    expect(el.mode).to.equal('open');
 
     const modal = el.shadowRoot?.querySelector('modal-template');
     const closeButton = modal?.shadowRoot?.querySelector('.close-button');
@@ -212,6 +212,6 @@ describe('Modal Manager', () => {
 
     await elementUpdated(el);
 
-    expect(el.getMode()).to.equal('modal');
+    expect(el.getMode()).to.equal('open');
   });
 });
