@@ -1,6 +1,6 @@
 {
   "name": "@internetarchive/modal-manager",
-  "version": "0.0.0-alpha.23",
+  "version": "0.0.0-alpha.24",
   "description": "A Modal Manager Web Component",
   "repository": {
     "type" : "git",
@@ -11,8 +11,10 @@
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "start": "concurrently --kill-others --names tsc,es-dev-server \"npm run tsc:watch\" \"es-dev-server --app-index demo/index.html --node-resolve --open --watch\"",
+    "prepare": "npm run build",
+    "start": "concurrently --kill-others --names tsc,es-dev-server \"npm run tsc:watch\" \"es-dev-server --app-index demo/index.html --node-resolve --open --watch --preserve-symlinks\"",
     "docs": "typedoc",
+    "build": "tsc",
     "tsc:watch": "tsc --watch",
     "lint:eslint": "eslint --ext .ts . --ignore-path .gitignore",
     "format:eslint": "eslint --ext .ts . --fix --ignore-path .gitignore",
