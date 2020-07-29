@@ -3,8 +3,8 @@
   "version": "0.0.0-alpha.24",
   "description": "A Modal Manager Web Component",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/internetarchive/iaux-modal-manager.git"
+    "type": "git",
+    "url": "https://github.com/internetarchive/iaux-modal-manager.git"
   },
   "license": "AGPL-3.0-only",
   "main": "dist/index.js",
