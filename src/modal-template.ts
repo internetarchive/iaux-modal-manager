@@ -118,10 +118,10 @@ export class ModalTemplate extends LitElement {
     const modalBottomPadding = css`var(--modalBottomPadding, 20px)`;
     const scrollOffset = css`var(--modalScrollOffset, 5px)`;
 
-    const titleFontSize = css`var(--modalTitleFontSize, 18px)`;
-    const subtitleFontSize = css`var(--modalSubtitleFontSize, 12px)`;
-    const headlineFontSize = css`var(--modalHeadlineFontSize, 18px)`;
-    const messageFontSize = css`var(--modalMessageFontSize, 14px)`;
+    const titleFontSize = css`var(--modalTitleFontSize, 1.4rem)`;
+    const subtitleFontSize = css`var(--modalSubtitleFontSize, 1rem)`;
+    const headlineFontSize = css`var(--modalHeadlineFontSize, 1.2rem)`;
+    const messageFontSize = css`var(--modalMessageFontSize, 1rem)`;
 
     const titleLineHeight = css`var(--modalTitleLineHeight, normal)`;
     const subtitleLineHeight = css`var(--modalSubtitleLineHeight, normal)`;

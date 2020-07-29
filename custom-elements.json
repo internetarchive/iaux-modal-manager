@@ -96,25 +96,25 @@
           "name": "--modalTitleFontSize",
           "description": "Modal title font size",
           "type": "String",
-          "default": "18px"
+          "default": "1.4rem"
         },
         {
           "name": "--modalSubtitleFontSize",
           "description": "Modal subtitle font size",
           "type": "String",
-          "default": "12px"
+          "default": "1rem"
         },
         {
           "name": "--modalHeadlineFontSize",
           "description": "Modal headline font size",
           "type": "String",
-          "default": "16px"
+          "default": "1.2rem"
         },
         {
           "name": "--modalMessageFontSize",
           "description": "Modal message font size",
           "type": "String",
-          "default": "14px"
+          "default": "1rem"
         },
         {
           "name": "--modalTitleLineHeight",
