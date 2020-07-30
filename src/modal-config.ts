@@ -1,4 +1,4 @@
-import { TemplateResult, html } from 'lit-html';
+import { TemplateResult } from 'lit-html';
 
 /**
  * Configuration to show a modal
@@ -44,33 +44,56 @@ export class ModalConfig {
    *
    * @memberof ModalConfig
    */
-  headerColor = '#55A183';
+  headerColor: string;
 
   /**
    * Show or hide the processing indicator
    *
    * @memberof ModalConfig
    */
-  showProcessingIndicator = false;
+  showProcessingIndicator: boolean;
 
   /**
    * Set the processing image mode, currently `processing` or `complete`
    *
    * @memberof ModalConfig
    */
-  processingImageMode = 'complete';
+  processingImageMode: string;
 
   /**
    * Show the close button
    *
    * @memberof ModalConfig
    */
-  showCloseButton = true;
+  showCloseButton: boolean;
 
   /**
    * Close the modal if the user taps on the background
    *
    * @memberof ModalConfig
    */
-  closeOnBackdropClick = true;
+  closeOnBackdropClick: boolean;
+
+  constructor(options?: {
+    title?: TemplateResult;
+    subtitle?: TemplateResult;
+    headline?: TemplateResult;
+    message?: TemplateResult;
+    headerColor?: string;
+    showProcessingIndicator?: boolean;
+    processingImageMode?: string;
+    showCloseButton?: boolean;
+    closeOnBackdropClick?: boolean;
+  }) {
+    this.title = options?.title;
+    this.subtitle = options?.subtitle;
+    this.headline = options?.headline;
+    this.message = options?.message;
+
+    this.headerColor = options?.headerColor ?? '#55A183';
+    this.showProcessingIndicator = options?.showProcessingIndicator ?? false;
+    this.processingImageMode = options?.processingImageMode ?? 'complete';
+    this.showCloseButton = options?.showCloseButton ?? true;
+    this.closeOnBackdropClick = options?.closeOnBackdropClick ?? true;
+  }
 }
