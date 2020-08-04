@@ -13,46 +13,10 @@ import {
 import './modal-template';
 import { ModalTemplate } from './modal-template';
 import { ModalConfig } from './modal-config';
-import {
-  ModalManagerHostBridgeInterface,
-  ModalManagerHostBridge,
-} from './modal-manager-host-bridge';
-
-/**
- * Various modes the modal can be in
- *
- * @export
- * @enum {number}
- */
-export enum ModalManagerMode {
-  Open = 'open',
-  Closed = 'closed',
-}
-
-export interface ModalManagerInterface extends LitElement {
-  /**
-   * Get the current modal mode.
-   */
-  getMode(): ModalManagerMode;
-
-  /**
-   * Show a modal from a given ModalConfig
-   *
-   * @param config ModalConfig
-   * @param customModalContent TemplateResult | undefined
-   * @param userClosedModalCallback () => void | undefined an optional callback when the modal is closed
-   */
-  showModal(options: {
-    config: ModalConfig;
-    customModalContent?: TemplateResult;
-    userClosedModalCallback?: () => void;
-  }): Promise<void>;
-
-  /**
-   * Close the currently open modal
-   */
-  closeModal(): void;
-}
+import { ModalManagerHostBridge } from './modal-manager-host-bridge';
+import { ModalManagerInterface } from './modal-manager-interface';
+import { ModalManagerHostBridgeInterface } from './modal-manager-host-bridge-interface';
+import { ModalManagerMode } from './modal-manager-mode';
 
 @customElement('modal-manager')
 export class ModalManager extends LitElement implements ModalManagerInterface {

@@ -15,6 +15,7 @@ describe('Modal Template', () => {
     expect(headline).to.not.exist;
     expect(message).to.not.exist;
     expect(title).to.not.exist;
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     expect('hidden' in processingLogo!.classList);
   });
 

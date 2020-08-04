@@ -8,11 +8,9 @@ import {
 
 import '../src/modal-manager';
 import { ModalConfig } from '../src/modal-config';
-import {
-  ModalManager,
-  ModalManagerInterface,
-  ModalManagerMode,
-} from '../src/modal-manager';
+import { ModalManager } from '../src/modal-manager';
+import { ModalManagerMode } from '../src/modal-manager-mode';
+import { ModalManagerInterface } from '../src/modal-manager-interface';
 
 describe('Modal Manager', () => {
   it('defaults to closed', async () => {

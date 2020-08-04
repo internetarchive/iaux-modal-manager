@@ -1,11 +1,23 @@
 import { throttle } from 'throttle-debounce';
 
-import { ModalManagerMode, ModalManagerInterface } from './modal-manager';
+import { ModalManagerHostBridgeInterface } from './modal-manager-host-bridge-interface';
+import { ModalManagerInterface } from './modal-manager-interface';
+import { ModalManagerMode } from './modal-manager-mode';
 
-export interface ModalManagerHostBridgeInterface {
-  handleModeChange(mode: ModalManagerMode): void;
-}
-
+/**
+ * The `ModalManagerHostBridge` is a bridge between the `ModalManager` and the
+ * host that sets up environment-specific changes when the modal opens and closes.
+ *
+ * For instance, when the modal opens, this adds a class to the `<body>` tag for styling
+ * and adds a `resize` listener to fix a Safari shadow root issue.
+ *
+ * Consumers can create their own `ModalManagerHostBridgeInterface` classes and pass
+ * them into the `ModalManager` if this one does not work for their environment.
+ *
+ * @export
+ * @class ModalManagerHostBridge
+ * @implements {ModalManagerHostBridgeInterface}
+ */
 export class ModalManagerHostBridge implements ModalManagerHostBridgeInterface {
   private modalManager: ModalManagerInterface;
 
