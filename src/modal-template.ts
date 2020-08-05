@@ -94,6 +94,7 @@ export class ModalTemplate extends LitElement {
       <button
         type="button"
         class="close-button"
+        tabindex="0"
         @click=${this.handleCloseButton}
       >
         ${closeIcon}
@@ -141,6 +142,10 @@ export class ModalTemplate extends LitElement {
 
       .processing-logo.hidden ia-activity-indicator {
         display: none;
+      }
+
+      .modal-wrapper {
+        outline: none;
       }
 
       .modal-container {

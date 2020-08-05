@@ -68,7 +68,10 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
     return html`
       <div class="container">
         <div class="backdrop" @click=${this.backdropClicked}></div>
-        <modal-template @closeButtonPressed=${this.closeButtonPressed}>
+        <modal-template
+          @closeButtonPressed=${this.closeButtonPressed}
+          tabindex="0"
+        >
           ${this.customModalContent}
         </modal-template>
       </div>
@@ -127,6 +130,8 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
     this.modalTemplate.config = options.config;
     this.customModalContent = options.customModalContent;
     this.mode = ModalManagerMode.Open;
+    await this.modalTemplate.updateComplete;
+    this.modalTemplate.focus();
   }
 
   /** @inheritdoc */
@@ -211,6 +216,7 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
       }
 
       modal-template {
+        outline: 0;
         position: fixed;
         top: 0;
         left: 50%;
