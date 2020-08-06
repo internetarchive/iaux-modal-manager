@@ -41,8 +41,6 @@ export class ModalManagerHostBridge implements ModalManagerHostBridgeInterface {
         this.stopResizeListener();
         this.resumeDocumentScroll();
         break;
-      default:
-        break;
     }
   }
 
