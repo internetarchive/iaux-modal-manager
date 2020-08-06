@@ -54,7 +54,7 @@
     "prettier": "^2.0.4",
     "tslib": "^1.11.0",
     "typedoc": "^0.17.8",
-    "typescript": "~3.8.2"
+    "typescript": "^3.9.7"
   },
   "eslintConfig": {
     "extends": [
