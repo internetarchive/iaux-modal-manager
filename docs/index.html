@@ -85,24 +85,20 @@
 
 <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
   <span class="hljs-comment">/* add the following styles to ensure proper modal visibility */</span>
-  <span class="hljs-selector-tag">modal-manager</span> {
-    <span class="hljs-attribute">position</span>: absolute;
-    <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
-    <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;
-    <span class="hljs-attribute">z-index</span>: <span class="hljs-number">250</span>;
+  <span class="hljs-selector-tag">body</span><span class="hljs-selector-class">.modal-manager-open</span> {
+    <span class="hljs-attribute">overflow</span>: hidden;
   }
 
-  <span class="hljs-selector-tag">modal-manager</span><span class="hljs-selector-attr">[mode=<span class="hljs-string">&#x27;closed&#x27;</span>]</span> {
+  <span class="hljs-selector-tag">modal-manager</span> {
     <span class="hljs-attribute">display</span>: none;
   }
 
-  <span class="hljs-selector-tag">modal-manager</span><span class="hljs-selector-attr">[mode=<span class="hljs-string">&#x27;modal&#x27;</span>]</span> {
+  <span class="hljs-selector-tag">modal-manager</span><span class="hljs-selector-attr">[mode=<span class="hljs-string">&#x27;open&#x27;</span>]</span> {
     <span class="hljs-attribute">display</span>: block;
   }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
 
-<span class="hljs-comment">&lt;!-- handle the mode change in your app by making the of --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">modal-manager</span> @<span class="hljs-attr">modeChanged</span>=<span class="hljs-string">${modalModeChanged}</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">modal-manager</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">modal-manager</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">modal-manager</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
   <span class="hljs-comment">// show a simple modal</span>
@@ -114,21 +110,6 @@
 
   <span class="hljs-comment">// to hide the modal call `closeModal()`:</span>
   manager.closeModal();
-
-  <span class="hljs-comment">// handle the modal opening and closing overflow</span>
-  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">modalModeChanged</span>(<span class="hljs-params">e</span>) </span>{
-    <span class="hljs-keyword">const</span> mode = e.detail.mode;
-    <span class="hljs-keyword">switch</span> (mode) {
-      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;modal&#x27;</span>:
-        <span class="hljs-built_in">document</span>.body.style.overflow = <span class="hljs-string">&#x27;hidden&#x27;</span>;
-        <span class="hljs-keyword">break</span>;
-      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;closed&#x27;</span>:
-        <span class="hljs-built_in">document</span>.body.style.overflow = <span class="hljs-string">&#x27;auto&#x27;</span>;
-        <span class="hljs-keyword">break</span>;
-      <span class="hljs-keyword">default</span>:
-        <span class="hljs-keyword">break</span>;
-    }
-  }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 				<a href="#advanced-usage" id="advanced-usage" style="color: inherit; text-decoration: none;">
 					<h2>Advanced Usage</h2>
@@ -202,10 +183,6 @@ config.processingImageMode = <span class="hljs-string">&#x27;processing&#x27;</s
 					<h2>Testing</h2>
 				</a>
 				<pre><code class="language-bash">npm <span class="hljs-built_in">test</span></code></pre>
-				<a href="#testing-via-browserstack" id="testing-via-browserstack" style="color: inherit; text-decoration: none;">
-					<h2>Testing via browserstack</h2>
-				</a>
-				<pre><code class="language-bash">npm <span class="hljs-built_in">test</span>:bs</code></pre>
 				<a href="#linting" id="linting" style="color: inherit; text-decoration: none;">
 					<h2>Linting</h2>
 				</a>
@@ -228,7 +205,16 @@ config.processingImageMode = <span class="hljs-string">&#x27;processing&#x27;</s
 						<a href="modules/_src_modal_manager_.html">&quot;src/modal-<wbr>manager&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/_src_modal_manager_controller_.html">&quot;src/modal-<wbr>manager-<wbr>controller&quot;</a>
+						<a href="modules/_src_modal_manager_host_bridge_.html">&quot;src/modal-<wbr>manager-<wbr>host-<wbr>bridge&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_modal_manager_host_bridge_interface_.html">&quot;src/modal-<wbr>manager-<wbr>host-<wbr>bridge-<wbr>interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_modal_manager_interface_.html">&quot;src/modal-<wbr>manager-<wbr>interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_modal_manager_mode_.html">&quot;src/modal-<wbr>manager-<wbr>mode&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/_src_modal_template_.html">&quot;src/modal-<wbr>template&quot;</a>
