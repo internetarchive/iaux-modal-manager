@@ -1,0 +1,253 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>@internetarchive/modal-manager</title>
+	<meta name="description" content="Documentation for @internetarchive/modal-manager">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">@internetarchive/modal-manager</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1>@internetarchive/modal-manager</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<p><a href="https://travis-ci.com/internetarchive/iaux-modal-manager"><img src="https://travis-ci.com/internetarchive/iaux-modal-manager.svg?branch=master" alt="Build Status"></a> <a href="https://codecov.io/gh/internetarchive/iaux-modal-manager"><img src="https://codecov.io/gh/internetarchive/iaux-modal-manager/branch/master/graph/badge.svg" alt="codecov"></a></p>
+				<a href="#modal-manager-component" id="modal-manager-component" style="color: inherit; text-decoration: none;">
+					<h1>Modal Manager Component</h1>
+				</a>
+				<p>A modal manager built on LitElement with support for custom content and light DOM elements.</p>
+				<p><img src="./assets/modal-screenshot.jpg" alt="Modal Manager" title="Modal Manager Demo"></p>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h2>Installation</h2>
+				</a>
+				<pre><code class="language-bash">npm install --save @internetarchive/modal-manager</code></pre>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h2>Usage</h2>
+				</a>
+				<pre><code class="language-html"><span class="hljs-comment">&lt;!-- index.html --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;module&quot;</span>&gt;</span><span class="javascript">
+  <span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;@internetarchive/modal-manager&#x27;</span>;
+  <span class="hljs-keyword">import</span> { ModalConfig } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@internetarchive/modal-manager&#x27;</span>;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+  <span class="hljs-comment">/* add the following styles to ensure proper modal visibility */</span>
+  <span class="hljs-selector-tag">body</span><span class="hljs-selector-class">.modal-manager-open</span> {
+    <span class="hljs-attribute">overflow</span>: hidden;
+  }
+
+  <span class="hljs-selector-tag">modal-manager</span> {
+    <span class="hljs-attribute">display</span>: none;
+  }
+
+  <span class="hljs-selector-tag">modal-manager</span><span class="hljs-selector-attr">[mode=<span class="hljs-string">&#x27;open&#x27;</span>]</span> {
+    <span class="hljs-attribute">display</span>: block;
+  }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">modal-manager</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">modal-manager</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+  <span class="hljs-comment">// show a simple modal</span>
+  <span class="hljs-keyword">const</span> manager = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&#x27;modal-manager&#x27;</span>);
+  <span class="hljs-keyword">const</span> config = <span class="hljs-keyword">new</span> ModalConfig();
+  config.headline = <span class="hljs-string">&#x27;Hi, Everybody!&#x27;</span>;
+  config.message = <span class="hljs-string">&#x27;Hi, Doctor Nick!&#x27;</span>;
+  manager.showModal(config)
+
+  <span class="hljs-comment">// to hide the modal call `closeModal()`:</span>
+  manager.closeModal();
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+				<a href="#advanced-usage" id="advanced-usage" style="color: inherit; text-decoration: none;">
+					<h2>Advanced Usage</h2>
+				</a>
+				<a href="#markup-content" id="markup-content" style="color: inherit; text-decoration: none;">
+					<h3>Markup Content</h3>
+				</a>
+				<p>You can pass in custom HTML into the <code>ModalConfig</code>:</p>
+				<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;module&quot;</span>&gt;</span><span class="javascript">
+  <span class="hljs-keyword">import</span> { html } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;lit-html&#x27;</span>;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">modal-manager</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">modal-manager</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+  <span class="hljs-keyword">const</span> manager = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&#x27;modal-manager&#x27;</span>);
+  <span class="hljs-keyword">const</span> config = <span class="hljs-keyword">new</span> ModalConfig();
+  config.title = <span class="hljs-string">&#x27;Internet Archive&#x27;</span>;
+  config.subtitle = <span class="hljs-string">&#x27;&#x27;</span>;
+  config.headline = <span class="hljs-string">&#x27;Thanks for your Support!&#x27;</span>;
+  config.message = html`<span class="xml">
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Thanks for your donation!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Please click <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span>here<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> to complete!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  `</span>;
+  config.headerColor = <span class="hljs-string">&#x27;#36A483&#x27;</span>;
+  manager.showModal(config);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+				<a href="#custom-content" id="custom-content" style="color: inherit; text-decoration: none;">
+					<h3>Custom Content</h3>
+				</a>
+				<p>Display completely custom content in the modal body, including light DOM content like a PayPal button.</p>
+				<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">modal-manager</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">modal-manager</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+  <span class="hljs-keyword">const</span> manager = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&#x27;modal-manager&#x27;</span>);
+  <span class="hljs-keyword">const</span> config = <span class="hljs-keyword">new</span> ModalConfig();
+  <span class="hljs-keyword">const</span> customContent = html`<span class="xml">
+    Can contain any markup, including web components. Event listeners also work. Try clicking on the picture.
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;text-align: center&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://fillmurray.com&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;display: block&quot;</span>&gt;</span>Fill Murray<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;100x100.jpg&quot;</span> @<span class="hljs-attr">click</span>=</span></span><span class="hljs-subst">${showBillAlert}</span><span class="xml"><span class="hljs-tag"> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  `</span>;
+
+  modalManager.showModal(config, customContent);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+				<a href="#config-options" id="config-options" style="color: inherit; text-decoration: none;">
+					<h3>Config Options</h3>
+				</a>
+				<p>All of the config options:</p>
+				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> config = <span class="hljs-keyword">new</span> ModalConfig();
+config.title = <span class="hljs-string">&#x27;Internet Archive&#x27;</span>;
+config.subtitle = <span class="hljs-string">&#x27;&#x27;</span>;
+config.headline = <span class="hljs-string">&#x27;Thanks for your Support!&#x27;</span>;
+config.message = <span class="hljs-string">&#x27;Thank you for supporting the Internet Archive!&#x27;</span>;
+config.headerColor = <span class="hljs-string">&#x27;#36A483&#x27;</span>;
+config.showProcessingIndicator = <span class="hljs-literal">false</span>;
+config.processingImageMode = <span class="hljs-string">&#x27;processing&#x27;</span>; <span class="hljs-comment">// or `complete`</span></code></pre>
+				<a href="#development" id="development" style="color: inherit; text-decoration: none;">
+					<h1>Development</h1>
+				</a>
+				<a href="#prerequisite" id="prerequisite" style="color: inherit; text-decoration: none;">
+					<h2>Prerequisite</h2>
+				</a>
+				<pre><code class="language-bash">npm install</code></pre>
+				<a href="#start-development-server" id="start-development-server" style="color: inherit; text-decoration: none;">
+					<h2>Start Development Server</h2>
+				</a>
+				<pre><code class="language-bash">npm start</code></pre>
+				<a href="#testing" id="testing" style="color: inherit; text-decoration: none;">
+					<h2>Testing</h2>
+				</a>
+				<pre><code class="language-bash">npm <span class="hljs-built_in">test</span></code></pre>
+				<a href="#linting" id="linting" style="color: inherit; text-decoration: none;">
+					<h2>Linting</h2>
+				</a>
+				<pre><code class="language-bash">npm lint</code></pre>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_index_.html">&quot;index&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_modal_config_.html">&quot;src/modal-<wbr>config&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_modal_manager_.html">&quot;src/modal-<wbr>manager&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_modal_manager_host_bridge_.html">&quot;src/modal-<wbr>manager-<wbr>host-<wbr>bridge&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_modal_manager_host_bridge_interface_.html">&quot;src/modal-<wbr>manager-<wbr>host-<wbr>bridge-<wbr>interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_modal_manager_interface_.html">&quot;src/modal-<wbr>manager-<wbr>interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_modal_manager_mode_.html">&quot;src/modal-<wbr>manager-<wbr>mode&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_src_modal_template_.html">&quot;src/modal-<wbr>template&quot;</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

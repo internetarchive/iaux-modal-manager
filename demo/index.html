@@ -1,0 +1,260 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    html {
+      font-size: 10px;
+    }
+
+    body {
+      margin: 0;
+      padding: 75px 10px 0 10px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body.modal-manager-open {
+      overflow: hidden;
+    }
+
+    modal-manager {
+      display: none;
+    }
+
+    modal-manager[mode='open'] {
+      display: block;
+    }
+
+    #demo {
+      margin: 0;
+      padding: 0;
+    }
+
+    .actions {
+      position: fixed;
+      background-color: rgba(255, 255, 255, 0.9);
+      border: 1px solid black;
+      padding: 10px;
+      top: 10px;
+      left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="demo">
+  </div>
+
+  <script type="module">
+    import { html, render } from 'lit-html';
+    import '../dist/index.js';
+    import { ModalConfig } from '../dist/index.js';
+
+    /* eslint-disable @typescript-eslint/explicit-function-return-type */
+
+    render(
+      html`
+        <modal-manager>
+          <div slot="slot-content-demo">
+            <p>Slotted Content</p>
+          </div>
+        </modal-manager>
+
+        <div class="actions">
+          <button @click=${showModal}>Modal</button>
+          <button @click=${showAllFeaturesModal}>All Features</button>
+          <button @click=${showErrorModal}>Error Modal</button>
+          <button @click=${showCustomContentModal}>Custom Content Modal</button>
+          <button @click=${showSlottedContentModal}>Slotted Content Modal</button>
+          <button @click=${showProcessingModal}>Processing Modal</button>
+          <button @click=${showCompleteModal}>Processing Complete Modal</button>
+          <button @click=${showUserClosedModalCallbackModal}>Modal Closed Callback</button>
+          <button @click=${showModalUserCannotClose}>Unclosable Modal</button>
+          <button @click=${showModalUserCannotClickBackdrop}>Unclickable Backdrop</button>
+          <button @click=${showOverflowModal}>Text-heavy Modal</button>
+        </div>
+
+        <h3>Some Content</h3>
+
+        <img src="200x200.jpg" style="float:right" />
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris posuere sollicitudin aliquam. Aenean vel felis arcu. Maecenas convallis dolor ac tortor tristique, congue scelerisque turpis congue. Vestibulum porttitor scelerisque quam, sit amet porta tortor consectetur non. Cras sollicitudin sit amet lacus ac egestas. Nam sollicitudin sem at sagittis laoreet. Donec nec nisl erat. Curabitur interdum in enim vehicula aliquam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce tempus sit amet tortor laoreet volutpat. Vivamus non vehicula felis, aliquet hendrerit odio.</p>
+
+        <p>In laoreet scelerisque tortor, at convallis nisl efficitur vehicula. Donec eu erat a turpis fermentum blandit vitae ut erat. Mauris tincidunt erat sit amet ante suscipit porta. Fusce mollis metus sit amet erat condimentum, eu maximus lacus aliquam. Sed cursus lacus eget sem commodo feugiat. Praesent semper lorem eu sollicitudin blandit. Sed id risus in lacus fermentum tristique. In porttitor malesuada sapien non posuere. Phasellus mollis mauris ultrices est consectetur, id pulvinar magna suscipit. Integer sodales sapien in augue tincidunt, ac tempor ligula cursus. Mauris id justo et dui blandit luctus. Morbi mattis id metus id maximus. Suspendisse quis lobortis erat, sed dignissim neque. Etiam cursus posuere ultricies.</p>
+
+        <p>Maecenas porta ac nulla sed vestibulum. Suspendisse aliquam fermentum mi, id luctus tortor aliquet gravida. Maecenas sed tincidunt quam. Mauris cursus ante sit amet enim egestas, vitae pellentesque metus hendrerit. Sed quis tortor id dui mollis blandit quis ac nunc. Suspendisse tincidunt nisl quis nunc tincidunt, et finibus ipsum elementum. Maecenas congue, neque eget volutpat pulvinar, augue nisl interdum elit, et porta mi augue ut sapien.</p>
+
+        <p>Fusce vel imperdiet justo. Aenean sollicitudin blandit nunc. Cras vitae orci id lorem condimentum tempor. Aliquam ac lectus sed mi suscipit sollicitudin at convallis nisl. Sed semper elementum sagittis. Nam fermentum nulla velit, non tempor massa fermentum non. Duis id ante eget elit gravida semper ac quis ligula. Duis vel libero ligula. Curabitur tempor sed velit nec egestas. Vivamus sit amet volutpat purus. Integer imperdiet mattis erat, vitae dignissim odio accumsan quis. Fusce bibendum lectus quis est molestie, eget scelerisque elit interdum. Etiam imperdiet a leo vitae ultricies. Etiam pretium quam eget sem mollis, quis elementum libero vulputate. Praesent aliquet dictum augue a luctus.</p>
+
+        <p>Maecenas vulputate iaculis mauris nec lobortis. Sed nibh ante, vehicula nec varius et, condimentum in massa. Curabitur a turpis porta, auctor magna in, iaculis ante. Suspendisse potenti. Donec massa orci, sollicitudin in nulla ut, fringilla dignissim elit. Suspendisse porttitor lorem nec sem volutpat ullamcorper. Curabitur blandit est tristique velit pharetra rhoncus. Aliquam vitae mauris ex.</p>
+      `,
+      document.querySelector('#demo')
+    );
+
+    const modalManager = document.querySelector('modal-manager');
+
+    function showModal() {
+      const config = new ModalConfig();
+      config.headline = 'Success';
+      config.message = 'Thank you for your support!';
+
+      modalManager.showModal({
+        config
+      });
+    }
+
+    function showErrorModal() {
+      const config = new ModalConfig();
+      config.headline = 'Error'
+      config.message = 'An error occurred while processing your donation.';
+      config.headerColor = '#691916';
+
+      modalManager.showModal({
+        config
+      });
+    }
+
+    function showBillAlert() {
+      alert('Bill <3 You');
+    }
+
+    function buttonPress() {
+      alert('You pressed a button.');
+    }
+
+    function showAllFeaturesModal() {
+      const config = new ModalConfig();
+      config.title = html`Donation Received`;
+      config.subtitle = html`Thanks a bunch!`;
+      config.headline = html`A Headline that catches attention and might spill over to multiple lines!`;
+      config.message = html`A long informative message for your users that let them know about something`;
+      config.headerColor = 'purple';
+      config.showProcessingIndicator = true;
+      config.processingImageMode = 'done';
+
+      const someContent = html`
+        <div style="text-align: center; margin-top: 10px;">
+          <button @click=${buttonPress}>I'm A Button To Press</button>
+        </div>
+      `;
+
+      modalManager.showModal({
+        config,
+        customModalContent: someContent
+      });
+    }
+
+    function showCustomContentModal() {
+      const config = new ModalConfig();
+      config.title = 'Custom Content';
+
+      const someContent = html`
+        Can contain any markup, including web components. Event listeners also work. Try clicking on the picture.
+        <div style="text-align: center">
+          <a href="https://fillmurray.com" style="display: block">Fill Murray</a>
+          <img src="100x100.jpg" @click=${showBillAlert} />
+        </div>
+      `;
+
+      modalManager.showModal({
+        config,
+        customModalContent: someContent
+      });
+    }
+
+    function showSlottedContentModal() {
+      const config = new ModalConfig();
+      config.title = 'Slotted Content';
+
+      const someContent = html`
+        Can slot content from the top-level:
+        <slot name="slot-content-demo"></slot>
+      `;
+
+      modalManager.showModal({
+        config,
+        customModalContent: someContent
+      });
+    }
+
+    function showOverflowModal() {
+      const config = new ModalConfig();
+
+      config.title = html`Lorem Ipsum`;
+      config.subtitle = html`Subtitle`;
+      config.headline = html`Everything Important`;
+      config.message = html`
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris posuere sollicitudin aliquam. Aenean vel felis arcu. Maecenas convallis dolor ac tortor tristique, congue scelerisque turpis congue. Vestibulum porttitor scelerisque quam, sit amet porta tortor consectetur non. Cras sollicitudin sit amet lacus ac egestas. Nam sollicitudin sem at sagittis laoreet. Donec nec nisl erat. Curabitur interdum in enim vehicula aliquam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce tempus sit amet tortor laoreet volutpat. Vivamus non vehicula felis, aliquet hendrerit odio.</p>
+
+      <p>In laoreet scelerisque tortor, at convallis nisl efficitur vehicula. Donec eu erat a turpis fermentum blandit vitae ut erat. Mauris tincidunt erat sit amet ante suscipit porta. Fusce mollis metus sit amet erat condimentum, eu maximus lacus aliquam. Sed cursus lacus eget sem commodo feugiat. Praesent semper lorem eu sollicitudin blandit. Sed id risus in lacus fermentum tristique. In porttitor malesuada sapien non posuere. Phasellus mollis mauris ultrices est consectetur, id pulvinar magna suscipit. Integer sodales sapien in augue tincidunt, ac tempor ligula cursus. Mauris id justo et dui blandit luctus. Morbi mattis id metus id maximus. Suspendisse quis lobortis erat, sed dignissim neque. Etiam cursus posuere ultricies.</p>
+      `;
+
+      config.headerColor = '#36A483';
+
+      modalManager.showModal({
+        config
+      });
+    }
+
+    function showCompleteModal() {
+      const config = new ModalConfig();
+      config.showProcessingIndicator = true;
+      config.processingImageMode = 'complete';
+      modalManager.showModal({
+        config
+      });
+    }
+
+    function showProcessingModal() {
+      const config = new ModalConfig();
+      config.headerColor = '#497fbf';
+      config.showProcessingIndicator = true;
+      config.showCloseButton = false;
+      config.closeOnBackdropClick = false;
+      modalManager.showModal({
+        config
+      });
+
+      setTimeout(showCompleteModal, 1500);
+    }
+
+    function showUserClosedModalCallbackModal() {
+      const config = new ModalConfig();
+      config.message = 'When you close this modal another will open.'
+
+      modalManager.showModal({
+        config,
+        userClosedModalCallback: () => {
+          const config = new ModalConfig();
+          config.message = 'I\'m another modal';
+          config.headerColor = '#497fbf';
+          modalManager.showModal({ config });
+        }
+      });
+    }
+
+    function showModalUserCannotClose() {
+      const config = new ModalConfig();
+      config.message = 'User cannot close this. Will close automatically in 2 seconds.';
+      config.showCloseButton = false;
+      config.closeOnBackdropClick = false;
+      modalManager.showModal({
+        config
+      });
+
+      setTimeout(modalManager.closeModal.bind(modalManager), 2000);
+    }
+
+    function showModalUserCannotClickBackdrop() {
+      const config = new ModalConfig();
+      config.message = 'Clicking on the backdrop will not close this.';
+      config.showCloseButton = true;
+      config.closeOnBackdropClick = false;
+      modalManager.showModal({
+        config
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+{
+  "name": "@internetarchive/modal-manager",
+  "version": "0.0.0-alpha.28",
+  "description": "A Modal Manager Web Component",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/internetarchive/iaux-modal-manager.git"
+  },
+  "license": "AGPL-3.0-only",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prepare": "npm run build",
+    "start": "concurrently --kill-others --names tsc,es-dev-server \"npm run tsc:watch\" \"es-dev-server --app-index demo/index.html --node-resolve --open --watch --preserve-symlinks\"",
+    "docs": "typedoc",
+    "build": "tsc",
+    "tsc:watch": "tsc --watch",
+    "lint:eslint": "eslint --ext .ts . --ignore-path .gitignore",
+    "format:eslint": "eslint --ext .ts . --fix --ignore-path .gitignore",
+    "lint:prettier": "prettier \"**/*.ts\" --check --ignore-path .gitignore",
+    "format:prettier": "prettier \"**/*.ts\" --write --ignore-path .gitignore",
+    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "format": "npm run format:eslint && npm run format:prettier",
+    "circular": "madge --circular .",
+    "test": "tsc && npm run lint && npm run circular && karma start --coverage",
+    "test:watch": "concurrently --kill-others --names tsc,karma \"npm run tsc:watch\" \"karma start --auto-watch=true --single-run=false\""
+  },
+  "dependencies": {
+    "@internetarchive/ia-activity-indicator": "0.0.1",
+    "@internetarchive/icon-close": "^0.4.0",
+    "@internetarchive/icon-ia-logo": "^0.4.0",
+    "@internetarchive/icon-user": "^0.4.0",
+    "lit-element": "^2.2.1",
+    "lit-html": "^1.1.2",
+    "throttle-debounce": "^2.2.1"
+  },
+  "devDependencies": {
+    "@open-wc/eslint-config": "^2.0.0",
+    "@open-wc/testing": "^2.0.0",
+    "@open-wc/testing-karma": "^3.0.0",
+    "@types/node": "13.11.1",
+    "@types/throttle-debounce": "^2.1.0",
+    "@typescript-eslint/eslint-plugin": "^2.20.0",
+    "@typescript-eslint/parser": "^2.20.0",
+    "concurrently": "^5.1.0",
+    "deepmerge": "^3.2.0",
+    "es-dev-server": "^1.23.0",
+    "eslint": "^6.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "husky": "^1.0.0",
+    "lint-staged": "^8.0.0",
+    "madge": "^3.9.2",
+    "prettier": "^2.0.4",
+    "tslib": "^1.11.0",
+    "typedoc": "^0.17.8",
+    "typescript": "^3.9.7"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@open-wc/eslint-config",
+      "eslint-config-prettier"
+    ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "arrowParens": "avoid"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
