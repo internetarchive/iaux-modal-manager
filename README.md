@@ -42,7 +42,7 @@ npm install --save @internetarchive/modal-manager
   const config = new ModalConfig();
   config.headline = 'Hi, Everybody!';
   config.message = 'Hi, Doctor Nick!';
-  manager.showModal(config)
+  manager.showModal({ config })
 
   // to hide the modal call `closeModal()`:
   manager.closeModal();
@@ -73,7 +73,7 @@ You can pass in custom HTML into the `ModalConfig`:
     <p>Please click <a href="">here</a> to complete!</p>
   `;
   config.headerColor = '#36A483';
-  manager.showModal(config);
+  manager.showModal({ config });
 </script>
 ```
 
@@ -95,7 +95,7 @@ Display completely custom content in the modal body, including light DOM content
     </div>
   `;
 
-  modalManager.showModal(config, customContent);
+  modalManager.showModal({ config, customContent });
 </script>
 ```
 
