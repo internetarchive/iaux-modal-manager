@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/internetarchive/iaux-modal-manager.svg?branch=master)](https://travis-ci.com/internetarchive/iaux-modal-manager) [![codecov](https://codecov.io/gh/internetarchive/iaux-modal-manager/branch/master/graph/badge.svg)](https://codecov.io/gh/internetarchive/iaux-modal-manager)
+![Build Status](https://github.com/internetarchive/iaux-modal-manager/actions/workflows/ci.yml/badge.svg) [![codecov](https://codecov.io/gh/internetarchive/iaux-modal-manager/branch/master/graph/badge.svg)](https://codecov.io/gh/internetarchive/iaux-modal-manager)
 
 # Modal Manager Component
 
