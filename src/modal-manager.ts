@@ -2,13 +2,11 @@ import {
   LitElement,
   html,
   css,
-  customElement,
   CSSResult,
   TemplateResult,
-  property,
-  query,
   PropertyValues,
-} from 'lit-element';
+} from 'lit';
+import { property, customElement, query } from 'lit/decorators.js';
 
 import './modal-template';
 import { ModalTemplate } from './modal-template';

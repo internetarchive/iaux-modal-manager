@@ -1,4 +1,4 @@
-import { LitElement, TemplateResult } from 'lit-element';
+import { LitElement, TemplateResult } from 'lit';
 import { ModalConfig } from './modal-config';
 import { ModalManagerMode } from './modal-manager-mode';
 

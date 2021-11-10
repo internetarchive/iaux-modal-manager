@@ -47,7 +47,7 @@
   </div>
 
   <script type="module">
-    import { html, render } from 'lit-html';
+      import { html, render } from 'lit';
     import '../dist/index.js';
     import { ModalConfig } from '../dist/index.js';
 
@@ -210,6 +210,7 @@
       const config = new ModalConfig();
       config.headerColor = '#497fbf';
       config.showProcessingIndicator = true;
+      config.processingImageMode = 'processing';
       config.showCloseButton = false;
       config.closeOnBackdropClick = false;
       modalManager.showModal({

@@ -1,12 +1,5 @@
-import {
-  LitElement,
-  html,
-  css,
-  customElement,
-  CSSResult,
-  property,
-  TemplateResult,
-} from 'lit-element';
+import { LitElement, html, css, CSSResult, TemplateResult } from 'lit';
+import { property, customElement } from 'lit/decorators.js';
 
 import '@internetarchive/ia-activity-indicator/ia-activity-indicator';
 import closeIcon from '@internetarchive/icon-close';

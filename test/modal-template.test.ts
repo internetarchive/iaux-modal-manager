@@ -1,5 +1,5 @@
-import { html, fixture, expect, oneEvent } from '@open-wc/testing';
-
+import { fixture, expect, oneEvent } from '@open-wc/testing';
+import { html } from 'lit';
 import '../src/modal-template';
 import { ModalConfig } from '../src/modal-config';
 
