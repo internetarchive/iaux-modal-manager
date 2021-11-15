@@ -1,7 +1,7 @@
 import { expect } from '@open-wc/testing';
+import { html } from 'lit';
 
 import { ModalConfig } from '../src/modal-config';
-import { html } from 'lit-html';
 
 describe('Modal Config', () => {
   it('can be instantiated properly', async () => {
