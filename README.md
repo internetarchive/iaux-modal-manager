@@ -57,7 +57,7 @@ You can pass in custom HTML into the `ModalConfig`:
 
 ```html
 <script type="module">
-  import { html } from 'lit-html';
+  import { html } from 'lit';
 </script>
 
 <modal-manager></modal-manager>
