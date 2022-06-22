@@ -40,11 +40,18 @@ export class ModalConfig {
   message?: TemplateResult;
 
   /**
-   * The color of the header
+   * The background color of the header
    *
    * @memberof ModalConfig
    */
   headerColor: string;
+
+  /**
+   * The background color of the body
+   *
+   * @memberof ModalConfig
+   */
+  bodyColor: string;
 
   /**
    * Show or hide the processing indicator
@@ -80,6 +87,7 @@ export class ModalConfig {
     headline?: TemplateResult;
     message?: TemplateResult;
     headerColor?: string;
+    bodyColor?: string;
     showProcessingIndicator?: boolean;
     processingImageMode?: string;
     showCloseButton?: boolean;
@@ -91,6 +99,7 @@ export class ModalConfig {
     this.message = options?.message;
 
     this.headerColor = options?.headerColor ?? '#55A183';
+    this.bodyColor = options?.bodyColor ?? '#f5f5f7';
     this.showProcessingIndicator = options?.showProcessingIndicator ?? false;
     this.processingImageMode = options?.processingImageMode ?? 'complete';
     this.showCloseButton = options?.showCloseButton ?? true;

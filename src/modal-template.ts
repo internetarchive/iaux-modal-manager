@@ -34,7 +34,10 @@ export class ModalTemplate extends LitElement {
               ? html`<h2 class="subtitle">${this.config.subtitle}</h2>`
               : ''}
           </header>
-          <section class="modal-body">
+          <section
+            class="modal-body"
+            style="background-color: ${this.config.bodyColor}"
+          >
             <div class="content">
               <div
                 class="processing-logo ${this.config.showProcessingIndicator
