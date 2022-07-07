@@ -1,4 +1,4 @@
-import { LitElement, html, css, CSSResult, TemplateResult } from 'lit';
+import { LitElement, html, css, CSSResult, TemplateResult, nothing } from 'lit';
 import { property, customElement } from 'lit/decorators.js';
 
 import '@internetarchive/ia-activity-indicator/ia-activity-indicator';
@@ -26,7 +26,7 @@ export class ModalTemplate extends LitElement {
             ${this.config.showCloseButton ? this.closeButtonTemplate : ''}
             ${this.config.showHeaderLogo
               ? html`<div class="logo-icon">${iaLogo}</div>`
-              : ''}
+              : nothing}
             ${this.config.title
               ? html`<h1 class="title">${this.config.title}</h1>`
               : ''}
@@ -39,13 +39,15 @@ export class ModalTemplate extends LitElement {
             style="background-color: ${this.config.bodyColor}"
           >
             <div class="content">
-              ${this.config.showProcessingIndicator
-                ? html`<div class="processing-logo">
-                    <ia-activity-indicator
-                      .mode=${this.config.processingImageMode}
-                    ></ia-activity-indicator>
-                  </div>`
-                : ''}
+              <div
+                class="processing-logo ${this.config.showProcessingIndicator
+                  ? ''
+                  : 'hidden'}"
+              >
+                <ia-activity-indicator
+                  .mode=${this.config.processingImageMode}
+                ></ia-activity-indicator>
+              </div>
               ${this.config.headline
                 ? html` <h1 class="headline">${this.config.headline}</h1> `
                 : ''}

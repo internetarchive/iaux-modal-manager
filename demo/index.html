@@ -99,10 +99,8 @@
     function showModal() {
       const config = new ModalConfig();
       config.headline = 'Success';
-      config.title = html`Donation Received`;
       config.message = 'Thank you for your support!';
-      config.headerColor = '#194880';
-      config.showHeaderLogo = false;
+
       modalManager.showModal({
         config
       });
