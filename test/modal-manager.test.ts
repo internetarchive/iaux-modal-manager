@@ -228,4 +228,18 @@ describe('Modal Manager', () => {
 
     expect(el.getMode()).to.equal('open');
   });
+
+  it('ia logo should not visible on modal', async () => {
+    const el = (await fixture(html`
+      <modal-manager></modal-manager>
+    `)) as ModalManagerInterface;
+
+    const config = new ModalConfig();
+    config.showHeaderLogo = false;
+    el.showModal({ config });
+    await elementUpdated(el);
+
+    const logoIcon = el.shadowRoot?.querySelector('.logo-icon');
+    expect(logoIcon).to.not.exist;
+  });
 });
