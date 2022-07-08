@@ -75,6 +75,13 @@ export class ModalConfig {
   showCloseButton: boolean;
 
   /**
+   * Show the close button
+   *
+   * @memberof ModalConfig
+   */
+  showHeaderLogo: boolean;
+
+  /**
    * Close the modal if the user taps on the background
    *
    * @memberof ModalConfig
@@ -91,6 +98,7 @@ export class ModalConfig {
     showProcessingIndicator?: boolean;
     processingImageMode?: string;
     showCloseButton?: boolean;
+    showHeaderLogo?: boolean;
     closeOnBackdropClick?: boolean;
   }) {
     this.title = options?.title;
@@ -103,6 +111,7 @@ export class ModalConfig {
     this.showProcessingIndicator = options?.showProcessingIndicator ?? false;
     this.processingImageMode = options?.processingImageMode ?? 'complete';
     this.showCloseButton = options?.showCloseButton ?? true;
+    this.showHeaderLogo = options?.showHeaderLogo ?? true;
     this.closeOnBackdropClick = options?.closeOnBackdropClick ?? true;
   }
 }

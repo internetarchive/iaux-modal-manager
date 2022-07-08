@@ -21,6 +21,7 @@
 
     modal-manager {
       display: none;
+      --modalTitleLineHeight: 4.5rem;
     }
 
     modal-manager[mode='open'] {
@@ -73,6 +74,7 @@
           <button @click=${showModalUserCannotClose}>Unclosable Modal</button>
           <button @click=${showModalUserCannotClickBackdrop}>Unclickable Backdrop</button>
           <button @click=${showOverflowModal}>Text-heavy Modal</button>
+          <button @click=${showModalWithoutLogo}>Modal Without Logo</button>
         </div>
 
         <h3>Some Content</h3>
@@ -193,6 +195,18 @@
 
       config.headerColor = '#36A483';
 
+      modalManager.showModal({
+        config
+      });
+    }
+
+    function showModalWithoutLogo() {
+      const config = new ModalConfig();
+      config.headline = 'Success';
+      config.title = html`Donation Received`;
+      config.message = 'Thank you for your support!';
+      config.headerColor = '#194880';
+      config.showHeaderLogo = false;
       modalManager.showModal({
         config
       });
