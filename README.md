@@ -90,11 +90,13 @@ Display completely custom content in the modal body, including light DOM content
   const customContent = html`
     Can contain any markup, including web components. Event listeners also work. Try clicking on the picture.
     <div style="text-align: center">
+      <div class="sr-only">Visible for screen-readers only</div>
       <a href="https://fillmurray.com" style="display: block">Fill Murray</a>
       <img src="100x100.jpg" @click=${showBillAlert} />
     </div>
   `;
 
+  // customContent used to render as slotted content, it can also use .sr-only class
   modalManager.showModal(config, customContent);
 </script>
 ```
@@ -107,7 +109,7 @@ All of the config options:
 const config = new ModalConfig();
 config.title = 'Internet Archive';
 config.subtitle = '';
-config.headline = 'Thanks for your Support!';
+config.headline = '<div class="sr-only">Visible for screen-readers only</div>Thanks for your Support!';
 config.message = 'Thank you for supporting the Internet Archive!';
 config.headerColor = '#36A483';
 config.showProcessingIndicator = false;

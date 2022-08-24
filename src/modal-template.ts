@@ -252,6 +252,28 @@ export class ModalTemplate extends LitElement {
         box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.18),
           0 4px 4px 0 rgba(0, 0, 0, 0.08);
       }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+      }
+
+      slot::slotted(.sr-only) {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+      }
     `;
   }
 }
