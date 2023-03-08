@@ -27,7 +27,7 @@
     "test:watch": "concurrently --kill-others --names tsc,karma \"npm run tsc:watch\" \"karma start --auto-watch=true --single-run=false\""
   },
   "dependencies": {
-    "@internetarchive/ia-activity-indicator": "^0.0.3",
+    "@internetarchive/ia-activity-indicator": "^0.0.4",
     "@internetarchive/icon-close": "^1.3.2",
     "@internetarchive/icon-ia-logo": "^1.3.2",
     "@internetarchive/icon-user": "^1.3.2",
