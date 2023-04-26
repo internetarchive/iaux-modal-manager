@@ -2,8 +2,8 @@ import { LitElement, html, css, CSSResult, TemplateResult, nothing } from 'lit';
 import { property, customElement } from 'lit/decorators.js';
 
 import '@internetarchive/ia-activity-indicator/ia-activity-indicator';
-import closeIcon from '@internetarchive/icon-close';
-import iaLogo from '@internetarchive/icon-ia-logo';
+import '@internetarchive/icon-close';
+import '@internetarchive/icon-ia-logo';
 
 import { ModalConfig } from './modal-config';
 
@@ -25,7 +25,9 @@ export class ModalTemplate extends LitElement {
           <header style="background-color: ${this.config.headerColor}">
             ${this.config.showCloseButton ? this.closeButtonTemplate : ''}
             ${this.config.showHeaderLogo
-              ? html`<div class="logo-icon">${iaLogo}</div>`
+              ? html`<div class="logo-icon">
+                  <ia-icon-ia-logo></ia-icon-ia-logo>
+                </div>`
               : nothing}
             ${this.config.title
               ? html`<h1 class="title">${this.config.title}</h1>`
@@ -92,7 +94,7 @@ export class ModalTemplate extends LitElement {
         tabindex="0"
         @click=${this.handleCloseButton}
       >
-        ${closeIcon}
+        <ia-icon-close></ia-icon-close>
       </button>
     `;
   }
