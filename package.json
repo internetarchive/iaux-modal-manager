@@ -38,7 +38,7 @@
   "devDependencies": {
     "@open-wc/eslint-config": "^2.0.0",
     "@open-wc/testing": "^3.0.3",
-    "@open-wc/testing-karma": "^3.0.0",
+    "@open-wc/testing-karma": "^4.0.9",
     "@types/mocha": "^9.0.0",
     "@types/node": "^20.8.4",
     "@types/throttle-debounce": "^5.0.0",
