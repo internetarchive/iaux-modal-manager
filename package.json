@@ -11,7 +11,7 @@
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "prepare": "rimraf dist && tsc && husky install",
+    "prepare": "rimraf dist && npm && husky install",
     "start": "concurrently --kill-others --names tsc,es-dev-server \"npm run tsc:watch\" \"es-dev-server --app-index demo/index.html --node-resolve --open --watch --preserve-symlinks\"",
     "docs": "typedoc",
     "build": "tsc",
