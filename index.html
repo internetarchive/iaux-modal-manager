@@ -48,9 +48,11 @@
   </div>
 
   <script type="module">
-      import { html, render } from 'lit';
+    import { html, render } from 'lit';
     import './dist/index.js';
     import { ModalConfig } from './dist/index.js';
+
+    // import { image1, image2 } from './public/images';
 
     /* eslint-disable @typescript-eslint/explicit-function-return-type */
 
@@ -79,7 +81,7 @@
 
         <h3>Some Content</h3>
 
-        <img src="demo/200x200.jpg" style="float:right" />
+        <img src=""./public/images/200x200.jpg" style="float:right" />
 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris posuere sollicitudin aliquam. Aenean vel felis arcu. Maecenas convallis dolor ac tortor tristique, congue scelerisque turpis congue. Vestibulum porttitor scelerisque quam, sit amet porta tortor consectetur non. Cras sollicitudin sit amet lacus ac egestas. Nam sollicitudin sem at sagittis laoreet. Donec nec nisl erat. Curabitur interdum in enim vehicula aliquam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce tempus sit amet tortor laoreet volutpat. Vivamus non vehicula felis, aliquet hendrerit odio.</p>
 
@@ -158,7 +160,7 @@
         <span class="sr-only">Also support screen-reader only</span>
         <div style="text-align: center">
           <a href="https://fillmurray.com" style="display: block">Fill Murray</a>
-          <img src="demo/100x100.jpg" @click=${showBillAlert} />
+          <img src="./public/images/100x100.jpg" @click=${showBillAlert} />
         </div>
       `;
 
