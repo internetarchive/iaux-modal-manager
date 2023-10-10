@@ -28,7 +28,7 @@ jobs:
         run: |
           npm run prepare:ghpages
           pwd
-          cp -R assets/images ghpages/imagesnpm run prepare:ghpages
+          cp -R assets/images ghpages/images
 
       # Reference: https://github.com/JamesIves/github-pages-deploy-action
       - name: Deploy 🚀
