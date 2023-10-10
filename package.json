@@ -11,7 +11,7 @@
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "prepare": "rimraf dist && npm && husky install",
+    "prepare": "npm run build && husky install",
     "start": "concurrently --kill-others --names tsc,es-dev-server \"npm run tsc:watch\" \"es-dev-server --app-index demo/index.html --node-resolve --open --watch --preserve-symlinks\"",
     "docs": "typedoc",
     "build": "tsc",
@@ -25,7 +25,7 @@
     "circular": "madge --circular .",
     "test": "tsc && npm run lint && npm run circular && karma start --coverage",
     "test:watch": "concurrently --kill-others --names tsc,karma \"npm run tsc:watch\" \"karma start --auto-watch=true --single-run=false\"",
-    "prepare:ghpages": "rimraf ghpages && yarn run prepare && vite build"
+    "prepare:ghpages": "yarn run prepare && vite build"
   },
   "dependencies": {
     "@internetarchive/ia-activity-indicator": "^0.0.4",
@@ -54,7 +54,6 @@
     "lit-html": "^2.0.2",
     "madge": "^4.0.1",
     "prettier": "^2.0.4",
-    "rimraf": "^5.0.5",
     "tslib": "^1.11.0",
     "typedoc": "^0.17.8",
     "typescript": "^3.9.7",
