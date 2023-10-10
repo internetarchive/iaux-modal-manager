@@ -11,7 +11,7 @@
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "prepare": "npm run build",
+    "prepare": "npm run build && husky install",
     "start": "concurrently --kill-others --names tsc,es-dev-server \"npm run tsc:watch\" \"es-dev-server --app-index demo/index.html --node-resolve --open --watch --preserve-symlinks\"",
     "docs": "typedoc",
     "build": "tsc",
@@ -48,14 +48,15 @@
     "es-dev-server": "^1.23.0",
     "eslint": "^6.1.0",
     "eslint-config-prettier": "^6.11.0",
-    "husky": "^1.0.0",
+    "husky": "^7.0.0",
     "lint-staged": "^14.0.1",
     "lit-html": "^2.0.2",
     "madge": "^4.0.1",
     "prettier": "^2.0.4",
     "tslib": "^1.11.0",
     "typedoc": "^0.17.8",
-    "typescript": "^3.9.7"
+    "typescript": "^3.9.7",
+    "vite": "^4.4.11"
   },
   "eslintConfig": {
     "extends": [
