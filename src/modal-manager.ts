@@ -84,6 +84,8 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
   /** @inheritdoc */
   closeModal(): void {
     this.mode = ModalManagerMode.Closed;
+    this.customModalContent = undefined;
+    this.modalTemplate.config = new ModalConfig();
   }
 
   /**
