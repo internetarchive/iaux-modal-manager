@@ -11,8 +11,9 @@
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "prepare": "npm run build",
-    "start": "concurrently --kill-others --names tsc,es-dev-server \"npm run tsc:watch\" \"es-dev-server --app-index demo/index.html --node-resolve --open --watch --preserve-symlinks\"",
+    "prepare": "npm run build && husky install",
+    "prepare:ghpages": "rimraf ghpages && npm run prepare && vite build && cp -R assets/images ghpages/assets/images",
+    "start": "concurrently --kill-others --names tsc,es-dev-server \"npm run tsc:watch\" \"es-dev-server --app-index index.html --node-resolve --open --watch --preserve-symlinks\"",
     "docs": "typedoc",
     "build": "tsc",
     "tsc:watch": "tsc --watch",
@@ -39,7 +40,7 @@
     "@open-wc/testing": "^3.0.3",
     "@open-wc/testing-karma": "^3.0.0",
     "@types/mocha": "^9.0.0",
-    "@types/node": "13.13.52",
+    "@types/node": "^20.8.4",
     "@types/throttle-debounce": "^5.0.0",
     "@typescript-eslint/eslint-plugin": "^2.20.0",
     "@typescript-eslint/parser": "^2.20.0",
@@ -48,14 +49,16 @@
     "es-dev-server": "^1.23.0",
     "eslint": "^6.1.0",
     "eslint-config-prettier": "^6.11.0",
-    "husky": "^1.0.0",
+    "husky": "^7.0.0",
     "lint-staged": "^14.0.1",
     "lit-html": "^2.0.2",
     "madge": "^4.0.1",
     "prettier": "^2.0.4",
+    "rimraf": "^5.0.5",
     "tslib": "^1.11.0",
     "typedoc": "^0.17.8",
-    "typescript": "^3.9.7"
+    "typescript": "^4.4.4",
+    "vite": "^4.4.11"
   },
   "eslintConfig": {
     "extends": [
