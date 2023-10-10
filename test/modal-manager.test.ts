@@ -1,5 +1,5 @@
 import { fixture, expect, oneEvent, elementUpdated } from '@open-wc/testing';
-import { html } from 'lit';
+import { TemplateResult, html } from 'lit';
 
 import '../src/modal-manager';
 import { ModalConfig } from '../src/modal-config';
@@ -21,6 +21,10 @@ describe('Modal Manager', () => {
       <modal-manager .mode=${ModalManagerMode.Open}></modal-manager>
     `)) as ModalManager;
 
+    el.customModalContent = ('foo' as unknown) as TemplateResult;
+    await elementUpdated(el);
+
+    expect(el.customModalContent).to.equal('foo');
     el.closeModal();
     await elementUpdated(el);
 
