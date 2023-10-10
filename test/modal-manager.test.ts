@@ -25,6 +25,7 @@ describe('Modal Manager', () => {
     await elementUpdated(el);
 
     expect(el.mode).to.equal('closed');
+    expect(el.customModalContent).to.equal(undefined);
   });
 
   it('can be closed by clicking on the backdrop', async () => {
