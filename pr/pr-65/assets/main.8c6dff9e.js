@@ -461,7 +461,7 @@ PERFORMANCE OF THIS SOFTWARE.
 
         <h3>Some Content</h3>
 
-        <img src=""./public/images/200x200.jpg" style="float:right" />
+        <img src="./images/200x200.jpg" style="float:right" />
 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris posuere sollicitudin aliquam. Aenean vel felis arcu. Maecenas convallis dolor ac tortor tristique, congue scelerisque turpis congue. Vestibulum porttitor scelerisque quam, sit amet porta tortor consectetur non. Cras sollicitudin sit amet lacus ac egestas. Nam sollicitudin sem at sagittis laoreet. Donec nec nisl erat. Curabitur interdum in enim vehicula aliquam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce tempus sit amet tortor laoreet volutpat. Vivamus non vehicula felis, aliquet hendrerit odio.</p>
 
@@ -481,7 +481,7 @@ PERFORMANCE OF THIS SOFTWARE.
         <span class="sr-only">Also support screen-reader only</span>
         <div style="text-align: center">
           <a href="https://fillmurray.com" style="display: block">Fill Murray</a>
-          <img src="./public/images/100x100.jpg" @click=${Je} />
+          <img src="./images/100x100.jpg" @click=${Je} />
         </div>
       `;f.showModal({config:i,customModalContent:e})}function Qe(){const i=new $;i.title="Slotted Content";const e=p`
         Can slot content from the top-level:
