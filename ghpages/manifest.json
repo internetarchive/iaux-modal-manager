@@ -1,7 +1,7 @@
 {
-  "demo/index.html": {
-    "file": "assets/main.b024f422.js",
-    "src": "demo/index.html",
+  "index.html": {
+    "file": "assets/main.151423e8.js",
+    "src": "index.html",
     "isEntry": true
   }
 }

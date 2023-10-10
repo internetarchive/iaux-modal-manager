@@ -32,7 +32,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4.4.3
         with:
           branch: gh-pages
-          folder: ghpages/demo
+          folder: ghpages
           clean-exclude: pr/
           force: false
           target-folder: main

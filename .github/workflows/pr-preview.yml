@@ -34,5 +34,5 @@ jobs:
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         with:
-          source-dir: ./ghpages/demo
+          source-dir: ./ghpages
           umbrella-dir: pr
