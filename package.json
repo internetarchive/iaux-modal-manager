@@ -12,6 +12,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "prepare": "npm run build && husky install",
+    "prepare:ghpages": "npm run prepare && vite build",
     "start": "concurrently --kill-others --names tsc,es-dev-server \"npm run tsc:watch\" \"es-dev-server --app-index demo/index.html --node-resolve --open --watch --preserve-symlinks\"",
     "docs": "typedoc",
     "build": "tsc",
