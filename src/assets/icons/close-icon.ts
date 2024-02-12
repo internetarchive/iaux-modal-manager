@@ -4,7 +4,6 @@
  * @exports TemplateResult
  * Path: src/assets/icons/close-icon.ts
  */
-;
 import { css, LitElement, svg } from 'lit';
 class CloseIcon extends LitElement {
   static get styles() {
