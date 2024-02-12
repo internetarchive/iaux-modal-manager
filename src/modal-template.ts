@@ -4,8 +4,8 @@ import { property, customElement } from 'lit/decorators.js';
 import '@internetarchive/ia-activity-indicator/ia-activity-indicator';
 // Unable to fix buc JS leaking into html
 // Move same code to local file
-// import closeIcon from '@internetarchive/icon-close/index.js';
-import '../src/assets/icons/close-icon';
+import '@internetarchive/icon-close';
+// import '../src/assets/icons/close-icon';
 import iaIcon from '@internetarchive/icon-ia-logo/index.js';
 
 import { ModalConfig } from './modal-config';
@@ -95,7 +95,7 @@ export class ModalTemplate extends LitElement {
         tabindex="0"
         @click=${this.handleCloseButton}
       >
-        <close-icon></close-icon>
+        <ia-icon-close></ia-icon-close>
       </button>
     `;
   }
