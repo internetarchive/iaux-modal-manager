@@ -2,7 +2,10 @@ import { LitElement, html, css, CSSResult, TemplateResult, nothing } from 'lit';
 import { property, customElement } from 'lit/decorators.js';
 
 import '@internetarchive/ia-activity-indicator/ia-activity-indicator';
-import closeIcon from '@internetarchive/icon-close/index.js';
+// Unable to fix buc JS leaking into html
+// Move same code to local file
+// import closeIcon from '@internetarchive/icon-close/index.js';
+import '../src/assets/icons/close-icon';
 import iaIcon from '@internetarchive/icon-ia-logo/index.js';
 
 import { ModalConfig } from './modal-config';
@@ -92,7 +95,7 @@ export class ModalTemplate extends LitElement {
         tabindex="0"
         @click=${this.handleCloseButton}
       >
-        ${closeIcon}
+        <close-icon></close-icon>
       </button>
     `;
   }
