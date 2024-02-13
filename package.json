@@ -24,8 +24,8 @@
     "lint": "npm run lint:eslint && npm run lint:prettier",
     "format": "npm run format:eslint && npm run format:prettier",
     "circular": "madge --circular .",
-    "test": "tsc && yarn run lint && yarn run circular && wtr --coverage",
-    "test:watch": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wtr --watch\"",
+    "test": "tsc && yarn run lint && yarn run circular && web-test-runner --coverage",
+    "test:watch": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"web-test-runner --watch\"",
     "publish:alpha": "npm run test && npm run prepare && npm version prerelease --preid alpha && npm publish --tag alpha"
   },
   "dependencies": {
