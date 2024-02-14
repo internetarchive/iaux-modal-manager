@@ -25,13 +25,14 @@
     "format": "npm run format:eslint && npm run format:prettier",
     "circular": "madge --circular .",
     "test": "tsc && npm run lint && npm run circular && karma start --coverage",
-    "test:watch": "concurrently --kill-others --names tsc,karma \"npm run tsc:watch\" \"karma start --auto-watch=true --single-run=false\""
+    "test:watch": "concurrently --kill-others --names tsc,karma \"npm run tsc:watch\" \"karma start --auto-watch=true --single-run=false\"",
+    "publish:alpha": "npm run test && npm run prepare && npm version prerelease --preid alpha && npm publish --tag alpha"
   },
   "dependencies": {
     "@internetarchive/ia-activity-indicator": "^0.0.4",
-    "@internetarchive/icon-close": "^1.3.2",
-    "@internetarchive/icon-ia-logo": "^1.3.2",
-    "@internetarchive/icon-user": "^1.3.2",
+    "@internetarchive/icon-close": "^1.3.4",
+    "@internetarchive/icon-ia-logo": "^1.3.4",
+    "@internetarchive/icon-user": "^1.3.4",
     "lit": "^2.2.2",
     "throttle-debounce": "^5.0.0"
   },
