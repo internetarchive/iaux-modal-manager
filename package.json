@@ -1,6 +1,6 @@
 {
   "name": "@internetarchive/modal-manager",
-  "version": "0.3.3-alpha.1",
+  "version": "0.3.3",
   "description": "A Modal Manager Web Component",
   "repository": {
     "type": "git",
