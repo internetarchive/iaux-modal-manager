@@ -26,7 +26,7 @@
     "circular": "madge --circular .",
     "test": "tsc && npm run lint && npm run circular && karma start --coverage",
     "test:watch": "concurrently --kill-others --names tsc,karma \"npm run tsc:watch\" \"karma start --auto-watch=true --single-run=false\"",
-    "publish:alpha": "npm run test && npm run prepare && npm version prerelease --preid alpha && npm publish --tag alpha"
+    "publish:alpha": "npm run test && npm run prepare && npm version prerelease --preid alpha --no-git-tag-version && npm publish --tag alpha"
   },
   "dependencies": {
     "@internetarchive/ia-activity-indicator": "^0.0.4",
