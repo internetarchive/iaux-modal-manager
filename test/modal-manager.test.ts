@@ -21,7 +21,7 @@ describe('Modal Manager', () => {
       <modal-manager .mode=${ModalManagerMode.Open}></modal-manager>
     `)) as ModalManager;
 
-    el.customModalContent = ('foo' as unknown) as TemplateResult;
+    el.customModalContent = 'foo' as unknown as TemplateResult;
     await elementUpdated(el);
 
     expect(el.customModalContent).to.equal('foo');
@@ -56,7 +56,7 @@ describe('Modal Manager', () => {
     setTimeout(() => {
       el.showModal({ config });
     });
-    const response = await oneEvent(el, 'modeChanged');
+    const response = await oneEvent(el, 'modeChanged', false);
     expect(response.detail.mode).to.equal(ModalManagerMode.Open);
   });
 
@@ -72,7 +72,7 @@ describe('Modal Manager', () => {
     setTimeout(() => {
       el.closeModal();
     });
-    const response = await oneEvent(el, 'modeChanged');
+    const response = await oneEvent(el, 'modeChanged', false);
     expect(response.detail.mode).to.equal(ModalManagerMode.Closed);
   });
 
