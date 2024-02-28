@@ -7,6 +7,11 @@ import {
   PropertyValues,
 } from 'lit';
 import { property, customElement, query } from 'lit/decorators.js';
+<<<<<<< HEAD
+=======
+
+import Modal from './shoelace/modal';
+>>>>>>> 7e3793a (Use shoelace tab manager)
 
 import './modal-template';
 import { ModalTemplate } from './modal-template';
@@ -38,7 +43,7 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
   @property({ type: Object }) customModalContent?: TemplateResult;
 
   /**
-   * Thie hostBridge handles environmental-specific interactions such as adding classes
+   * This hostBridge handles environmental-specific interactions such as adding classes
    * to the body tag or event listeners needed to support the modal manager in the host environment.
    *
    * There is a default `ModalManagerHostBridge`, but consumers can override it with a custom
@@ -61,6 +66,12 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
    */
   @query('modal-template') private modalTemplate!: ModalTemplate;
 
+<<<<<<< HEAD
+=======
+  // Imported tab handling from shoelace
+  public modal = new Modal(this);
+
+>>>>>>> 7e3793a (Use shoelace tab manager)
   async firstUpdated(): Promise<void> {
     // Give the browser a chance to paint
     // eslint-disable-next-line no-promise-executor-return
@@ -73,6 +84,11 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
         }
       });
     }
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.modal.deactivate();
   }
 
   /** @inheritdoc */
@@ -100,6 +116,7 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
     this.mode = ModalManagerMode.Closed;
     this.customModalContent = undefined;
     this.modalTemplate.config = new ModalConfig();
+    this.modal.deactivate();
   }
 
   /**
@@ -145,6 +162,20 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
     this.customModalContent = options.customModalContent;
     this.mode = ModalManagerMode.Open;
     await this.modalTemplate.updateComplete;
+<<<<<<< HEAD
+=======
+
+    this.modal.activate();
+
+    // document.addEventListener('keydown', this.tabHandler);
+
+    // this.firstFocusableElement.focus();
+    // console.log('firstFocusableElement', this.firstFocusableElement);
+    // console.log('lastFocusableElement', this.lastFocusableElement);
+    // console.log('focusableContent', this.focusableContent);
+
+    // this.modalTemplate.focus();
+>>>>>>> 7e3793a (Use shoelace tab manager)
   }
 
   /** @inheritdoc */
