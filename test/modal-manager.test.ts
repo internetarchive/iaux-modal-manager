@@ -7,6 +7,8 @@ import { ModalManager } from '../src/modal-manager';
 import { ModalManagerMode } from '../src/modal-manager-mode';
 import { ModalManagerInterface } from '../src/modal-manager-interface';
 
+import { getTabbableElements } from '../src/shoelace/tabbable';
+
 describe('Modal Manager', () => {
   it('defaults to closed', async () => {
     const el = (await fixture(html`
@@ -196,6 +198,29 @@ describe('Modal Manager', () => {
     expect(el.mode).to.equal('closed');
   });
 
+  it('mode is set to closed when close button gets spacebar pressed', async () => {
+    const el = (await fixture(html`
+      <modal-manager></modal-manager>
+    `)) as ModalManager;
+
+    const config = new ModalConfig();
+    el.showModal({ config });
+    await elementUpdated(el);
+
+    expect(el.mode).to.equal('open');
+
+    const modal = el.shadowRoot?.querySelector('modal-template');
+    const closeButton = modal?.shadowRoot?.querySelector('.close-button');
+
+    // Close with keyboard
+    const spacebarEvent = new KeyboardEvent('keydown', { key: ' ' });
+    closeButton?.dispatchEvent(spacebarEvent);
+
+    await elementUpdated(el);
+
+    expect(el.mode).to.equal('closed');
+  });
+
   it('allows the user to close by clicking on the backdrop if configured to', async () => {
     const el = (await fixture(html`
       <modal-manager></modal-manager>
@@ -215,7 +240,7 @@ describe('Modal Manager', () => {
     expect(el.mode).to.equal('closed');
   });
 
-  it("dont't allow the user to close by clicking on the backdrop if configured to", async () => {
+  it("doesn't allow the user to close by clicking on the backdrop if configured to", async () => {
     const el = (await fixture(html`
       <modal-manager></modal-manager>
     `)) as ModalManagerInterface;
@@ -246,5 +271,52 @@ describe('Modal Manager', () => {
 
     const logoIcon = el.shadowRoot?.querySelector('.logo-icon');
     expect(logoIcon).to.not.exist;
+  });
+
+  it('should trap Tab key', async () => {
+    const el = (await fixture(html`
+      <modal-manager></modal-manager>
+    `)) as ModalManager;
+
+    const config = new ModalConfig();
+    el.showModal({ config });
+    await elementUpdated(el);
+
+    expect(el.mode).to.equal('open');
+
+    // Tab once to focus
+    const tabEvent = new KeyboardEvent('keydown', { key: 'Tab' });
+    document.dispatchEvent(tabEvent);
+    await elementUpdated(el);
+
+    // Should be only one tabbable element
+    const modal = el.shadowRoot?.querySelector('modal-template') as HTMLElement;
+    const tabbableElements = getTabbableElements(modal);
+    expect(tabbableElements?.length).to.equal(1);
+
+    const closeButton = modal?.shadowRoot?.querySelector(
+      '.close-button'
+    ) as HTMLElement;
+    const activeElement = modal?.shadowRoot?.activeElement as HTMLElement;
+
+    expect(activeElement).to.equal(closeButton);
+
+    // Tab again
+    el.dispatchEvent(tabEvent);
+    await elementUpdated(el);
+
+    // Should be only one tabbable element
+    expect(activeElement).to.equal(closeButton);
+
+    // Shift + Tab
+    const shiftTabEvent = new KeyboardEvent('keydown', {
+      key: 'Tab',
+      shiftKey: true,
+    });
+    document.dispatchEvent(shiftTabEvent);
+    await elementUpdated(el);
+
+    // Should be only one tabbable element
+    expect(activeElement).to.equal(closeButton);
   });
 });

@@ -14,9 +14,10 @@ function getCachedComputedStyle(el: HTMLElement): CSSStyleDeclaration {
 }
 
 function isVisible(el: HTMLElement): boolean {
-  // This is the fastest check, but isn't supported in Safari.  
+  // This is the fastest check, but isn't supported in Safari.
   if ('checkVisibility' in el && typeof el['checkVisibility'] === 'function') {
     // Opacity is focusable, visibility is not.
+    /* eslint-disable-next-line  @typescript-eslint/no-explicit-any */
     return (el as any)['checkVisibility']({
       checkOpacity: false,
       checkVisibilityCSS: true,
