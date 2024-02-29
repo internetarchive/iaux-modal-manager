@@ -7,11 +7,8 @@ import {
   PropertyValues,
 } from 'lit';
 import { property, customElement, query } from 'lit/decorators.js';
-<<<<<<< HEAD
-=======
 
 import Modal from './shoelace/modal';
->>>>>>> 7e3793a (Use shoelace tab manager)
 
 import './modal-template';
 import { ModalTemplate } from './modal-template';
@@ -66,12 +63,9 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
    */
   @query('modal-template') private modalTemplate!: ModalTemplate;
 
-<<<<<<< HEAD
-=======
   // Imported tab handling from shoelace
   public modal = new Modal(this);
 
->>>>>>> 7e3793a (Use shoelace tab manager)
   async firstUpdated(): Promise<void> {
     // Give the browser a chance to paint
     // eslint-disable-next-line no-promise-executor-return
@@ -162,9 +156,6 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
     this.customModalContent = options.customModalContent;
     this.mode = ModalManagerMode.Open;
     await this.modalTemplate.updateComplete;
-<<<<<<< HEAD
-=======
-
     this.modal.activate();
 
     // document.addEventListener('keydown', this.tabHandler);
@@ -175,7 +166,7 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
     // console.log('focusableContent', this.focusableContent);
 
     // this.modalTemplate.focus();
->>>>>>> 7e3793a (Use shoelace tab manager)
+
   }
 
   /** @inheritdoc */
