@@ -1,6 +1,6 @@
 {
   "name": "@internetarchive/modal-manager",
-  "version": "0.3.4",
+  "version": "1.0.0",
   "description": "A Modal Manager Web Component",
   "repository": {
     "type": "git",
@@ -26,7 +26,7 @@
     "circular": "madge --circular .",
     "test": "tsc && npm run lint && npm run circular && karma start --coverage",
     "test:watch": "concurrently --kill-others --names tsc,karma \"npm run tsc:watch\" \"karma start --auto-watch=true --single-run=false\"",
-    "publish:alpha": "npm run test && npm run prepare && npm version prerelease --preid alpha && npm publish --tag alpha"
+    "publish:alpha": "npm run test && npm run prepare && npm version prerelease --preid alpha --no-git-tag-version && npm publish --tag alpha"
   },
   "dependencies": {
     "@internetarchive/ia-activity-indicator": "^0.0.4",
@@ -37,28 +37,27 @@
     "throttle-debounce": "^5.0.0"
   },
   "devDependencies": {
-    "@open-wc/eslint-config": "^2.0.0",
-    "@open-wc/testing": "^3.0.3",
+    "@open-wc/eslint-config": "^9.2.2",
+    "@open-wc/testing": "^4.0.0",
     "@open-wc/testing-karma": "^3.0.0",
     "@types/mocha": "^10.0.0",
     "@types/node": "^20.8.4",
     "@types/throttle-debounce": "^5.0.0",
-    "@typescript-eslint/eslint-plugin": "^2.20.0",
-    "@typescript-eslint/parser": "^2.20.0",
+    "@typescript-eslint/eslint-plugin": "^7.1.0",
+    "@typescript-eslint/parser": "^7.1.0",
     "concurrently": "^8.0.0",
     "deepmerge": "^4.0.0",
     "es-dev-server": "^2.0.0",
-    "eslint": "^6.1.0",
+    "eslint": "^8.57.0",
     "eslint-config-prettier": "^6.11.0",
-    "husky": "^7.0.0",
+    "husky": "^9.0.0",
     "lint-staged": "^14.0.1",
-    "lit-html": "^2.0.2",
-    "madge": "^4.0.1",
-    "prettier": "^2.0.4",
+    "madge": "^6.0.0",
+    "prettier": "^2.7.1",
     "rimraf": "^5.0.5",
-    "tslib": "^1.11.0",
+    "tslib": "^2.4.0",
     "typedoc": "^0.25.0",
-    "typescript": "^4.4.4",
+    "typescript": "^4.7.4",
     "vite": "^4.4.11"
   },
   "eslintConfig": {

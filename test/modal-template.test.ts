@@ -40,7 +40,7 @@ describe('Modal Template', () => {
     setTimeout(() => {
       closeButton?.dispatchEvent(clickEvent);
     });
-    const response = await oneEvent(el, 'closeButtonPressed');
+    const response = await oneEvent(el, 'closeButtonPressed', false);
     expect(response).to.exist;
   });
 
