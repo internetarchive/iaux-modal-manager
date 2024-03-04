@@ -38,7 +38,7 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
   @property({ type: Object }) customModalContent?: TemplateResult;
 
   /**
-   * The hostBridge handles environmental-specific interactions such as adding classes
+   * Thie hostBridge handles environmental-specific interactions such as adding classes
    * to the body tag or event listeners needed to support the modal manager in the host environment.
    *
    * There is a default `ModalManagerHostBridge`, but consumers can override it with a custom
