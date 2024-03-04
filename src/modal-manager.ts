@@ -38,7 +38,7 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
   @property({ type: Object }) customModalContent?: TemplateResult;
 
   /**
-   * Thie hostBridge handles environmental-specific interactions such as adding classes
+   * The hostBridge handles environmental-specific interactions such as adding classes
    * to the body tag or event listeners needed to support the modal manager in the host environment.
    *
    * There is a default `ModalManagerHostBridge`, but consumers can override it with a custom
@@ -60,6 +60,20 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
    * @memberof ModalManager
    */
   @query('modal-template') private modalTemplate!: ModalTemplate;
+
+  async firstUpdated(): Promise<void> {
+    // Give the browser a chance to paint
+    // eslint-disable-next-line no-promise-executor-return
+    await new Promise(r => setTimeout(r, 0));
+
+    if (this.closeOnBackdropClick) {
+      this.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          this.backdropClicked();
+        }
+      });
+    }
+  }
 
   /** @inheritdoc */
   render(): TemplateResult {
