@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 // Cached compute style calls. This is specifically for browsers that dont support `checkVisibility()`.
 // computedStyle calls are "live" so they only need to be retrieved once for an element.
 const computedStyleMap = new WeakMap<Element, CSSStyleDeclaration>();

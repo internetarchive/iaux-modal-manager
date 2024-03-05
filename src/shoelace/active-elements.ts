@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 /**
  * Use a generator so we can iterate and possibly break early.
  * @example
