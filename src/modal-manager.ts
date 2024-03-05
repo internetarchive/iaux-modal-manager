@@ -156,17 +156,8 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
     this.customModalContent = options.customModalContent;
     this.mode = ModalManagerMode.Open;
     await this.modalTemplate.updateComplete;
+    this.modalTemplate.focus();
     this.modal.activate();
-
-    // document.addEventListener('keydown', this.tabHandler);
-
-    // this.firstFocusableElement.focus();
-    // console.log('firstFocusableElement', this.firstFocusableElement);
-    // console.log('lastFocusableElement', this.lastFocusableElement);
-    // console.log('focusableContent', this.focusableContent);
-
-    // this.modalTemplate.focus();
-
   }
 
   /** @inheritdoc */
