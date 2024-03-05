@@ -97,7 +97,6 @@ export class ModalTemplate extends LitElement {
       <button
         type="button"
         class="close-button"
-        tabindex="0"
         @click=${this.handleCloseButton}
         @keydown=${this.handleCloseButton}
       >
