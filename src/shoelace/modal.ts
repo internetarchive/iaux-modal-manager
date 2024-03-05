@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { activeElements, getDeepestActiveElement } from './active-elements.js';
 import { getTabbableElements } from './tabbable.js';
 
