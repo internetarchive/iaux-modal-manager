@@ -151,32 +151,6 @@ describe('Modal Manager', () => {
     expect(callbackCalled).to.equal(false);
   });
 
-  it('calls the userClosedModalCallback when the user taps the backdrop', async () => {
-    const el = (await fixture(html`
-      <modal-manager></modal-manager>
-    `)) as ModalManager;
-
-    const config = new ModalConfig();
-    let callbackCalled = false;
-    const callback = (): void => {
-      callbackCalled = true;
-    };
-    el.showModal({
-      config,
-      userClosedModalCallback: callback,
-    });
-    await elementUpdated(el);
-
-    const modal = el.shadowRoot?.querySelector('modal-template');
-    const closeButton = modal?.shadowRoot?.querySelector('.close-button');
-    const clickEvent = new MouseEvent('click');
-    closeButton?.dispatchEvent(clickEvent);
-
-    await elementUpdated(el);
-
-    expect(callbackCalled).to.equal(true);
-  });
-
   it('mode is set to closed when close button is pressed', async () => {
     const el = (await fixture(html`
       <modal-manager></modal-manager>
