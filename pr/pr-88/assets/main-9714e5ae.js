@@ -244,7 +244,7 @@
           </section>
         </div>
       </div>
-    `}handleCloseButton(e){if(e.preventDefault(),e.type==="keydown"&&(e.key===" "||e.key==="Enter")){const t=new Event("closeButtonPressed");this.dispatchEvent(t)}}get closeButtonTemplate(){return m`
+    `}handleCloseButton(e){if(e.preventDefault(),e.type==="keydown"&&e.key!==" "&&e.key!=="Enter")return;const t=new Event("closeButtonPressed");this.dispatchEvent(t)}get closeButtonTemplate(){return m`
       <button
         type="button"
         class="close-button"
