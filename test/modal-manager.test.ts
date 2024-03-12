@@ -195,6 +195,29 @@ describe('Modal Manager', () => {
     expect(el.mode).to.equal('closed');
   });
 
+  it('mode remains open when close button gets non-button keypress', async () => {
+    const el = (await fixture(html`
+      <modal-manager></modal-manager>
+    `)) as ModalManager;
+
+    const config = new ModalConfig();
+    el.showModal({ config });
+    await elementUpdated(el);
+
+    expect(el.mode).to.equal('open');
+
+    const modal = el.shadowRoot?.querySelector('modal-template');
+    const closeButton = modal?.shadowRoot?.querySelector('.close-button');
+
+    // Close with keyboard
+    const keyboardEvent = new KeyboardEvent('keydown', { key: '.' });
+    closeButton?.dispatchEvent(keyboardEvent);
+
+    await elementUpdated(el);
+
+    expect(el.mode).to.equal('open');
+  });
+
   it('allows the user to close by clicking on the backdrop if configured to', async () => {
     const el = (await fixture(html`
       <modal-manager></modal-manager>

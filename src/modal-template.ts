@@ -73,14 +73,15 @@ export class ModalTemplate extends LitElement {
    */
   private handleCloseButton(e: Event): void {
     e.preventDefault();
-    /* istanbul ignore else */
     if (
       e.type === 'keydown' &&
-      ((e as KeyboardEvent).key === ' ' || (e as KeyboardEvent).key === 'Enter')
+      (e as KeyboardEvent).key !== ' ' &&
+      (e as KeyboardEvent).key !== 'Enter'
     ) {
-      const event = new Event('closeButtonPressed');
-      this.dispatchEvent(event);
+      return;
     }
+    const event = new Event('closeButtonPressed');
+    this.dispatchEvent(event);
   }
 
   /**
