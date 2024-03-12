@@ -71,7 +71,15 @@ export class ModalTemplate extends LitElement {
    * @private
    * @memberof ModalTemplate
    */
-  private handleCloseButton(): void {
+  private handleCloseButton(e: Event): void {
+    e.preventDefault();
+    if (
+      e.type === 'keydown' &&
+      (e as KeyboardEvent).key !== ' ' &&
+      (e as KeyboardEvent).key !== 'Enter'
+    ) {
+      return;
+    }
     const event = new Event('closeButtonPressed');
     this.dispatchEvent(event);
   }
@@ -89,8 +97,8 @@ export class ModalTemplate extends LitElement {
       <button
         type="button"
         class="close-button"
-        tabindex="0"
         @click=${this.handleCloseButton}
+        @keydown=${this.handleCloseButton}
       >
         <ia-icon-close></ia-icon-close>
       </button>

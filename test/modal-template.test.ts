@@ -44,6 +44,19 @@ describe('Modal Template', () => {
     expect(response).to.exist;
   });
 
+  it('emits closeButtonPressed event when close button gets spacebar pressed', async () => {
+    const el = await fixture(html` <modal-template></modal-template> `);
+
+    const closeButton = el.shadowRoot?.querySelector('.close-button');
+    const clickEvent = new KeyboardEvent('keydown', { key: ' ' });
+
+    setTimeout(() => {
+      closeButton?.dispatchEvent(clickEvent);
+    });
+    const response = await oneEvent(el, 'closeButtonPressed', false);
+    expect(response).to.exist;
+  });
+
   it('shows the processing indicator if configured to', async () => {
     const config = new ModalConfig();
     config.showProcessingIndicator = true;

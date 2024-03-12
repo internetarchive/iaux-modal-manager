@@ -8,6 +8,8 @@ import {
 } from 'lit';
 import { property, customElement, query } from 'lit/decorators.js';
 
+import Modal from './shoelace/modal';
+
 import './modal-template';
 import { ModalTemplate } from './modal-template';
 import { ModalConfig } from './modal-config';
@@ -38,7 +40,7 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
   @property({ type: Object }) customModalContent?: TemplateResult;
 
   /**
-   * Thie hostBridge handles environmental-specific interactions such as adding classes
+   * This hostBridge handles environmental-specific interactions such as adding classes
    * to the body tag or event listeners needed to support the modal manager in the host environment.
    *
    * There is a default `ModalManagerHostBridge`, but consumers can override it with a custom
@@ -61,6 +63,9 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
    */
   @query('modal-template') private modalTemplate!: ModalTemplate;
 
+  // Imported tab handling from shoelace
+  public modal = new Modal(this);
+
   async firstUpdated(): Promise<void> {
     // Give the browser a chance to paint
     // eslint-disable-next-line no-promise-executor-return
@@ -75,6 +80,11 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
     }
   }
 
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.modal.deactivate();
+  }
+
   /** @inheritdoc */
   render(): TemplateResult {
     return html`
@@ -82,7 +92,7 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
         <div class="backdrop" @click=${this.backdropClicked}></div>
         <modal-template
           @closeButtonPressed=${this.closeButtonPressed}
-          tabindex="0"
+          tabindex="-1"
         >
           ${this.customModalContent}
         </modal-template>
@@ -100,6 +110,7 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
     this.mode = ModalManagerMode.Closed;
     this.customModalContent = undefined;
     this.modalTemplate.config = new ModalConfig();
+    this.modal.deactivate();
   }
 
   /**
@@ -146,6 +157,7 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
     this.mode = ModalManagerMode.Open;
     await this.modalTemplate.updateComplete;
     this.modalTemplate.focus();
+    this.modal.activate();
   }
 
   /** @inheritdoc */
