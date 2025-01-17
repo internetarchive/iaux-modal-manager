@@ -1,7 +1,7 @@
 import { LitElement, html, css, CSSResult, TemplateResult, nothing } from 'lit';
 import { property, customElement } from 'lit/decorators.js';
 
-import '@internetarchive/ia-activity-indicator/ia-activity-indicator';
+import '@internetarchive/ia-activity-indicator';
 import '@internetarchive/icon-close';
 
 import { ModalConfig } from './modal-config';

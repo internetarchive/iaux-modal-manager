@@ -65,7 +65,7 @@ export class ModalConfig {
    *
    * @memberof ModalConfig
    */
-  processingImageMode: string;
+  processingImageMode: 'processing' | 'complete';
 
   /**
    * Show the close button
@@ -96,7 +96,7 @@ export class ModalConfig {
     headerColor?: string;
     bodyColor?: string;
     showProcessingIndicator?: boolean;
-    processingImageMode?: string;
+    processingImageMode?: 'processing' | 'complete';
     showCloseButton?: boolean;
     showHeaderLogo?: boolean;
     closeOnBackdropClick?: boolean;
