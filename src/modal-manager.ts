@@ -61,7 +61,7 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
    * @type {ModalTemplate}
    * @memberof ModalManager
    */
-  @query('modal-template') private modalTemplate!: ModalTemplate;
+  @query('modal-template') private modalTemplate?: ModalTemplate;
 
   // Imported tab handling from shoelace
   public modal = new Modal(this);
@@ -109,7 +109,7 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
   closeModal(): void {
     this.mode = ModalManagerMode.Closed;
     this.customModalContent = undefined;
-    this.modalTemplate.config = new ModalConfig();
+    if (this.modalTemplate) this.modalTemplate.config = new ModalConfig();
     this.modal.deactivate();
   }
 
@@ -152,11 +152,13 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
   }): Promise<void> {
     this.closeOnBackdropClick = options.config.closeOnBackdropClick;
     this.userClosedModalCallback = options.userClosedModalCallback;
-    this.modalTemplate.config = options.config;
     this.customModalContent = options.customModalContent;
     this.mode = ModalManagerMode.Open;
-    await this.modalTemplate.updateComplete;
-    this.modalTemplate.focus();
+    if (this.modalTemplate) {
+      this.modalTemplate.config = options.config;
+      await this.modalTemplate.updateComplete;
+      this.modalTemplate.focus();
+    }
     this.modal.activate();
   }
 
