@@ -1,32 +1,29 @@
 {
   "name": "@internetarchive/modal-manager",
-  "version": "2.0.1",
-  "description": "A Modal Manager Web Component",
+  "description": "A web component for displaying modals.",
   "repository": {
     "type": "git",
     "url": "https://github.com/internetarchive/iaux-modal-manager.git"
   },
   "license": "AGPL-3.0-only",
+  "author": "Internet Archive",
+  "version": "2.0.1",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "prepare": "npm run build && husky install",
-    "prepare:ghpages": "rimraf ghpages && npm run prepare && vite build && cp -R assets/images ghpages/assets/images",
-    "start": "concurrently --kill-others --names tsc,es-dev-server \"npm run tsc:watch\" \"es-dev-server --app-index index.html --node-resolve --open --watch --preserve-symlinks\"",
-    "docs": "typedoc",
+    "start": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds\"",
+    "prepare": "rimraf dist && tsc && husky install",
     "build": "tsc",
-    "tsc:watch": "tsc --watch",
-    "lint:eslint": "eslint --ext .ts . --ignore-path .gitignore",
-    "format:eslint": "eslint --ext .ts . --fix --ignore-path .gitignore",
-    "lint:prettier": "prettier \"**/*.ts\" --check --ignore-path .gitignore",
-    "format:prettier": "prettier \"**/*.ts\" --write --ignore-path .gitignore",
-    "lint": "npm run lint:eslint && npm run lint:prettier",
-    "format": "npm run format:eslint && npm run format:prettier",
-    "circular": "madge --circular .",
-    "test": "tsc && npm run lint && npm run circular && karma start --coverage",
-    "test:watch": "concurrently --kill-others --names tsc,karma \"npm run tsc:watch\" \"karma start --auto-watch=true --single-run=false\"",
-    "publish:alpha": "npm run test && npm run prepare && npm version prerelease --preid alpha --no-git-tag-version && npm publish --tag alpha"
+    "lint": "eslint . && prettier \"**/*.ts\" --check",
+    "format": "eslint . --fix && prettier \"**/*.ts\" --write",
+    "circular": "madge --circular --extensions ts .",
+    "test": "tsc && npm run lint && npm run circular && wtr --coverage",
+    "test:watch": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wtr --watch\"",
+    "ghpages:build": "rimraf ghpages && npm run prepare && vite build",
+    "ghpages:publish": "npm run ghpages:prepare -e $(git branch --show-current)",
+    "ghpages:prepare": "npm run ghpages:build && touch ghpages/.nojekyll && npm run ghpages:generate",
+    "ghpages:generate": "gh-pages -t -d ghpages -m \"Build for $(git log --pretty=format:\"%h %an %ai %s\" -n1) [skip ci]\""
   },
   "dependencies": {
     "@internetarchive/ia-activity-indicator": "^0.0.6",
@@ -34,46 +31,43 @@
     "@internetarchive/icon-ia-logo": "^1.3.4",
     "@internetarchive/icon-user": "^1.3.4",
     "lit": "^2.8.0",
-    "throttle-debounce": "^5.0.0"
+    "throttle-debounce": "^5.0.2"
   },
   "devDependencies": {
-    "@open-wc/eslint-config": "^9.2.2",
+    "@open-wc/eslint-config": "^12.0.3",
     "@open-wc/testing": "^4.0.0",
-    "@open-wc/testing-karma": "^3.0.0",
-    "@types/mocha": "^10.0.0",
-    "@types/node": "^20.8.4",
-    "@types/throttle-debounce": "^5.0.0",
-    "@typescript-eslint/eslint-plugin": "^7.1.0",
-    "@typescript-eslint/parser": "^7.1.0",
-    "concurrently": "^8.0.0",
-    "deepmerge": "^4.0.0",
-    "es-dev-server": "^2.0.0",
-    "eslint": "^8.57.0",
-    "eslint-config-prettier": "^6.11.0",
-    "husky": "^9.0.0",
-    "lint-staged": "^14.0.1",
-    "madge": "^6.0.0",
-    "prettier": "^2.7.1",
-    "rimraf": "^5.0.5",
-    "tslib": "^2.4.0",
-    "typedoc": "^0.25.0",
-    "typescript": "^4.7.4",
-    "vite": "^4.4.11"
+    "@types/mocha": "^10.0.10",
+    "@types/throttle-debounce": "^5.0.2",
+    "@typescript-eslint/eslint-plugin": "^8.39.0",
+    "@typescript-eslint/parser": "^8.39.0",
+    "@web/dev-server": "^0.4.6",
+    "@web/test-runner": "^0.20.2",
+    "concurrently": "^9.2.0",
+    "eslint": "^9.32.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-html": "^8.1.3",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-lit": "^1.15.0",
+    "eslint-plugin-lit-a11y": "^4.1.4",
+    "eslint-plugin-no-only-tests": "^3.3.0",
+    "eslint-plugin-wc": "^2.2.1",
+    "gh-pages": "^6.3.0",
+    "husky": "^9.1.7",
+    "madge": "^8.0.0",
+    "prettier": "^3.6.2",
+    "rimraf": "^6.0.1",
+    "sinon": "^19.0.5",
+    "ts-lit-plugin": "^2.0.2",
+    "tslib": "^2.8.1",
+    "typescript": "^5.9.2",
+    "vite": "^6.3.5"
   },
-  "eslintConfig": {
-    "extends": [
-      "@open-wc/eslint-config",
-      "eslint-config-prettier"
-    ]
+  "publishConfig": {
+    "access": "public"
   },
   "prettier": {
     "singleQuote": true,
     "arrowParens": "avoid"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.ts": [

@@ -13,7 +13,7 @@
  *   }
  */
 export function* activeElements(
-  activeElement: Element | null = document.activeElement
+  activeElement: Element | null = document.activeElement,
 ): Generator<Element> {
   if (activeElement === null || activeElement === undefined) return;
 
