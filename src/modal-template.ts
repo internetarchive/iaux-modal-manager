@@ -186,7 +186,7 @@ export class ModalTemplate extends LitElement {
       }
 
       .modal-body {
-        background-color: #f5f5f7;
+        background-color: #fbfbfd;
         border-radius: 0 0 calc(${modalCornerRadius}) calc(${modalCornerRadius});
         border: ${modalBorder};
         border-top: 0;
