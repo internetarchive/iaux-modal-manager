@@ -58,7 +58,7 @@ describe('Modal Manager', () => {
     setTimeout(() => {
       el.showModal({ config });
     });
-    const response = await oneEvent(el, 'modeChanged', false);
+    const response = await oneEvent(el, 'modeChanged');
     expect(response.detail.mode).to.equal(ModalManagerMode.Open);
   });
 
@@ -74,7 +74,7 @@ describe('Modal Manager', () => {
     setTimeout(() => {
       el.closeModal();
     });
-    const response = await oneEvent(el, 'modeChanged', false);
+    const response = await oneEvent(el, 'modeChanged');
     expect(response.detail.mode).to.equal(ModalManagerMode.Closed);
   });
 
@@ -292,7 +292,7 @@ describe('Modal Manager', () => {
     expect(tabbableElements?.length).to.equal(1);
 
     const closeButton = modal?.shadowRoot?.querySelector(
-      '.close-button'
+      '.close-button',
     ) as HTMLElement;
     const activeElement = modal?.shadowRoot?.activeElement as HTMLElement;
 

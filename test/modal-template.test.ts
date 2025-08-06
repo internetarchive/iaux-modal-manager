@@ -2,10 +2,13 @@ import { fixture, expect, oneEvent } from '@open-wc/testing';
 import { html } from 'lit';
 import '../src/modal-template';
 import { ModalConfig } from '../src/modal-config';
+import { ModalTemplate } from '../src/modal-template';
 
 describe('Modal Template', () => {
   it('has correct default configuration', async () => {
-    const el = await fixture(html` <modal-template></modal-template> `);
+    const el = await fixture<ModalTemplate>(html`
+      <modal-template></modal-template>
+    `);
 
     const processingLogo = el.shadowRoot?.querySelector('.processing-logo');
     const headline = el.shadowRoot?.querySelector('.headline');
@@ -15,7 +18,7 @@ describe('Modal Template', () => {
     expect(headline).to.not.exist;
     expect(message).to.not.exist;
     expect(title).to.not.exist;
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+
     expect('hidden' in processingLogo!.classList);
   });
 
@@ -23,7 +26,7 @@ describe('Modal Template', () => {
     const config = new ModalConfig();
     config.title = undefined;
 
-    const el = await fixture(html`
+    const el = await fixture<ModalTemplate>(html`
       <modal-template .config=${config}></modal-template>
     `);
 
@@ -40,7 +43,7 @@ describe('Modal Template', () => {
     setTimeout(() => {
       closeButton?.dispatchEvent(clickEvent);
     });
-    const response = await oneEvent(el, 'closeButtonPressed', false);
+    const response = await oneEvent(el, 'closeButtonPressed');
     expect(response).to.exist;
   });
 
@@ -53,7 +56,7 @@ describe('Modal Template', () => {
     setTimeout(() => {
       closeButton?.dispatchEvent(clickEvent);
     });
-    const response = await oneEvent(el, 'closeButtonPressed', false);
+    const response = await oneEvent(el, 'closeButtonPressed');
     expect(response).to.exist;
   });
 

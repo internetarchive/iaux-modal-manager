@@ -75,7 +75,7 @@ export default class Modal {
   private possiblyHasTabbableChildren(element: HTMLElement) {
     return (
       this.elementsWithTabbableControls.includes(
-        element.tagName.toLowerCase()
+        element.tagName.toLowerCase(),
       ) || element.hasAttribute('controls')
       // Should we add a data-attribute for people to set just in case they have an element where we don't know if it has possibly tabbable elements?
     );
@@ -107,14 +107,13 @@ export default class Modal {
     const tabbableElements = getTabbableElements(this.element);
 
     let currentFocusIndex = tabbableElements.findIndex(
-      el => el === currentActiveElement
+      el => el === currentActiveElement,
     );
 
     this.previousFocus = this.currentFocus;
 
     const addition = this.tabDirection === 'forward' ? 1 : -1;
 
-    // eslint-disable-next-line
     while (true) {
       if (currentFocusIndex + addition >= tabbableElements.length) {
         currentFocusIndex = 0;

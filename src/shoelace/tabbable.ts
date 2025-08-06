@@ -160,7 +160,7 @@ export function getTabbableBoundary(root: HTMLElement | ShadowRoot) {
  */
 function getSlottedChildrenOutsideRootElement(
   slotElement: HTMLSlotElement,
-  root: HTMLElement | ShadowRoot
+  root: HTMLElement | ShadowRoot,
 ) {
   return (
     (slotElement.getRootNode({ composed: true }) as ShadowRoot | null)?.host !==
@@ -195,7 +195,7 @@ export function getTabbableElements(root: HTMLElement | ShadowRoot) {
         el.assignedElements({ flatten: true }).forEach(
           (assignedEl: Element) => {
             walk(assignedEl as HTMLElement | ShadowRoot);
-          }
+          },
         );
       }
 
