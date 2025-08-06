@@ -107,7 +107,7 @@ export class ModalConfig {
     this.message = options?.message;
 
     this.headerColor = options?.headerColor ?? '#55A183';
-    this.bodyColor = options?.bodyColor ?? '#f5f5f7';
+    this.bodyColor = options?.bodyColor ?? '#fbfbfd';
     this.showProcessingIndicator = options?.showProcessingIndicator ?? false;
     this.processingImageMode = options?.processingImageMode ?? 'complete';
     this.showCloseButton = options?.showCloseButton ?? true;
