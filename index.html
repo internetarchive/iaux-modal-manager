@@ -273,11 +273,13 @@
       const config = new ModalConfig();
       config.message = 'This modal has a left nav button.';
       config.showLeftNavButton = true;
+      config.leftNavButtonText = 'Back';
+      
       modalManager.showModal({
         config,
         userPressedLeftNavButtonCallback: () => {
           const config = new ModalConfig();
-          config.message = 'I\'m the previous modal';
+          config.message = 'I\'m the previous modal (or anything else you want to do here)';
           config.headerColor = '#497fbf';
           modalManager.showModal({ config });
         }

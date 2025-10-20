@@ -82,6 +82,11 @@ export class ModalConfig {
   showLeftNavButton: boolean;
 
   /**
+   * Left nav button text
+   */
+  leftNavButtonText: string;
+
+  /**
    * Show the close button
    *
    * @memberof ModalConfig
@@ -106,6 +111,7 @@ export class ModalConfig {
     processingImageMode?: 'processing' | 'complete';
     showCloseButton?: boolean;
     showLeftNavButton?: boolean;
+    leftNavButtonText?: string;
     showHeaderLogo?: boolean;
     closeOnBackdropClick?: boolean;
   }) {
@@ -120,6 +126,7 @@ export class ModalConfig {
     this.processingImageMode = options?.processingImageMode ?? 'complete';
     this.showCloseButton = options?.showCloseButton ?? true;
     this.showLeftNavButton = options?.showLeftNavButton ?? false;
+    this.leftNavButtonText = options?.leftNavButtonText ?? '';
     this.showHeaderLogo = options?.showHeaderLogo ?? true;
     this.closeOnBackdropClick = options?.closeOnBackdropClick ?? true;
   }

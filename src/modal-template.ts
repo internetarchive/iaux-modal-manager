@@ -135,7 +135,7 @@ export class ModalTemplate extends LitElement {
       @click=${this.handleLeftNavButtonPressed}
       @keydown=${this.handleLeftNavButtonPressed}
     >
-      ${arrowLeftIcon} Back
+      ${arrowLeftIcon} ${this.config.leftNavButtonText ?? ''}
     </button> `;
   }
 

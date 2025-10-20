@@ -126,6 +126,32 @@ describe('Modal Template', () => {
     expect(closeButton).to.not.exist;
   });
 
+  it('uses custom text for the left nav button if configured to', async () => {
+    const config = new ModalConfig();
+    config.showLeftNavButton = true;
+    config.leftNavButtonText = 'Previous';
+    const el = await fixture(html`
+      <modal-template .config=${config}></modal-template>
+    `);
+
+    const leftNavButton = el.shadowRoot?.querySelector('.back-button');
+
+    expect(leftNavButton).to.exist;
+    expect(leftNavButton?.innerHTML).to.contain('Previous');
+  });
+
+  it('does not use any text for the left nav button if not configured to', async () => {
+    const config = new ModalConfig();
+    config.showLeftNavButton = true;
+
+    const el = await fixture(html`
+      <modal-template .config=${config}></modal-template>
+    `);
+
+    const leftNavButton = el.shadowRoot?.querySelector('.back-button');
+    expect(leftNavButton?.innerHTML).not.to.contain('Previous');
+  });
+
   it('shows the close button if configured to', async () => {
     const config = new ModalConfig();
     config.showCloseButton = true;
