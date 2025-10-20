@@ -23,6 +23,7 @@ export class ModalTemplate extends LitElement {
       <div class="modal-wrapper">
         <div class="modal-container">
           <header style="background-color: ${this.config.headerColor}">
+            ${this.config.showBackButton ? this.backButtonTemplate : nothing}
             ${this.config.showCloseButton ? this.closeButtonTemplate : ''}
             ${this.config.showHeaderLogo
               ? html`<div class="logo-icon">${IALogoIcon}</div>`
@@ -85,6 +86,25 @@ export class ModalTemplate extends LitElement {
   }
 
   /**
+   * Dispatch the `backButtonPressed` event to the consumer
+   *
+   * @private
+   * @memberof ModalTemplate
+   */
+  private handleBackButtonPressed(e: Event): void {
+    e.preventDefault();
+    if (
+      e.type === 'keydown' &&
+      (e as KeyboardEvent).key !== ' ' &&
+      (e as KeyboardEvent).key !== 'Enter'
+    ) {
+      return;
+    }
+    const event = new Event('backButtonPressed');
+    this.dispatchEvent(event);
+  }
+
+  /**
    * The close button template
    *
    * @readonly
@@ -103,6 +123,17 @@ export class ModalTemplate extends LitElement {
         <ia-icon-close></ia-icon-close>
       </button>
     `;
+  }
+
+  private get backButtonTemplate(): TemplateResult {
+    return html`<button
+      type="button"
+      class="back-button"
+      @click=${this.handleBackButtonPressed}
+      @keydown=${this.handleBackButtonPressed}
+    >
+      Back
+    </button> `;
   }
 
   /** @inheritdoc */

@@ -57,6 +57,40 @@ describe('Modal Template', () => {
     expect(response).to.exist;
   });
 
+  it('emits backButtonPressed event when back button is pressed', async () => {
+    const config = new ModalConfig();
+    config.showBackButton = true;
+    const el = await fixture(html`
+      <modal-template .config=${config}></modal-template>
+    `);
+
+    const backButton = el.shadowRoot?.querySelector('.back-button');
+    const clickEvent = new MouseEvent('click');
+
+    setTimeout(() => {
+      backButton?.dispatchEvent(clickEvent);
+    });
+    const response = await oneEvent(el, 'backButtonPressed', false);
+    expect(response).to.exist;
+  });
+
+  it('emits backButtonPressed event when back button gets spacebar pressed', async () => {
+    const config = new ModalConfig();
+    config.showBackButton = true;
+    const el = await fixture(html`
+      <modal-template .config=${config}></modal-template>
+    `);
+
+    const backButton = el.shadowRoot?.querySelector('.back-button');
+    const clickEvent = new KeyboardEvent('keydown', { key: ' ' });
+
+    setTimeout(() => {
+      backButton?.dispatchEvent(clickEvent);
+    });
+    const response = await oneEvent(el, 'backButtonPressed', false);
+    expect(response).to.exist;
+  });
+
   it('shows the processing indicator if configured to', async () => {
     const config = new ModalConfig();
     config.showProcessingIndicator = true;
@@ -68,6 +102,28 @@ describe('Modal Template', () => {
     const processingLogo = el.shadowRoot?.querySelector('.processing-logo');
     const classList = processingLogo?.classList ?? [];
     expect('hidden' in classList).to.equal(false);
+  });
+
+  it('shows the back button if configured to', async () => {
+    const config = new ModalConfig();
+    config.showBackButton = true;
+    const el = await fixture(html`
+      <modal-template .config=${config}></modal-template>
+    `);
+
+    const backButton = el.shadowRoot?.querySelector('.back-button');
+    expect(backButton).to.exist;
+  });
+
+  it('hides the back button if configured to', async () => {
+    const config = new ModalConfig();
+    config.showCloseButton = false;
+    const el = await fixture(html`
+      <modal-template .config=${config}></modal-template>
+    `);
+
+    const closeButton = el.shadowRoot?.querySelector('.close-button');
+    expect(closeButton).to.not.exist;
   });
 
   it('shows the close button if configured to', async () => {
