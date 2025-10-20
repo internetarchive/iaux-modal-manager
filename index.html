@@ -274,7 +274,13 @@
       config.message = 'This modal has a back button.';
       config.showBackButton = true;
       modalManager.showModal({
-        config
+        config,
+        userPressedBackButtonCallback: () => {
+          const config = new ModalConfig();
+          config.message = 'I\'m the previous modal';
+          config.headerColor = '#497fbf';
+          modalManager.showModal({ config });
+        }
       });
     }
 

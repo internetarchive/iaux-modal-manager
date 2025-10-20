@@ -151,6 +151,34 @@ describe('Modal Manager', () => {
     expect(callbackCalled).to.equal(false);
   });
 
+  it('calls the userPressedBackButtonCallback when the user clicks the back button', async () => {
+    const el = (await fixture(html`
+      <modal-manager></modal-manager>
+    `)) as ModalManager;
+
+    const config = new ModalConfig();
+    config.showBackButton = true;
+
+    let callbackCalled = false;
+    const callback = (): void => {
+      callbackCalled = true;
+    };
+    el.showModal({
+      config,
+      userPressedBackButtonCallback: callback,
+    });
+    await elementUpdated(el);
+
+    const modalTemplate = el.shadowRoot?.querySelector('modal-template');
+    expect(modalTemplate).to.exist;
+
+    modalTemplate?.dispatchEvent(new Event('backButtonPressed'));
+
+    await elementUpdated(el);
+
+    expect(callbackCalled).to.equal(true);
+  });
+
   it('mode is set to closed when close button is pressed', async () => {
     const el = (await fixture(html`
       <modal-manager></modal-manager>
