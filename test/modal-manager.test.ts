@@ -151,13 +151,13 @@ describe('Modal Manager', () => {
     expect(callbackCalled).to.equal(false);
   });
 
-  it('calls the userPressedBackButtonCallback when the user clicks the back button', async () => {
+  it('calls the userPressedLeftNavButtonCallback when the user clicks the left nav button', async () => {
     const el = (await fixture(html`
       <modal-manager></modal-manager>
     `)) as ModalManager;
 
     const config = new ModalConfig();
-    config.showBackButton = true;
+    config.showLeftNavButton = true;
 
     let callbackCalled = false;
     const callback = (): void => {
@@ -165,14 +165,14 @@ describe('Modal Manager', () => {
     };
     el.showModal({
       config,
-      userPressedBackButtonCallback: callback,
+      userPressedLeftNavButtonCallback: callback,
     });
     await elementUpdated(el);
 
     const modalTemplate = el.shadowRoot?.querySelector('modal-template');
     expect(modalTemplate).to.exist;
 
-    modalTemplate?.dispatchEvent(new Event('backButtonPressed'));
+    modalTemplate?.dispatchEvent(new Event('leftNavButtonPressed'));
 
     await elementUpdated(el);
 

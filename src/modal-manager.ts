@@ -92,7 +92,7 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
         <div class="backdrop" @click=${this.backdropClicked}></div>
         <modal-template
           @closeButtonPressed=${this.closeButtonPressed}
-          @backButtonPressed=${this.callUserPressedBackButtonCallback}
+          @leftNavButtonPressed=${this.callUserPressedLeftNavButtonCallback}
           tabindex="-1"
         >
           ${this.customModalContent}
@@ -131,12 +131,12 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
   private userClosedModalCallback?: () => void;
 
   /**
-   * A callback if the user presses the back button
+   * A callback if the user presses the left nav button
    *
    * @private
    * @memberof ModalManager
    */
-  private userPressedBackButtonCallback?: () => void;
+  private userPressedLeftNavButtonCallback?: () => void;
 
   /**
    * Call the userClosedModalCallback and reset it if it exists
@@ -154,15 +154,15 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
   }
 
   /**
-   * Call the user pressed back button callback and reset it if it exists
+   * Call the user pressed left nav button callback and reset it if it exists
    *
    * @private
    * @memberof ModalManager
    */
-  private callUserPressedBackButtonCallback(): void {
+  private callUserPressedLeftNavButtonCallback(): void {
     // avoids an infinite showModal() loop, as above
-    const callback = this.userPressedBackButtonCallback;
-    this.userPressedBackButtonCallback = undefined;
+    const callback = this.userPressedLeftNavButtonCallback;
+    this.userPressedLeftNavButtonCallback = undefined;
     if (callback) callback();
   }
 
@@ -171,11 +171,12 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
     config: ModalConfig;
     customModalContent?: TemplateResult;
     userClosedModalCallback?: () => void;
-    userPressedBackButtonCallback?: () => void;
+    userPressedLeftNavButtonCallback?: () => void;
   }): Promise<void> {
     this.closeOnBackdropClick = options.config.closeOnBackdropClick;
     this.userClosedModalCallback = options.userClosedModalCallback;
-    this.userPressedBackButtonCallback = options.userPressedBackButtonCallback;
+    this.userPressedLeftNavButtonCallback =
+      options.userPressedLeftNavButtonCallback;
     this.customModalContent = options.customModalContent;
     this.mode = ModalManagerMode.Open;
     if (this.modalTemplate) {

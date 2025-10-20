@@ -75,11 +75,11 @@ export class ModalConfig {
   showCloseButton: boolean;
 
   /**
-   * Show the back button
+   * Show the left nav button
    *
    * @memberof ModalConfig
    */
-  showBackButton: boolean;
+  showLeftNavButton: boolean;
 
   /**
    * Show the close button
@@ -105,7 +105,7 @@ export class ModalConfig {
     showProcessingIndicator?: boolean;
     processingImageMode?: 'processing' | 'complete';
     showCloseButton?: boolean;
-    showBackButton?: boolean;
+    showLeftNavButton?: boolean;
     showHeaderLogo?: boolean;
     closeOnBackdropClick?: boolean;
   }) {
@@ -119,7 +119,7 @@ export class ModalConfig {
     this.showProcessingIndicator = options?.showProcessingIndicator ?? false;
     this.processingImageMode = options?.processingImageMode ?? 'complete';
     this.showCloseButton = options?.showCloseButton ?? true;
-    this.showBackButton = options?.showBackButton ?? false;
+    this.showLeftNavButton = options?.showLeftNavButton ?? false;
     this.showHeaderLogo = options?.showHeaderLogo ?? true;
     this.closeOnBackdropClick = options?.closeOnBackdropClick ?? true;
   }

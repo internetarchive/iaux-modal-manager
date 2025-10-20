@@ -24,7 +24,9 @@ export class ModalTemplate extends LitElement {
       <div class="modal-wrapper">
         <div class="modal-container">
           <header style="background-color: ${this.config.headerColor}">
-            ${this.config.showBackButton ? this.backButtonTemplate : nothing}
+            ${this.config.showLeftNavButton
+              ? this.leftNavButtonTemplate
+              : nothing}
             ${this.config.showCloseButton ? this.closeButtonTemplate : ''}
             ${this.config.showHeaderLogo
               ? html`<div class="logo-icon">${IALogoIcon}</div>`
@@ -87,12 +89,12 @@ export class ModalTemplate extends LitElement {
   }
 
   /**
-   * Dispatch the `backButtonPressed` event to the consumer
+   * Dispatch the `leftNavButtonPressed` event to the consumer
    *
    * @private
    * @memberof ModalTemplate
    */
-  private handleBackButtonPressed(e: Event): void {
+  private handleLeftNavButtonPressed(e: Event): void {
     e.preventDefault();
     if (
       e.type === 'keydown' &&
@@ -101,7 +103,7 @@ export class ModalTemplate extends LitElement {
     ) {
       return;
     }
-    const event = new Event('backButtonPressed');
+    const event = new Event('leftNavButtonPressed');
     this.dispatchEvent(event);
   }
 
@@ -126,12 +128,12 @@ export class ModalTemplate extends LitElement {
     `;
   }
 
-  private get backButtonTemplate(): TemplateResult {
+  private get leftNavButtonTemplate(): TemplateResult {
     return html`<button
       type="button"
       class="back-button"
-      @click=${this.handleBackButtonPressed}
-      @keydown=${this.handleBackButtonPressed}
+      @click=${this.handleLeftNavButtonPressed}
+      @keydown=${this.handleLeftNavButtonPressed}
     >
       ${arrowLeftIcon} Back
     </button> `;

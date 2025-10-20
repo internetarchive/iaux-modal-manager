@@ -14,13 +14,13 @@ export interface ModalManagerInterface extends LitElement {
    * @param config ModalConfig
    * @param customModalContent TemplateResult | undefined
    * @param userClosedModalCallback () => void | undefined an optional callback when the modal is closed
-   * @param userPressedBackButtonCallback () => void | undefined an optional callback when the back button is pressed
+   * @param userPressedLeftNavButtonCallback () => void | undefined an optional callback when the left nav button is pressed
    */
   showModal(options: {
     config: ModalConfig;
     customModalContent?: TemplateResult;
     userClosedModalCallback?: () => void;
-    userPressedBackButtonCallback?: () => void;
+    userPressedLeftNavButtonCallback?: () => void;
   }): Promise<void>;
 
   /**

@@ -57,37 +57,37 @@ describe('Modal Template', () => {
     expect(response).to.exist;
   });
 
-  it('emits backButtonPressed event when back button is pressed', async () => {
+  it('emits leftNavButtonPressed event when left nav button is pressed', async () => {
     const config = new ModalConfig();
-    config.showBackButton = true;
+    config.showLeftNavButton = true;
     const el = await fixture(html`
       <modal-template .config=${config}></modal-template>
     `);
 
-    const backButton = el.shadowRoot?.querySelector('.back-button');
+    const leftNavButton = el.shadowRoot?.querySelector('.back-button');
     const clickEvent = new MouseEvent('click');
 
     setTimeout(() => {
-      backButton?.dispatchEvent(clickEvent);
+      leftNavButton?.dispatchEvent(clickEvent);
     });
-    const response = await oneEvent(el, 'backButtonPressed', false);
+    const response = await oneEvent(el, 'leftNavButtonPressed', false);
     expect(response).to.exist;
   });
 
-  it('emits backButtonPressed event when back button gets spacebar pressed', async () => {
+  it('emits leftNavButtonPressed event when left nav button gets spacebar pressed', async () => {
     const config = new ModalConfig();
-    config.showBackButton = true;
+    config.showLeftNavButton = true;
     const el = await fixture(html`
       <modal-template .config=${config}></modal-template>
     `);
 
-    const backButton = el.shadowRoot?.querySelector('.back-button');
+    const leftNavButton = el.shadowRoot?.querySelector('.back-button');
     const clickEvent = new KeyboardEvent('keydown', { key: ' ' });
 
     setTimeout(() => {
-      backButton?.dispatchEvent(clickEvent);
+      leftNavButton?.dispatchEvent(clickEvent);
     });
-    const response = await oneEvent(el, 'backButtonPressed', false);
+    const response = await oneEvent(el, 'leftNavButtonPressed', false);
     expect(response).to.exist;
   });
 
@@ -104,18 +104,18 @@ describe('Modal Template', () => {
     expect('hidden' in classList).to.equal(false);
   });
 
-  it('shows the back button if configured to', async () => {
+  it('shows the left nav button if configured to', async () => {
     const config = new ModalConfig();
-    config.showBackButton = true;
+    config.showLeftNavButton = true;
     const el = await fixture(html`
       <modal-template .config=${config}></modal-template>
     `);
 
-    const backButton = el.shadowRoot?.querySelector('.back-button');
-    expect(backButton).to.exist;
+    const leftNavButton = el.shadowRoot?.querySelector('.back-button');
+    expect(leftNavButton).to.exist;
   });
 
-  it('hides the back button if configured to', async () => {
+  it('hides the left nav button if configured to', async () => {
     const config = new ModalConfig();
     config.showCloseButton = false;
     const el = await fixture(html`
