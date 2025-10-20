@@ -6,6 +6,7 @@ import '@internetarchive/icon-close';
 
 import { ModalConfig } from './modal-config';
 import IALogoIcon from './assets/ia-logo-icon';
+import arrowLeftIcon from './assets/arrow-left-icon';
 
 @customElement('modal-template')
 export class ModalTemplate extends LitElement {
@@ -132,7 +133,7 @@ export class ModalTemplate extends LitElement {
       @click=${this.handleBackButtonPressed}
       @keydown=${this.handleBackButtonPressed}
     >
-      Back
+      ${arrowLeftIcon} Back
     </button> `;
   }
 
@@ -290,6 +291,28 @@ export class ModalTemplate extends LitElement {
         background-color: white;
         box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.18),
           0 4px 4px 0 rgba(0, 0, 0, 0.08);
+      }
+
+      .back-button {
+        position: absolute;
+        left: 1.2rem;
+        top: 1.2rem;
+        height: 2rem;
+        background-color: transparent;
+        outline: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        color: white;
+        font-family: inherit;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .back-button svg {
+        height: 1.5rem;
       }
 
       .sr-only {
