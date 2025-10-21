@@ -75,6 +75,7 @@
           <button @click=${showModalUserCannotClickBackdrop}>Unclickable Backdrop</button>
           <button @click=${showOverflowModal}>Text-heavy Modal</button>
           <button @click=${showModalWithoutLogo}>Modal Without Logo</button>
+          <button @click=${showModalWithLeftNavButton}>Modal With Left Nav Button</button>
         </div>
 
         <h3>Some Content</h3>
@@ -266,6 +267,23 @@
       });
 
       setTimeout(modalManager.closeModal.bind(modalManager), 2000);
+    }
+
+    function showModalWithLeftNavButton() {
+      const config = new ModalConfig();
+      config.message = 'This modal has a left nav button.';
+      config.showLeftNavButton = true;
+      config.leftNavButtonText = 'Back';
+      
+      modalManager.showModal({
+        config,
+        userPressedLeftNavButtonCallback: () => {
+          const config = new ModalConfig();
+          config.message = 'I\'m the previous modal (or anything else you want to do here)';
+          config.headerColor = '#497fbf';
+          modalManager.showModal({ config });
+        }
+      });
     }
 
     function showModalUserCannotClickBackdrop() {

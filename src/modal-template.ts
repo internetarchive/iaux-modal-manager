@@ -6,6 +6,7 @@ import '@internetarchive/icon-close';
 
 import { ModalConfig } from './modal-config';
 import IALogoIcon from './assets/ia-logo-icon';
+import arrowLeftIcon from './assets/arrow-left-icon';
 
 @customElement('modal-template')
 export class ModalTemplate extends LitElement {
@@ -23,6 +24,9 @@ export class ModalTemplate extends LitElement {
       <div class="modal-wrapper">
         <div class="modal-container">
           <header style="background-color: ${this.config.headerColor}">
+            ${this.config.showLeftNavButton
+              ? this.leftNavButtonTemplate
+              : nothing}
             ${this.config.showCloseButton ? this.closeButtonTemplate : ''}
             ${this.config.showHeaderLogo
               ? html`<div class="logo-icon">${IALogoIcon}</div>`
@@ -85,6 +89,25 @@ export class ModalTemplate extends LitElement {
   }
 
   /**
+   * Dispatch the `leftNavButtonPressed` event to the consumer
+   *
+   * @private
+   * @memberof ModalTemplate
+   */
+  private handleLeftNavButtonPressed(e: Event): void {
+    e.preventDefault();
+    if (
+      e.type === 'keydown' &&
+      (e as KeyboardEvent).key !== ' ' &&
+      (e as KeyboardEvent).key !== 'Enter'
+    ) {
+      return;
+    }
+    const event = new Event('leftNavButtonPressed');
+    this.dispatchEvent(event);
+  }
+
+  /**
    * The close button template
    *
    * @readonly
@@ -103,6 +126,17 @@ export class ModalTemplate extends LitElement {
         <ia-icon-close></ia-icon-close>
       </button>
     `;
+  }
+
+  private get leftNavButtonTemplate(): TemplateResult {
+    return html`<button
+      type="button"
+      class="back-button"
+      @click=${this.handleLeftNavButtonPressed}
+      @keydown=${this.handleLeftNavButtonPressed}
+    >
+      ${arrowLeftIcon} ${this.config.leftNavButtonText ?? ''}
+    </button> `;
   }
 
   /** @inheritdoc */
@@ -259,6 +293,28 @@ export class ModalTemplate extends LitElement {
         background-color: white;
         box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.18),
           0 4px 4px 0 rgba(0, 0, 0, 0.08);
+      }
+
+      .back-button {
+        position: absolute;
+        left: 1.2rem;
+        top: 1.2rem;
+        height: 2rem;
+        background-color: transparent;
+        outline: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        color: white;
+        font-family: inherit;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .back-button svg {
+        height: 1.5rem;
       }
 
       .sr-only {

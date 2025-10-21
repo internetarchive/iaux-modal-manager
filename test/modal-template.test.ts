@@ -57,6 +57,40 @@ describe('Modal Template', () => {
     expect(response).to.exist;
   });
 
+  it('emits leftNavButtonPressed event when left nav button is pressed', async () => {
+    const config = new ModalConfig();
+    config.showLeftNavButton = true;
+    const el = await fixture(html`
+      <modal-template .config=${config}></modal-template>
+    `);
+
+    const leftNavButton = el.shadowRoot?.querySelector('.back-button');
+    const clickEvent = new MouseEvent('click');
+
+    setTimeout(() => {
+      leftNavButton?.dispatchEvent(clickEvent);
+    });
+    const response = await oneEvent(el, 'leftNavButtonPressed', false);
+    expect(response).to.exist;
+  });
+
+  it('emits leftNavButtonPressed event when left nav button gets spacebar pressed', async () => {
+    const config = new ModalConfig();
+    config.showLeftNavButton = true;
+    const el = await fixture(html`
+      <modal-template .config=${config}></modal-template>
+    `);
+
+    const leftNavButton = el.shadowRoot?.querySelector('.back-button');
+    const clickEvent = new KeyboardEvent('keydown', { key: ' ' });
+
+    setTimeout(() => {
+      leftNavButton?.dispatchEvent(clickEvent);
+    });
+    const response = await oneEvent(el, 'leftNavButtonPressed', false);
+    expect(response).to.exist;
+  });
+
   it('shows the processing indicator if configured to', async () => {
     const config = new ModalConfig();
     config.showProcessingIndicator = true;
@@ -68,6 +102,54 @@ describe('Modal Template', () => {
     const processingLogo = el.shadowRoot?.querySelector('.processing-logo');
     const classList = processingLogo?.classList ?? [];
     expect('hidden' in classList).to.equal(false);
+  });
+
+  it('shows the left nav button if configured to', async () => {
+    const config = new ModalConfig();
+    config.showLeftNavButton = true;
+    const el = await fixture(html`
+      <modal-template .config=${config}></modal-template>
+    `);
+
+    const leftNavButton = el.shadowRoot?.querySelector('.back-button');
+    expect(leftNavButton).to.exist;
+  });
+
+  it('hides the left nav button if configured to', async () => {
+    const config = new ModalConfig();
+    config.showCloseButton = false;
+    const el = await fixture(html`
+      <modal-template .config=${config}></modal-template>
+    `);
+
+    const closeButton = el.shadowRoot?.querySelector('.close-button');
+    expect(closeButton).to.not.exist;
+  });
+
+  it('uses custom text for the left nav button if configured to', async () => {
+    const config = new ModalConfig();
+    config.showLeftNavButton = true;
+    config.leftNavButtonText = 'Previous';
+    const el = await fixture(html`
+      <modal-template .config=${config}></modal-template>
+    `);
+
+    const leftNavButton = el.shadowRoot?.querySelector('.back-button');
+
+    expect(leftNavButton).to.exist;
+    expect(leftNavButton?.innerHTML).to.contain('Previous');
+  });
+
+  it('does not use any text for the left nav button if not configured to', async () => {
+    const config = new ModalConfig();
+    config.showLeftNavButton = true;
+
+    const el = await fixture(html`
+      <modal-template .config=${config}></modal-template>
+    `);
+
+    const leftNavButton = el.shadowRoot?.querySelector('.back-button');
+    expect(leftNavButton?.innerHTML).not.to.contain('Previous');
   });
 
   it('shows the close button if configured to', async () => {

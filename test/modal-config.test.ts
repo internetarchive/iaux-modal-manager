@@ -24,6 +24,8 @@ describe('Modal Config', () => {
     const showProcessingIndicator = true;
     const processingImageMode = 'processing';
     const showCloseButton = false;
+    const showLeftNavButton = false;
+    const leftNavButtonText = 'Previous';
     const showHeaderLogo = false;
     const closeOnBackdropClick = false;
 
@@ -36,6 +38,8 @@ describe('Modal Config', () => {
       showProcessingIndicator: showProcessingIndicator,
       processingImageMode: processingImageMode,
       showCloseButton: showCloseButton,
+      showLeftNavButton: showLeftNavButton,
+      leftNavButtonText: leftNavButtonText,
       showHeaderLogo: showHeaderLogo,
       closeOnBackdropClick: closeOnBackdropClick,
     });
@@ -49,6 +53,8 @@ describe('Modal Config', () => {
     expect(config.showProcessingIndicator).to.equal(showProcessingIndicator);
     expect(config.processingImageMode).to.equal(processingImageMode);
     expect(config.showCloseButton).to.equal(showCloseButton);
+    expect(config.showLeftNavButton).to.equal(showLeftNavButton);
+    expect(config.leftNavButtonText).to.equal(leftNavButtonText);
     expect(config.showHeaderLogo).to.equal(showHeaderLogo);
     expect(config.closeOnBackdropClick).to.equal(closeOnBackdropClick);
   });
@@ -63,6 +69,8 @@ describe('Modal Config', () => {
     expect(config.showProcessingIndicator).to.equal(false);
     expect(config.processingImageMode).to.equal('complete');
     expect(config.showCloseButton).to.equal(true);
+    expect(config.showLeftNavButton).to.equal(false);
+    expect(config.leftNavButtonText).to.equal('');
     expect(config.showHeaderLogo).to.equal(true);
     expect(config.closeOnBackdropClick).to.equal(true);
   });
