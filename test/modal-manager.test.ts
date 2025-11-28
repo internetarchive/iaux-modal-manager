@@ -328,16 +328,14 @@ describe('Modal Manager', () => {
     const closeButton = modal?.shadowRoot?.querySelector(
       '.close-button'
     ) as HTMLElement;
-    const activeElement = modal?.shadowRoot?.activeElement as HTMLElement;
-
-    expect(activeElement).to.equal(closeButton);
+    expect(modal?.shadowRoot?.activeElement).to.equal(closeButton);
 
     // Tab again
     el.dispatchEvent(tabEvent);
     await elementUpdated(el);
 
     // Should be only one tabbable element
-    expect(activeElement).to.equal(closeButton);
+    expect(modal?.shadowRoot?.activeElement).to.equal(closeButton);
 
     // Shift + Tab
     const shiftTabEvent = new KeyboardEvent('keydown', {
@@ -348,6 +346,7 @@ describe('Modal Manager', () => {
     await elementUpdated(el);
 
     // Should be only one tabbable element
+    expect(modal?.shadowRoot?.activeElement).to.equal(closeButton);
   });
 
   it('returns keyboard focus to the triggering element on close', async () => {
