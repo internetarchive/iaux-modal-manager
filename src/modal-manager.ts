@@ -9,6 +9,7 @@ import {
 import { property, customElement, query } from 'lit/decorators.js';
 
 import Modal from './shoelace/modal';
+import { getDeepestActiveElement } from './shoelace/active-elements';
 
 import './modal-template';
 import { ModalTemplate } from './modal-template';
@@ -112,6 +113,10 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
     this.customModalContent = undefined;
     if (this.modalTemplate) this.modalTemplate.config = new ModalConfig();
     this.modal.deactivate();
+
+    // Return focus to the triggering element, if possible
+    (this.triggeringElement as HTMLElement)?.focus?.();
+    this.triggeringElement = undefined;
   }
 
   /**
@@ -121,6 +126,12 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
    * @memberof ModalManager
    */
   private closeOnBackdropClick = true;
+
+  /**
+   * The element that had focus when the modal was opened, so that we can return focus
+   * to it after the modal closes.
+   */
+  private triggeringElement?: Element;
 
   /**
    * A callback if the user closes the modal
@@ -173,6 +184,7 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
     userClosedModalCallback?: () => void;
     userPressedLeftNavButtonCallback?: () => void;
   }): Promise<void> {
+    this.captureFocusedElement();
     this.closeOnBackdropClick = options.config.closeOnBackdropClick;
     this.userClosedModalCallback = options.userClosedModalCallback;
     this.userPressedLeftNavButtonCallback =
@@ -185,6 +197,14 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
       this.modalTemplate.focus();
     }
     this.modal.activate();
+  }
+
+  /**
+   * Sets the triggering element to the one that is currently focused, as deep
+   * within Shadow DOM as possible.
+   */
+  private captureFocusedElement(): void {
+    this.triggeringElement = getDeepestActiveElement();
   }
 
   /** @inheritdoc */
