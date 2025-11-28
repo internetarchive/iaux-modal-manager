@@ -1,4 +1,10 @@
-import { fixture, expect, oneEvent, elementUpdated } from '@open-wc/testing';
+import {
+  fixture,
+  expect,
+  oneEvent,
+  elementUpdated,
+  nextFrame,
+} from '@open-wc/testing';
 import { TemplateResult, html } from 'lit';
 
 import '../src/modal-manager';
@@ -342,6 +348,41 @@ describe('Modal Manager', () => {
     await elementUpdated(el);
 
     // Should be only one tabbable element
-    expect(activeElement).to.equal(closeButton);
+  });
+
+  it('returns keyboard focus to the triggering element on close', async () => {
+    const config = new ModalConfig();
+    const el = (await fixture(html`
+      <div>
+        <button>Another button</button>
+        <button
+          id="open-modal-btn"
+          @click=${() => {
+            const modal = el.querySelector('modal-manager') as ModalManager;
+            modal.showModal({ config });
+          }}
+        >
+          Open modal
+        </button>
+        <modal-manager></modal-manager>
+      </div>
+    `)) as HTMLDivElement;
+
+    const openBtn = el.querySelector('#open-modal-btn') as HTMLButtonElement;
+    const modal = el.querySelector('modal-manager') as ModalManager;
+
+    // Focus is initially on the Open button
+    openBtn.focus();
+    expect(document.activeElement).to.equal(openBtn);
+
+    // Focus enters the modal when it is opened
+    openBtn.click();
+    await nextFrame();
+    expect(document.activeElement).to.equal(modal);
+
+    // Focus returns to the Open button when the modal closes
+    modal.closeModal();
+    await modal.updateComplete;
+    expect(document.activeElement).to.equal(openBtn);
   });
 });
