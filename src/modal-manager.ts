@@ -184,7 +184,9 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
     userClosedModalCallback?: () => void;
     userPressedLeftNavButtonCallback?: () => void;
   }): Promise<void> {
-    this.captureFocusedElement();
+    // If the dialog is being opened, make note of what element was focused beforehand
+    if (this.mode === ModalManagerMode.Closed) this.captureFocusedElement();
+
     this.closeOnBackdropClick = options.config.closeOnBackdropClick;
     this.userClosedModalCallback = options.userClosedModalCallback;
     this.userPressedLeftNavButtonCallback =

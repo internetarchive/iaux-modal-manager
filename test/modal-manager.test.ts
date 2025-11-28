@@ -379,6 +379,12 @@ describe('Modal Manager', () => {
     await nextFrame();
     expect(document.activeElement).to.equal(modal);
 
+    // With the modal already open, simulate showing different content.
+    // This step is to ensure that even if showModal is called multiple times, we still
+    // maintain the originally-focused element (subsequent calls do not overwrite it).
+    modal.showModal({ config: new ModalConfig() });
+    await nextFrame();
+
     // Focus returns to the Open button when the modal closes
     modal.closeModal();
     await modal.updateComplete;
