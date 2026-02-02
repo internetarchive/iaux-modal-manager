@@ -326,7 +326,7 @@ describe('Modal Manager', () => {
     expect(tabbableElements?.length).to.equal(1);
 
     const closeButton = modal?.shadowRoot?.querySelector(
-      '.close-button'
+      '.close-button',
     ) as HTMLElement;
     expect(modal?.shadowRoot?.activeElement).to.equal(closeButton);
 
