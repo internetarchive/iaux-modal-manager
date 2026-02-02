@@ -25,7 +25,6 @@
     "publish:alpha": "npm run test && npm run prepare && npm version prerelease --preid alpha --no-git-tag-version && npm publish --tag alpha"
   },
   "dependencies": {
-    "@internetarchive/elements": "^0.2.0",
     "@internetarchive/ia-activity-indicator": "^0.0.6",
     "@internetarchive/icon-close": "^1.4.0",
     "@internetarchive/icon-ia-logo": "^1.4.0",
