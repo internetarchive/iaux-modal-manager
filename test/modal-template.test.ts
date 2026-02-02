@@ -40,7 +40,7 @@ describe('Modal Template', () => {
     setTimeout(() => {
       closeButton?.dispatchEvent(clickEvent);
     });
-    const response = await oneEvent(el, 'closeButtonPressed', false);
+    const response = await oneEvent(el, 'closeButtonPressed');
     expect(response).to.exist;
   });
 
@@ -53,7 +53,7 @@ describe('Modal Template', () => {
     setTimeout(() => {
       closeButton?.dispatchEvent(clickEvent);
     });
-    const response = await oneEvent(el, 'closeButtonPressed', false);
+    const response = await oneEvent(el, 'closeButtonPressed');
     expect(response).to.exist;
   });
 
@@ -70,7 +70,7 @@ describe('Modal Template', () => {
     setTimeout(() => {
       leftNavButton?.dispatchEvent(clickEvent);
     });
-    const response = await oneEvent(el, 'leftNavButtonPressed', false);
+    const response = await oneEvent(el, 'leftNavButtonPressed');
     expect(response).to.exist;
   });
 
@@ -87,7 +87,7 @@ describe('Modal Template', () => {
     setTimeout(() => {
       leftNavButton?.dispatchEvent(clickEvent);
     });
-    const response = await oneEvent(el, 'leftNavButtonPressed', false);
+    const response = await oneEvent(el, 'leftNavButtonPressed');
     expect(response).to.exist;
   });
 

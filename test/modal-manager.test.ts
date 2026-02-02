@@ -64,7 +64,7 @@ describe('Modal Manager', () => {
     setTimeout(() => {
       el.showModal({ config });
     });
-    const response = await oneEvent(el, 'modeChanged', false);
+    const response = await oneEvent(el, 'modeChanged');
     expect(response.detail.mode).to.equal(ModalManagerMode.Open);
   });
 
@@ -80,7 +80,7 @@ describe('Modal Manager', () => {
     setTimeout(() => {
       el.closeModal();
     });
-    const response = await oneEvent(el, 'modeChanged', false);
+    const response = await oneEvent(el, 'modeChanged');
     expect(response.detail.mode).to.equal(ModalManagerMode.Closed);
   });
 
