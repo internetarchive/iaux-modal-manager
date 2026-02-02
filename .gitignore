@@ -9,6 +9,9 @@
 /node_modules/
 /npm-debug.log
 
+## testing
+/coverage/
+
 ## temp folders
 /.tmp/
 
