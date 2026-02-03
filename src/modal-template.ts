@@ -43,7 +43,6 @@ export class ModalTemplate extends LitElement {
             style="background-color: ${this.config.bodyColor}"
           >
             <div class="content">
-              <ia-status-indicator></ia-status-indicator>
               <div
                 class="processing-logo ${this.config.showProcessingIndicator
                   ? ''
@@ -178,8 +177,12 @@ export class ModalTemplate extends LitElement {
         height: 1rem;
       }
 
-      .processing-logo.hidden ia-activity-indicator {
+      .processing-logo.hidden ia-status-indicator {
         display: none;
+      }
+
+      ia-status-indicator {
+        --icon-width: ${processingImageSize};
       }
 
       .modal-wrapper {

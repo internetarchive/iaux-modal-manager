@@ -13,11 +13,11 @@
   "scripts": {
     "prepare": "npm run build && husky install",
     "prepare:ghpages": "rimraf ghpages && npm run prepare && vite build && cp -R assets/images ghpages/assets/images",
-    "start": "concurrently --kill-others --names tsc,es-dev-server \"npm run tsc:watch\" \"es-dev-server --app-index index.html --node-resolve --open --watch --preserve-symlinks\"",
+    "start": "vite",
     "docs": "typedoc",
     "build": "tsc",
     "tsc:watch": "tsc --watch",
-    "format": "eslint --fix && prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "format": "eslint --fix && prettier --write \"src/**/*.ts\" \"test/**/*.ts\" \"demo/**/*.ts\"",
     "lint": "eslint && prettier --check \"src/**/*.ts\" \"test/**/*.ts\"",
     "circular": "madge --circular .",
     "test": "npm run circular && npm run lint && vitest run --config ./vitest.config.ci.ts --coverage",

@@ -1,4 +1,4 @@
-import { TemplateResult } from 'lit';
+import type { TemplateResult } from 'lit';
 
 /**
  * Configuration to show a modal
@@ -10,34 +10,34 @@ export class ModalConfig {
   /**
    * The title that shows in the header
    *
-   * @type {(TemplateResult | undefined)}
+   * @type {(TemplateResult | string | undefined)}
    * @memberof ModalConfig
    */
-  title?: TemplateResult;
+  title?: TemplateResult | string;
 
   /**
    * The subtitle shown in the header under the title
    *
-   * @type {(TemplateResult | undefined)}
+   * @type {(TemplateResult | string | undefined)}
    * @memberof ModalConfig
    */
-  subtitle?: TemplateResult;
+  subtitle?: TemplateResult | string;
 
   /**
    * The headline shown at the top of the content section
    *
-   * @type {(TemplateResult | undefined)}
+   * @type {(TemplateResult | string | undefined)}
    * @memberof ModalConfig
    */
-  headline?: TemplateResult;
+  headline?: TemplateResult | string;
 
   /**
    * The text shown below the headline in the content section
    *
-   * @type {(TemplateResult | undefined)}
+   * @type {(TemplateResult | string | undefined)}
    * @memberof ModalConfig
    */
-  message?: TemplateResult;
+  message?: TemplateResult | string;
 
   /**
    * The background color of the header
@@ -61,11 +61,11 @@ export class ModalConfig {
   showProcessingIndicator: boolean;
 
   /**
-   * Set the processing image mode, currently `processing` or `complete`
+   * Set the processing image mode
    *
    * @memberof ModalConfig
    */
-  processingImageMode: 'processing' | 'complete';
+  processingImageMode: 'loading' | 'success' | 'error';
 
   /**
    * Show the close button
@@ -101,14 +101,14 @@ export class ModalConfig {
   closeOnBackdropClick: boolean;
 
   constructor(options?: {
-    title?: TemplateResult;
-    subtitle?: TemplateResult;
-    headline?: TemplateResult;
-    message?: TemplateResult;
+    title?: TemplateResult | string;
+    subtitle?: TemplateResult | string;
+    headline?: TemplateResult | string;
+    message?: TemplateResult | string;
     headerColor?: string;
     bodyColor?: string;
     showProcessingIndicator?: boolean;
-    processingImageMode?: 'processing' | 'complete';
+    processingImageMode?: 'loading' | 'success' | 'error';
     showCloseButton?: boolean;
     showLeftNavButton?: boolean;
     leftNavButtonText?: string;
@@ -123,7 +123,7 @@ export class ModalConfig {
     this.headerColor = options?.headerColor ?? '#55A183';
     this.bodyColor = options?.bodyColor ?? '#fbfbfd';
     this.showProcessingIndicator = options?.showProcessingIndicator ?? false;
-    this.processingImageMode = options?.processingImageMode ?? 'complete';
+    this.processingImageMode = options?.processingImageMode ?? 'success';
     this.showCloseButton = options?.showCloseButton ?? true;
     this.showLeftNavButton = options?.showLeftNavButton ?? false;
     this.leftNavButtonText = options?.leftNavButtonText ?? '';
