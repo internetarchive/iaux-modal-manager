@@ -3,6 +3,7 @@ import { property, customElement } from 'lit/decorators.js';
 
 import '@internetarchive/ia-activity-indicator';
 import '@internetarchive/icon-close';
+import '@internetarchive/elements/ia-status-indicator/ia-status-indicator';
 
 import { ModalConfig } from './modal-config';
 import IALogoIcon from './assets/ia-logo-icon';
@@ -43,6 +44,7 @@ export class ModalTemplate extends LitElement {
             style="background-color: ${this.config.bodyColor}"
           >
             <div class="content">
+              <ia-status-indicator></ia-status-indicator>
               <div
                 class="processing-logo ${this.config.showProcessingIndicator
                   ? ''
