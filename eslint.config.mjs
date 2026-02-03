@@ -19,16 +19,11 @@ export default [
   {
     plugins: {
       '@typescript-eslint': typescriptEslint,
-      html
+      html,
     },
 
     languageOptions: {
       parser: tsParser,
-      parserOptions: {
-        ecmaFeatures: {
-          jsx: true,
-        },
-      },
     },
 
     settings: {

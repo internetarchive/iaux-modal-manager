@@ -2,7 +2,6 @@ import {
   fixture,
   oneEvent,
   elementUpdated,
-  nextFrame,
 } from '@open-wc/testing-helpers';
 import { describe, test, expect } from 'vitest';
 import { TemplateResult, html } from 'lit';
