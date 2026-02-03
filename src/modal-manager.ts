@@ -52,7 +52,7 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
    */
   @property({ type: Object })
   hostBridge: ModalManagerHostBridgeInterface = new ModalManagerHostBridge(
-    this
+    this,
   );
 
   /**
@@ -69,8 +69,8 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
 
   async firstUpdated(): Promise<void> {
     // Give the browser a chance to paint
-    // eslint-disable-next-line no-promise-executor-return
-    await new Promise(r => setTimeout(r, 0));
+
+    await new Promise((r) => setTimeout(r, 0));
 
     if (this.closeOnBackdropClick) {
       this.addEventListener('keydown', (e: KeyboardEvent) => {

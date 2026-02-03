@@ -18,7 +18,8 @@
     "inlineSources": true,
     "declaration": true,
     "rootDir": "./",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "useDefineForClassFields": false,
   },
   "include": ["**/*.ts"]
 }

@@ -1,7 +1,6 @@
 import { LitElement, html, css, CSSResult, TemplateResult, nothing } from 'lit';
 import { property, customElement } from 'lit/decorators.js';
 
-import '@internetarchive/ia-activity-indicator';
 import '@internetarchive/icon-close';
 import '@internetarchive/elements/ia-status-indicator/ia-status-indicator';
 
@@ -50,9 +49,9 @@ export class ModalTemplate extends LitElement {
                   ? ''
                   : 'hidden'}"
               >
-                <ia-activity-indicator
+                <ia-status-indicator
                   .mode=${this.config.processingImageMode}
-                ></ia-activity-indicator>
+                ></ia-status-indicator>
               </div>
               ${this.config.headline
                 ? html` <h1 class="headline">${this.config.headline}</h1> `
@@ -258,7 +257,8 @@ export class ModalTemplate extends LitElement {
       .logo-icon {
         border-radius: 100%;
         border: 3px solid #fff;
-        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.18),
+        box-shadow:
+          0 0 0 1px rgba(0, 0, 0, 0.18),
           0 2px 2px 0 rgba(0, 0, 0, 0.08);
         width: ${modalLogoSize};
         height: ${modalLogoSize};
@@ -293,7 +293,8 @@ export class ModalTemplate extends LitElement {
         padding: 0;
         cursor: pointer;
         background-color: white;
-        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.18),
+        box-shadow:
+          0 0 0 1px rgba(0, 0, 0, 0.18),
           0 4px 4px 0 rgba(0, 0, 0, 0.08);
       }
 

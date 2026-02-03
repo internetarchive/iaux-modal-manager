@@ -1,10 +1,10 @@
-import { expect } from '@open-wc/testing';
+import { describe, test, expect } from 'vitest';
 import { html } from 'lit';
 
 import { ModalConfig } from '../src/modal-config';
 
 describe('Modal Config', () => {
-  it('can be instantiated properly', async () => {
+  test('can be instantiated properly', async () => {
     const config = new ModalConfig();
     const title = html`Foo`;
     config.title = title;
@@ -14,7 +14,7 @@ describe('Modal Config', () => {
     expect(config.headerColor).to.equal('green');
   });
 
-  it('can be instantiated properly with constructor', async () => {
+  test('can be instantiated properly with constructor', async () => {
     const title = html`Foo`;
     const subtitle = html`Bar`;
     const headline = html`Baz`;
@@ -59,7 +59,7 @@ describe('Modal Config', () => {
     expect(config.closeOnBackdropClick).to.equal(closeOnBackdropClick);
   });
 
-  it('instantiates properly with defaults', async () => {
+  test('instantiates properly with defaults', async () => {
     const config = new ModalConfig();
     expect(config.title).to.equal(undefined);
     expect(config.subtitle).to.equal(undefined);

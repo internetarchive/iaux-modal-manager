@@ -1,6 +1,5 @@
 ## editors
 /.idea
-/.vscode
 
 ## system files
 .DS_Store
@@ -11,6 +10,7 @@
 
 ## testing
 /coverage/
+__screenshots__
 
 ## temp folders
 /.tmp/

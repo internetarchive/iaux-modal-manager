@@ -47,7 +47,7 @@ export class ModalManagerHostBridge implements ModalManagerHostBridgeInterface {
   private windowResizeThrottler: throttle<() => void> = throttle(
     100,
     this.updateModalContainerHeight,
-    { noLeading: false, noTrailing: false }
+    { noLeading: false, noTrailing: false },
   ).bind(this);
 
   // This is a workaround for Safari. Safari does not update shadowRoot elements calculated
@@ -60,7 +60,7 @@ export class ModalManagerHostBridge implements ModalManagerHostBridgeInterface {
   private updateModalContainerHeight(): void {
     this.modalManager.style.setProperty(
       '--containerHeight',
-      `${window.innerHeight}px`
+      `${window.innerHeight}px`,
     );
   }
 

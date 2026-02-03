@@ -1,11 +1,15 @@
-import { fixture, expect, oneEvent } from '@open-wc/testing';
+import { fixture, oneEvent } from '@open-wc/testing-helpers';
+import { describe, test, expect } from 'vitest';
 import { html } from 'lit';
 import '../src/modal-template';
 import { ModalConfig } from '../src/modal-config';
+import type { ModalTemplate } from '../src/modal-template';
 
 describe('Modal Template', () => {
-  it('has correct default configuration', async () => {
-    const el = await fixture(html` <modal-template></modal-template> `);
+  test('has correct default configuration', async () => {
+    const el = await fixture<ModalTemplate>(html`
+      <modal-template></modal-template>
+    `);
 
     const processingLogo = el.shadowRoot?.querySelector('.processing-logo');
     const headline = el.shadowRoot?.querySelector('.headline');
@@ -15,15 +19,15 @@ describe('Modal Template', () => {
     expect(headline).to.not.exist;
     expect(message).to.not.exist;
     expect(title).to.not.exist;
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+
     expect('hidden' in processingLogo!.classList);
   });
 
-  it('does not show the title if one not provided', async () => {
+  test('does not show the title if one not provided', async () => {
     const config = new ModalConfig();
     config.title = undefined;
 
-    const el = await fixture(html`
+    const el = await fixture<ModalTemplate>(html`
       <modal-template .config=${config}></modal-template>
     `);
 
@@ -31,21 +35,24 @@ describe('Modal Template', () => {
     expect(title).to.not.exist;
   });
 
-  it('emits closeButtonPressed event when close button is pressed', async () => {
-    const el = await fixture(html` <modal-template></modal-template> `);
-
+  test('emits closeButtonPressed event when close button is pressed', async () => {
+    const el = await fixture<ModalTemplate>(html`
+      <modal-template></modal-template>
+    `);
     const closeButton = el.shadowRoot?.querySelector('.close-button');
     const clickEvent = new MouseEvent('click');
 
     setTimeout(() => {
       closeButton?.dispatchEvent(clickEvent);
     });
-    const response = await oneEvent(el, 'closeButtonPressed', false);
+    const response = await oneEvent(el, 'closeButtonPressed');
     expect(response).to.exist;
   });
 
-  it('emits closeButtonPressed event when close button gets spacebar pressed', async () => {
-    const el = await fixture(html` <modal-template></modal-template> `);
+  test('emits closeButtonPressed event when close button gets spacebar pressed', async () => {
+    const el = await fixture<ModalTemplate>(html`
+      <modal-template></modal-template>
+    `);
 
     const closeButton = el.shadowRoot?.querySelector('.close-button');
     const clickEvent = new KeyboardEvent('keydown', { key: ' ' });
@@ -53,14 +60,14 @@ describe('Modal Template', () => {
     setTimeout(() => {
       closeButton?.dispatchEvent(clickEvent);
     });
-    const response = await oneEvent(el, 'closeButtonPressed', false);
+    const response = await oneEvent(el, 'closeButtonPressed');
     expect(response).to.exist;
   });
 
-  it('emits leftNavButtonPressed event when left nav button is pressed', async () => {
+  test('emits leftNavButtonPressed event when left nav button is pressed', async () => {
     const config = new ModalConfig();
     config.showLeftNavButton = true;
-    const el = await fixture(html`
+    const el = await fixture<ModalTemplate>(html`
       <modal-template .config=${config}></modal-template>
     `);
 
@@ -70,14 +77,14 @@ describe('Modal Template', () => {
     setTimeout(() => {
       leftNavButton?.dispatchEvent(clickEvent);
     });
-    const response = await oneEvent(el, 'leftNavButtonPressed', false);
+    const response = await oneEvent(el, 'leftNavButtonPressed');
     expect(response).to.exist;
   });
 
-  it('emits leftNavButtonPressed event when left nav button gets spacebar pressed', async () => {
+  test('emits leftNavButtonPressed event when left nav button gets spacebar pressed', async () => {
     const config = new ModalConfig();
     config.showLeftNavButton = true;
-    const el = await fixture(html`
+    const el = await fixture<ModalTemplate>(html`
       <modal-template .config=${config}></modal-template>
     `);
 
@@ -87,15 +94,15 @@ describe('Modal Template', () => {
     setTimeout(() => {
       leftNavButton?.dispatchEvent(clickEvent);
     });
-    const response = await oneEvent(el, 'leftNavButtonPressed', false);
+    const response = await oneEvent(el, 'leftNavButtonPressed');
     expect(response).to.exist;
   });
 
-  it('shows the processing indicator if configured to', async () => {
+  test('shows the processing indicator if configured to', async () => {
     const config = new ModalConfig();
     config.showProcessingIndicator = true;
 
-    const el = await fixture(html`
+    const el = await fixture<ModalTemplate>(html`
       <modal-template .config=${config}></modal-template>
     `);
 
@@ -104,10 +111,10 @@ describe('Modal Template', () => {
     expect('hidden' in classList).to.equal(false);
   });
 
-  it('shows the left nav button if configured to', async () => {
+  test('shows the left nav button if configured to', async () => {
     const config = new ModalConfig();
     config.showLeftNavButton = true;
-    const el = await fixture(html`
+    const el = await fixture<ModalTemplate>(html`
       <modal-template .config=${config}></modal-template>
     `);
 
@@ -115,10 +122,10 @@ describe('Modal Template', () => {
     expect(leftNavButton).to.exist;
   });
 
-  it('hides the left nav button if configured to', async () => {
+  test('hides the left nav button if configured to', async () => {
     const config = new ModalConfig();
     config.showCloseButton = false;
-    const el = await fixture(html`
+    const el = await fixture<ModalTemplate>(html`
       <modal-template .config=${config}></modal-template>
     `);
 
@@ -126,11 +133,11 @@ describe('Modal Template', () => {
     expect(closeButton).to.not.exist;
   });
 
-  it('uses custom text for the left nav button if configured to', async () => {
+  test('uses custom text for the left nav button if configured to', async () => {
     const config = new ModalConfig();
     config.showLeftNavButton = true;
     config.leftNavButtonText = 'Previous';
-    const el = await fixture(html`
+    const el = await fixture<ModalTemplate>(html`
       <modal-template .config=${config}></modal-template>
     `);
 
@@ -140,11 +147,11 @@ describe('Modal Template', () => {
     expect(leftNavButton?.innerHTML).to.contain('Previous');
   });
 
-  it('does not use any text for the left nav button if not configured to', async () => {
+  test('does not use any text for the left nav button if not configured to', async () => {
     const config = new ModalConfig();
     config.showLeftNavButton = true;
 
-    const el = await fixture(html`
+    const el = await fixture<ModalTemplate>(html`
       <modal-template .config=${config}></modal-template>
     `);
 
@@ -152,10 +159,10 @@ describe('Modal Template', () => {
     expect(leftNavButton?.innerHTML).not.to.contain('Previous');
   });
 
-  it('shows the close button if configured to', async () => {
+  test('shows the close button if configured to', async () => {
     const config = new ModalConfig();
     config.showCloseButton = true;
-    const el = await fixture(html`
+    const el = await fixture<ModalTemplate>(html`
       <modal-template .config=${config}></modal-template>
     `);
 
@@ -163,10 +170,10 @@ describe('Modal Template', () => {
     expect(closeButton).to.exist;
   });
 
-  it('hides the close button if configured to', async () => {
+  test('hides the close button if configured to', async () => {
     const config = new ModalConfig();
     config.showCloseButton = false;
-    const el = await fixture(html`
+    const el = await fixture<ModalTemplate>(html`
       <modal-template .config=${config}></modal-template>
     `);
 
@@ -174,14 +181,14 @@ describe('Modal Template', () => {
     expect(closeButton).to.not.exist;
   });
 
-  it('shows the properties from the config', async () => {
+  test('shows the properties from the config', async () => {
     const config = new ModalConfig();
     config.title = html`Boop`;
     config.subtitle = html`Bop`;
     config.headline = html`Foo`;
     config.message = html`Bar`;
 
-    const el = await fixture(html`
+    const el = await fixture<ModalTemplate>(html`
       <modal-template .config=${config}></modal-template>
     `);
 
