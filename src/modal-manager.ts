@@ -19,6 +19,8 @@ import { ModalManagerInterface } from './modal-manager-interface';
 import { ModalManagerHostBridgeInterface } from './modal-manager-host-bridge-interface';
 import { ModalManagerMode } from './modal-manager-mode';
 
+import '@internetarchive/elements/ia-status-indicator/ia-status-indicator';
+
 @customElement('modal-manager')
 export class ModalManager extends LitElement implements ModalManagerInterface {
   /**
