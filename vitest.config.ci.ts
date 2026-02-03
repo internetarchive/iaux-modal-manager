@@ -20,7 +20,6 @@ export default mergeConfig(
       },
       watch: false,
       coverage: {
-        reporter: ['text', 'json', 'html'],
         include: ['src/**/*.ts'],
       },
     },
