@@ -6,7 +6,7 @@ import {
   fixtureCleanup,
 } from '@open-wc/testing-helpers';
 import { describe, test, expect, afterEach } from 'vitest';
-import { HTMLTemplateResult, html } from 'lit';
+import { TemplateResult, html } from 'lit';
 
 import '../src/modal-manager';
 import { ModalConfig } from '../src/modal-config';
@@ -34,7 +34,7 @@ describe('Modal Manager', () => {
       <modal-manager .mode=${ModalManagerMode.Open}></modal-manager>
     `)) as ModalManager;
 
-    el.customModalContent = 'foo' as unknown as HTMLTemplateResult;
+    el.customModalContent = 'foo' as unknown as TemplateResult;
     await elementUpdated(el);
 
     expect(el.customModalContent).to.equal('foo');

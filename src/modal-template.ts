@@ -1,11 +1,4 @@
-import {
-  LitElement,
-  html,
-  css,
-  CSSResult,
-  HTMLTemplateResult,
-  nothing,
-} from 'lit';
+import { LitElement, html, css, CSSResult, TemplateResult, nothing } from 'lit';
 import { property, customElement } from 'lit/decorators.js';
 
 import '@internetarchive/ia-activity-indicator';
@@ -26,7 +19,7 @@ export class ModalTemplate extends LitElement {
   @property({ type: Object }) config: ModalConfig = new ModalConfig();
 
   /** @inheritdoc */
-  render(): HTMLTemplateResult {
+  render(): TemplateResult {
     return html`
       <div class="modal-wrapper">
         <div class="modal-container">
@@ -119,10 +112,10 @@ export class ModalTemplate extends LitElement {
    *
    * @readonly
    * @private
-   * @type {HTMLTemplateResult}
+   * @type {TemplateResult}
    * @memberof ModalTemplate
    */
-  private get closeButtonTemplate(): HTMLTemplateResult {
+  private get closeButtonTemplate(): TemplateResult {
     return html`
       <button
         type="button"
@@ -135,7 +128,7 @@ export class ModalTemplate extends LitElement {
     `;
   }
 
-  private get leftNavButtonTemplate(): HTMLTemplateResult {
+  private get leftNavButtonTemplate(): TemplateResult {
     return html`<button
       type="button"
       class="back-button"
