@@ -1,4 +1,4 @@
-/* istanbul ignore file */
+/* c8 ignore start */
 // Cached compute style calls. This is specifically for browsers that dont support `checkVisibility()`.
 // computedStyle calls are "live" so they only need to be retrieved once for an element.
 const computedStyleMap = new WeakMap<Element, CSSStyleDeclaration>();
@@ -221,3 +221,4 @@ export function getTabbableElements(root: HTMLElement | ShadowRoot) {
     return bTabindex - aTabindex;
   });
 }
+/* c8 ignore end */

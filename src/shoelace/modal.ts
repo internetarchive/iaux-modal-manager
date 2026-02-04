@@ -1,4 +1,4 @@
-/* istanbul ignore file */
+/* c8 ignore start */
 import { activeElements, getDeepestActiveElement } from './active-elements.js';
 import { getTabbableElements } from './tabbable.js';
 
@@ -163,3 +163,4 @@ export default class Modal {
     this.tabDirection = 'forward';
   };
 }
+/* c8 ignore end */
