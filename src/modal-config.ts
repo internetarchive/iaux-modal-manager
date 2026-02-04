@@ -1,4 +1,4 @@
-import type { TemplateResult } from 'lit';
+import type { HTMLTemplateResult } from 'lit';
 
 /**
  * Configuration to show a modal
@@ -10,34 +10,34 @@ export class ModalConfig {
   /**
    * The title that shows in the header
    *
-   * @type {(TemplateResult | string | undefined)}
+   * @type {(HTMLTemplateResult | string | undefined)}
    * @memberof ModalConfig
    */
-  title?: TemplateResult | string;
+  title?: HTMLTemplateResult | string;
 
   /**
    * The subtitle shown in the header under the title
    *
-   * @type {(TemplateResult | string | undefined)}
+   * @type {(HTMLTemplateResult | string | undefined)}
    * @memberof ModalConfig
    */
-  subtitle?: TemplateResult | string;
+  subtitle?: HTMLTemplateResult | string;
 
   /**
    * The headline shown at the top of the content section
    *
-   * @type {(TemplateResult | string | undefined)}
+   * @type {(HTMLTemplateResult | string | undefined)}
    * @memberof ModalConfig
    */
-  headline?: TemplateResult | string;
+  headline?: HTMLTemplateResult | string;
 
   /**
    * The text shown below the headline in the content section
    *
-   * @type {(TemplateResult | string | undefined)}
+   * @type {(HTMLTemplateResult | string | undefined)}
    * @memberof ModalConfig
    */
-  message?: TemplateResult | string;
+  message?: HTMLTemplateResult | string;
 
   /**
    * The background color of the header
@@ -101,10 +101,10 @@ export class ModalConfig {
   closeOnBackdropClick: boolean;
 
   constructor(options?: {
-    title?: TemplateResult | string;
-    subtitle?: TemplateResult | string;
-    headline?: TemplateResult | string;
-    message?: TemplateResult | string;
+    title?: HTMLTemplateResult | string;
+    subtitle?: HTMLTemplateResult | string;
+    headline?: HTMLTemplateResult | string;
+    message?: HTMLTemplateResult | string;
     headerColor?: string;
     bodyColor?: string;
     showProcessingIndicator?: boolean;

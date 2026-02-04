@@ -3,7 +3,7 @@ import {
   html,
   css,
   CSSResult,
-  TemplateResult,
+  HTMLTemplateResult,
   PropertyValues,
 } from 'lit';
 import { property, customElement, query } from 'lit/decorators.js';
@@ -35,10 +35,10 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
   /**
    * Custom content to display in the modal's content slot
    *
-   * @type {(TemplateResult | undefined)}
+   * @type {(HTMLTemplateResult | undefined)}
    * @memberof ModalManager
    */
-  @property({ type: Object }) customModalContent?: TemplateResult;
+  @property({ type: Object }) customModalContent?: HTMLTemplateResult;
 
   /**
    * This hostBridge handles environmental-specific interactions such as adding classes
@@ -87,7 +87,7 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
   }
 
   /** @inheritdoc */
-  render(): TemplateResult {
+  render(): HTMLTemplateResult {
     return html`
       <div class="container">
         <div class="backdrop" @click=${this.backdropClicked}></div>
@@ -180,7 +180,7 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
   /** @inheritdoc */
   async showModal(options: {
     config: ModalConfig;
-    customModalContent?: TemplateResult;
+    customModalContent?: HTMLTemplateResult;
     userClosedModalCallback?: () => void;
     userPressedLeftNavButtonCallback?: () => void;
   }): Promise<void> {
