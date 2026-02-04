@@ -22,7 +22,7 @@ describe('Modal Config', () => {
 
     const headerColor = 'blue';
     const showProcessingIndicator = true;
-    const processingImageMode = 'processing';
+    const processingImageMode = 'loading';
     const showCloseButton = false;
     const showLeftNavButton = false;
     const leftNavButtonText = 'Previous';
@@ -67,7 +67,7 @@ describe('Modal Config', () => {
     expect(config.message).to.equal(undefined);
     expect(config.headerColor).to.equal('#55A183');
     expect(config.showProcessingIndicator).to.equal(false);
-    expect(config.processingImageMode).to.equal('complete');
+    expect(config.processingImageMode).to.equal('success');
     expect(config.showCloseButton).to.equal(true);
     expect(config.showLeftNavButton).to.equal(false);
     expect(config.leftNavButtonText).to.equal('');
