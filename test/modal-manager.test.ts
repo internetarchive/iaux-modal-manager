@@ -1,5 +1,11 @@
-import { fixture, oneEvent, elementUpdated } from '@open-wc/testing-helpers';
-import { describe, test, expect } from 'vitest';
+import {
+  fixture,
+  oneEvent,
+  elementUpdated,
+  nextFrame,
+  fixtureCleanup,
+} from '@open-wc/testing-helpers';
+import { describe, test, expect, afterEach } from 'vitest';
 import { TemplateResult, html } from 'lit';
 
 import '../src/modal-manager';
@@ -11,6 +17,10 @@ import { ModalManagerInterface } from '../src/modal-manager-interface';
 import { getTabbableElements } from '../src/shoelace/tabbable';
 
 describe('Modal Manager', () => {
+  afterEach(() => {
+    fixtureCleanup();
+  });
+
   test('defaults to closed', async () => {
     const el = (await fixture(html`
       <modal-manager></modal-manager>
@@ -69,8 +79,9 @@ describe('Modal Manager', () => {
     `)) as ModalManager;
 
     const config = new ModalConfig();
-    el.showModal({ config });
+    await el.showModal({ config });
     await elementUpdated(el);
+    await nextFrame();
 
     setTimeout(() => {
       el.closeModal();
@@ -314,6 +325,7 @@ describe('Modal Manager', () => {
     const tabEvent = new KeyboardEvent('keydown', { key: 'Tab' });
     document.dispatchEvent(tabEvent);
     await elementUpdated(el);
+    await nextFrame();
 
     // Should be only one tabbable element
     const modal = el.shadowRoot?.querySelector('modal-template') as HTMLElement;
@@ -328,6 +340,7 @@ describe('Modal Manager', () => {
     // Tab again
     el.dispatchEvent(tabEvent);
     await elementUpdated(el);
+    await nextFrame();
 
     // Should be only one tabbable element
     expect(modal?.shadowRoot?.activeElement).to.equal(closeButton);
@@ -339,51 +352,51 @@ describe('Modal Manager', () => {
     });
     document.dispatchEvent(shiftTabEvent);
     await elementUpdated(el);
+    await nextFrame();
 
     // Should be only one tabbable element
     expect(modal?.shadowRoot?.activeElement).to.equal(closeButton);
   });
 
-  // test('returns keyboard focus to the triggering element on close', async () => {
-  //   const config = new ModalConfig();
-  //   const el = (await fixture(html`
-  //     <div>
-  //       <button>Another button</button>
-  //       <button
-  //         id="open-modal-btn"
-  //         tabindex="-1"
-  //         @click=${() => {
-  //           const modal = el.querySelector('modal-manager') as ModalManager;
-  //           modal.showModal({ config });
-  //         }}
-  //       >
-  //         Open modal
-  //       </button>
-  //       <modal-manager></modal-manager>
-  //     </div>
-  //   `)) as HTMLDivElement;
+  test('returns keyboard focus to the triggering element on close', async () => {
+    const config = new ModalConfig();
+    const el = (await fixture(html`
+      <div>
+        <button>Another button</button>
+        <button
+          id="open-modal-btn"
+          @click=${() => {
+            const modal = el.querySelector('modal-manager') as ModalManager;
+            modal.showModal({ config });
+          }}
+        >
+          Open modal
+        </button>
+        <modal-manager></modal-manager>
+      </div>
+    `)) as HTMLDivElement;
 
-  //   const openBtn = el.querySelector('#open-modal-btn') as HTMLButtonElement;
-  //   const modal = el.querySelector('modal-manager') as ModalManager;
+    const openBtn = el.querySelector('#open-modal-btn') as HTMLButtonElement;
+    const modal = el.querySelector('modal-manager') as ModalManager;
 
-  //   // Focus is initially on the Open button
-  //   openBtn.focus();
-  //   expect(document.activeElement).to.equal(openBtn);
+    // Focus is initially on the Open button
+    openBtn.focus();
+    expect(document.activeElement).to.equal(openBtn);
 
-  //   // Focus enters the modal when it is opened
-  //   openBtn.click();
-  //   await nextFrame();
-  //   expect(document.activeElement).to.equal(modal);
+    // Focus enters the modal when it is opened
+    openBtn.click();
+    await nextFrame();
+    expect(document.activeElement).to.equal(modal);
 
-  //   // With the modal already open, simulate showing different content.
-  //   // This step is to ensure that even if showModal is called multiple times, we still
-  //   // maintain the originally-focused element (subsequent calls do not overwrite it).
-  //   modal.showModal({ config: new ModalConfig() });
-  //   await nextFrame();
+    // With the modal already open, simulate showing different content.
+    // This step is to ensure that even if showModal is called multiple times, we still
+    // maintain the originally-focused element (subsequent calls do not overwrite it).
+    modal.showModal({ config: new ModalConfig() });
+    await nextFrame();
 
-  //   // Focus returns to the Open button when the modal closes
-  //   // modal.closeModal();
-  //   // await modal.updateComplete;
-  //   // expect(document.activeElement).to.equal(openBtn);
-  // });
+    // Focus returns to the Open button when the modal closes
+    modal.closeModal();
+    await modal.updateComplete;
+    expect(document.activeElement).to.equal(openBtn);
+  });
 });
