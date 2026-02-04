@@ -151,7 +151,7 @@ export class AppRoot extends LitElement {
     them know about something`;
     config.headerColor = 'purple';
     config.showProcessingIndicator = true;
-    config.processingImageMode = 'success';
+    config.processingImageMode = 'complete';
 
     const someContent = html`
       <div style="text-align: center; margin-top: 10px;">
@@ -266,7 +266,7 @@ export class AppRoot extends LitElement {
   showCompleteModal() {
     const config = new ModalConfig();
     config.showProcessingIndicator = true;
-    config.processingImageMode = 'success';
+    config.processingImageMode = 'complete';
     this.modalManager.showModal({
       config,
     });
@@ -276,7 +276,7 @@ export class AppRoot extends LitElement {
     const config = new ModalConfig();
     config.headerColor = '#497fbf';
     config.showProcessingIndicator = true;
-    config.processingImageMode = 'loading';
+    config.processingImageMode = 'processing';
     config.showCloseButton = false;
     config.closeOnBackdropClick = false;
     this.modalManager.showModal({

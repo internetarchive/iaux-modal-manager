@@ -65,7 +65,7 @@ export class ModalConfig {
    *
    * @memberof ModalConfig
    */
-  processingImageMode: 'loading' | 'success' | 'error';
+  processingImageMode: 'processing' | 'complete';
 
   /**
    * Show the close button
@@ -108,7 +108,7 @@ export class ModalConfig {
     headerColor?: string;
     bodyColor?: string;
     showProcessingIndicator?: boolean;
-    processingImageMode?: 'loading' | 'success' | 'error';
+    processingImageMode?: 'processing' | 'complete';
     showCloseButton?: boolean;
     showLeftNavButton?: boolean;
     leftNavButtonText?: string;
@@ -123,7 +123,7 @@ export class ModalConfig {
     this.headerColor = options?.headerColor ?? '#55A183';
     this.bodyColor = options?.bodyColor ?? '#fbfbfd';
     this.showProcessingIndicator = options?.showProcessingIndicator ?? false;
-    this.processingImageMode = options?.processingImageMode ?? 'success';
+    this.processingImageMode = options?.processingImageMode ?? 'complete';
     this.showCloseButton = options?.showCloseButton ?? true;
     this.showLeftNavButton = options?.showLeftNavButton ?? false;
     this.leftNavButtonText = options?.leftNavButtonText ?? '';
