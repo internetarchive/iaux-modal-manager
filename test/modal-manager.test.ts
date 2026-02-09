@@ -5,7 +5,7 @@ import {
   nextFrame,
   fixtureCleanup,
 } from '@open-wc/testing-helpers';
-import { describe, test, expect, afterEach } from 'vitest';
+import { describe, it, expect, afterEach } from 'vitest';
 import { TemplateResult, html } from 'lit';
 
 import '../src/modal-manager';
@@ -21,7 +21,7 @@ describe('Modal Manager', () => {
     fixtureCleanup();
   });
 
-  test('defaults to closed', async () => {
+  it('defaults to closed', async () => {
     const el = (await fixture(html`
       <modal-manager></modal-manager>
     `)) as ModalManager;
@@ -29,7 +29,7 @@ describe('Modal Manager', () => {
     expect(el.mode).to.equal('closed');
   });
 
-  test('can be closed by calling closeModal', async () => {
+  it('can be closed by calling closeModal', async () => {
     const el = (await fixture(html`
       <modal-manager .mode=${ModalManagerMode.Open}></modal-manager>
     `)) as ModalManager;
@@ -45,7 +45,7 @@ describe('Modal Manager', () => {
     expect(el.customModalContent).to.equal(undefined);
   });
 
-  test('can be closed by clicking on the backdrop', async () => {
+  it('can be closed by clicking on the backdrop', async () => {
     const el = (await fixture(html`
       <modal-manager .mode=${ModalManagerMode.Open}></modal-manager>
     `)) as ModalManager;
@@ -59,7 +59,7 @@ describe('Modal Manager', () => {
     expect(el.mode).to.equal('closed');
   });
 
-  test('emits a modeChanged event when opening', async () => {
+  it('emits a modeChanged event when opening', async () => {
     const el = (await fixture(html`
       <modal-manager></modal-manager>
     `)) as ModalManager;
@@ -73,7 +73,7 @@ describe('Modal Manager', () => {
     expect(response.detail.mode).to.equal(ModalManagerMode.Open);
   });
 
-  test('emits a modeChanged event when closing', async () => {
+  it('emits a modeChanged event when closing', async () => {
     const el = (await fixture(html`
       <modal-manager></modal-manager>
     `)) as ModalManager;
@@ -90,7 +90,7 @@ describe('Modal Manager', () => {
     expect(response.detail.mode).to.equal(ModalManagerMode.Closed);
   });
 
-  test('can show a modal', async () => {
+  it('can show a modal', async () => {
     const el = (await fixture(html`
       <modal-manager></modal-manager>
     `)) as ModalManager;
@@ -101,7 +101,7 @@ describe('Modal Manager', () => {
     expect(el.mode).to.equal(ModalManagerMode.Open);
   });
 
-  test('sets the --containerHeight CSS property when the window resizes', async () => {
+  it('sets the --containerHeight CSS property when the window resizes', async () => {
     const el = (await fixture(html`
       <modal-manager></modal-manager>
     `)) as ModalManager;
@@ -118,7 +118,7 @@ describe('Modal Manager', () => {
     expect(propAfter).to.not.equal('');
   });
 
-  test('calls the userClosedModalCallback when the user taps the backdrop', async () => {
+  it('calls the userClosedModalCallback when the user taps the backdrop', async () => {
     const el = (await fixture(html`
       <modal-manager></modal-manager>
     `)) as ModalManager;
@@ -143,7 +143,7 @@ describe('Modal Manager', () => {
     expect(callbackCalled).to.equal(true);
   });
 
-  test('does not call the userClosedModalCallback when the modal just closes', async () => {
+  it('does not call the userClosedModalCallback when the modal just closes', async () => {
     const el = (await fixture(html`
       <modal-manager></modal-manager>
     `)) as ModalManager;
@@ -163,7 +163,7 @@ describe('Modal Manager', () => {
     expect(callbackCalled).to.equal(false);
   });
 
-  test('calls the userPressedLeftNavButtonCallback when the user clicks the left nav button', async () => {
+  it('calls the userPressedLeftNavButtonCallback when the user clicks the left nav button', async () => {
     const el = (await fixture(html`
       <modal-manager></modal-manager>
     `)) as ModalManager;
@@ -191,7 +191,7 @@ describe('Modal Manager', () => {
     expect(callbackCalled).to.equal(true);
   });
 
-  test('mode is set to closed when close button is pressed', async () => {
+  it('mode is set to closed when close button is pressed', async () => {
     const el = (await fixture(html`
       <modal-manager></modal-manager>
     `)) as ModalManager;
@@ -212,7 +212,7 @@ describe('Modal Manager', () => {
     expect(el.mode).to.equal('closed');
   });
 
-  test('mode is set to closed when close button gets spacebar pressed', async () => {
+  it('mode is set to closed when close button gets spacebar pressed', async () => {
     const el = (await fixture(html`
       <modal-manager></modal-manager>
     `)) as ModalManager;
@@ -235,7 +235,7 @@ describe('Modal Manager', () => {
     expect(el.mode).to.equal('closed');
   });
 
-  test('mode remains open when close button gets non-button keypress', async () => {
+  it('mode remains open when close button gets non-button keypress', async () => {
     const el = (await fixture(html`
       <modal-manager></modal-manager>
     `)) as ModalManager;
@@ -258,7 +258,7 @@ describe('Modal Manager', () => {
     expect(el.mode).to.equal('open');
   });
 
-  test('allows the user to close by clicking on the backdrop if configured to', async () => {
+  it('allows the user to close by clicking on the backdrop if configured to', async () => {
     const el = (await fixture(html`
       <modal-manager></modal-manager>
     `)) as ModalManager;
@@ -277,7 +277,7 @@ describe('Modal Manager', () => {
     expect(el.mode).to.equal('closed');
   });
 
-  test("doesn't allow the user to close by clicking on the backdrop if configured to", async () => {
+  it("doesn't allow the user to close by clicking on the backdrop if configured to", async () => {
     const el = (await fixture(html`
       <modal-manager></modal-manager>
     `)) as ModalManagerInterface;
@@ -296,7 +296,7 @@ describe('Modal Manager', () => {
     expect(el.getMode()).to.equal('open');
   });
 
-  test('ia logo should not visible on modal', async () => {
+  it('ia logo should not visible on modal', async () => {
     const el = (await fixture(html`
       <modal-manager></modal-manager>
     `)) as ModalManagerInterface;
@@ -310,7 +310,7 @@ describe('Modal Manager', () => {
     expect(logoIcon).to.not.exist;
   });
 
-  test('should trap Tab key', async () => {
+  it('should trap Tab key', async () => {
     const el = (await fixture(html`
       <modal-manager></modal-manager>
     `)) as ModalManager;
@@ -358,7 +358,7 @@ describe('Modal Manager', () => {
     expect(modal?.shadowRoot?.activeElement).to.equal(closeButton);
   });
 
-  test('returns keyboard focus to the triggering element on close', async () => {
+  it('returns keyboard focus to the triggering element on close', async () => {
     const config = new ModalConfig();
     const el = (await fixture(html`
       <div>

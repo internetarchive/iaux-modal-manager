@@ -1,12 +1,12 @@
 import { fixture, oneEvent } from '@open-wc/testing-helpers';
-import { describe, test, expect } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { html } from 'lit';
 import '../src/modal-template';
 import { ModalConfig } from '../src/modal-config';
 import type { ModalTemplate } from '../src/modal-template';
 
 describe('Modal Template', () => {
-  test('has correct default configuration', async () => {
+  it('has correct default configuration', async () => {
     const el = await fixture<ModalTemplate>(html`
       <modal-template></modal-template>
     `);
@@ -23,7 +23,7 @@ describe('Modal Template', () => {
     expect('hidden' in processingLogo!.classList);
   });
 
-  test('does not show the title if one not provided', async () => {
+  it('does not show the title if one not provided', async () => {
     const config = new ModalConfig();
     config.title = undefined;
 
@@ -35,7 +35,7 @@ describe('Modal Template', () => {
     expect(title).to.not.exist;
   });
 
-  test('emits closeButtonPressed event when close button is pressed', async () => {
+  it('emits closeButtonPressed event when close button is pressed', async () => {
     const el = await fixture<ModalTemplate>(html`
       <modal-template></modal-template>
     `);
@@ -49,7 +49,7 @@ describe('Modal Template', () => {
     expect(response).to.exist;
   });
 
-  test('emits closeButtonPressed event when close button gets spacebar pressed', async () => {
+  it('emits closeButtonPressed event when close button gets spacebar pressed', async () => {
     const el = await fixture<ModalTemplate>(html`
       <modal-template></modal-template>
     `);
@@ -64,7 +64,7 @@ describe('Modal Template', () => {
     expect(response).to.exist;
   });
 
-  test('emits leftNavButtonPressed event when left nav button is pressed', async () => {
+  it('emits leftNavButtonPressed event when left nav button is pressed', async () => {
     const config = new ModalConfig();
     config.showLeftNavButton = true;
     const el = await fixture<ModalTemplate>(html`
@@ -81,7 +81,7 @@ describe('Modal Template', () => {
     expect(response).to.exist;
   });
 
-  test('emits leftNavButtonPressed event when left nav button gets spacebar pressed', async () => {
+  it('emits leftNavButtonPressed event when left nav button gets spacebar pressed', async () => {
     const config = new ModalConfig();
     config.showLeftNavButton = true;
     const el = await fixture<ModalTemplate>(html`
@@ -98,7 +98,7 @@ describe('Modal Template', () => {
     expect(response).to.exist;
   });
 
-  test('shows the processing indicator if configured to', async () => {
+  it('shows the processing indicator if configured to', async () => {
     const config = new ModalConfig();
     config.showProcessingIndicator = true;
 
@@ -111,7 +111,7 @@ describe('Modal Template', () => {
     expect('hidden' in classList).to.equal(false);
   });
 
-  test('shows the left nav button if configured to', async () => {
+  it('shows the left nav button if configured to', async () => {
     const config = new ModalConfig();
     config.showLeftNavButton = true;
     const el = await fixture<ModalTemplate>(html`
@@ -122,7 +122,7 @@ describe('Modal Template', () => {
     expect(leftNavButton).to.exist;
   });
 
-  test('hides the left nav button if configured to', async () => {
+  it('hides the left nav button if configured to', async () => {
     const config = new ModalConfig();
     config.showCloseButton = false;
     const el = await fixture<ModalTemplate>(html`
@@ -133,7 +133,7 @@ describe('Modal Template', () => {
     expect(closeButton).to.not.exist;
   });
 
-  test('uses custom text for the left nav button if configured to', async () => {
+  it('uses custom text for the left nav button if configured to', async () => {
     const config = new ModalConfig();
     config.showLeftNavButton = true;
     config.leftNavButtonText = 'Previous';
@@ -147,7 +147,7 @@ describe('Modal Template', () => {
     expect(leftNavButton?.innerHTML).to.contain('Previous');
   });
 
-  test('does not use any text for the left nav button if not configured to', async () => {
+  it('does not use any text for the left nav button if not configured to', async () => {
     const config = new ModalConfig();
     config.showLeftNavButton = true;
 
@@ -159,7 +159,7 @@ describe('Modal Template', () => {
     expect(leftNavButton?.innerHTML).not.to.contain('Previous');
   });
 
-  test('shows the close button if configured to', async () => {
+  it('shows the close button if configured to', async () => {
     const config = new ModalConfig();
     config.showCloseButton = true;
     const el = await fixture<ModalTemplate>(html`
@@ -170,7 +170,7 @@ describe('Modal Template', () => {
     expect(closeButton).to.exist;
   });
 
-  test('hides the close button if configured to', async () => {
+  it('hides the close button if configured to', async () => {
     const config = new ModalConfig();
     config.showCloseButton = false;
     const el = await fixture<ModalTemplate>(html`
@@ -181,7 +181,7 @@ describe('Modal Template', () => {
     expect(closeButton).to.not.exist;
   });
 
-  test('shows the properties from the config', async () => {
+  it('shows the properties from the config', async () => {
     const config = new ModalConfig();
     config.title = html`Boop`;
     config.subtitle = html`Bop`;
