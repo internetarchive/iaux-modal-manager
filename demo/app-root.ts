@@ -303,7 +303,8 @@ export class AppRoot extends LitElement {
 
   showModalUserCannotClose() {
     const config = new ModalConfig();
-    config.message = html`User cannot close this. Will close automatically in 2 seconds.`;
+    config.message = html`User cannot close this. Will close automatically in 2
+    seconds.`;
     config.showCloseButton = false;
     config.closeOnBackdropClick = false;
     this.modalManager.showModal({
@@ -323,8 +324,8 @@ export class AppRoot extends LitElement {
       config,
       userPressedLeftNavButtonCallback: () => {
         const config = new ModalConfig();
-        config.message =
-          html`I'm the previous modal (or anything else you want to do here)`;
+        config.message = html`I'm the previous modal (or anything else you want
+        to do here)`;
         config.headerColor = '#497fbf';
         this.modalManager.showModal({ config });
       },
