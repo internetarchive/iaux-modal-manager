@@ -113,8 +113,8 @@ export class AppRoot extends LitElement {
 
   showModal() {
     const config = new ModalConfig();
-    config.headline = 'Success';
-    config.message = 'Thank you for your support!';
+    config.headline = html`Success`;
+    config.message = html`Thank you for your support!`;
 
     this.modalManager.showModal({
       config,
@@ -123,8 +123,8 @@ export class AppRoot extends LitElement {
 
   showErrorModal() {
     const config = new ModalConfig();
-    config.headline = 'Error';
-    config.message = 'An error occurred while processing your donation.';
+    config.headline = html`Error`;
+    config.message = html`An error occurred while processing your donation.`;
     config.headerColor = '#691916';
     config.bodyColor = '#fff';
 
@@ -167,7 +167,7 @@ export class AppRoot extends LitElement {
 
   showCustomContentModal() {
     const config = new ModalConfig();
-    config.title = 'Custom Content';
+    config.title = html`Custom Content`;
     config.headline = html`<span class="sr-only"
       >Also support screen-reader only</span
     >`;
@@ -197,7 +197,7 @@ export class AppRoot extends LitElement {
 
   showSlottedContentModal() {
     const config = new ModalConfig();
-    config.title = 'Slotted Content';
+    config.title = html`Slotted Content`;
 
     const someContent = html`
       Can slot content from the top-level:
@@ -253,9 +253,9 @@ export class AppRoot extends LitElement {
 
   showModalWithoutLogo() {
     const config = new ModalConfig();
-    config.headline = 'Success';
+    config.headline = html`Success`;
     config.title = html`Donation Received`;
-    config.message = 'Thank you for your support!';
+    config.message = html`Thank you for your support!`;
     config.headerColor = '#194880';
     config.showHeaderLogo = false;
     this.modalManager.showModal({
@@ -288,13 +288,13 @@ export class AppRoot extends LitElement {
 
   showUserClosedModalCallbackModal() {
     const config = new ModalConfig();
-    config.message = 'When you close this modal another will open.';
+    config.message = html`When you close this modal another will open.`;
 
     this.modalManager.showModal({
       config,
       userClosedModalCallback: () => {
         const config = new ModalConfig();
-        config.message = "I'm another modal";
+        config.message = html`I'm another modal`;
         config.headerColor = '#497fbf';
         this.modalManager.showModal({ config });
       },
@@ -303,8 +303,7 @@ export class AppRoot extends LitElement {
 
   showModalUserCannotClose() {
     const config = new ModalConfig();
-    config.message =
-      'User cannot close this. Will close automatically in 2 seconds.';
+    config.message = html`User cannot close this. Will close automatically in 2 seconds.`;
     config.showCloseButton = false;
     config.closeOnBackdropClick = false;
     this.modalManager.showModal({
@@ -316,7 +315,7 @@ export class AppRoot extends LitElement {
 
   showModalWithLeftNavButton() {
     const config = new ModalConfig();
-    config.message = 'This modal has a left nav button.';
+    config.message = html`This modal has a left nav button.`;
     config.showLeftNavButton = true;
     config.leftNavButtonText = 'Back';
 
@@ -325,7 +324,7 @@ export class AppRoot extends LitElement {
       userPressedLeftNavButtonCallback: () => {
         const config = new ModalConfig();
         config.message =
-          "I'm the previous modal (or anything else you want to do here)";
+          html`I'm the previous modal (or anything else you want to do here)`;
         config.headerColor = '#497fbf';
         this.modalManager.showModal({ config });
       },
@@ -334,7 +333,7 @@ export class AppRoot extends LitElement {
 
   showModalUserCannotClickBackdrop() {
     const config = new ModalConfig();
-    config.message = 'Clicking on the backdrop will not close this.';
+    config.message = html`Clicking on the backdrop will not close this.`;
     config.showCloseButton = true;
     config.closeOnBackdropClick = false;
     this.modalManager.showModal({
