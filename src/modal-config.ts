@@ -10,34 +10,34 @@ export class ModalConfig {
   /**
    * The title that shows in the header
    *
-   * @type {(TemplateResult | string | undefined)}
+   * @type {(TemplateResult | undefined)}
    * @memberof ModalConfig
    */
-  title?: TemplateResult | string;
+  title?: TemplateResult;
 
   /**
    * The subtitle shown in the header under the title
    *
-   * @type {(TemplateResult | string | undefined)}
+   * @type {(TemplateResult | undefined)}
    * @memberof ModalConfig
    */
-  subtitle?: TemplateResult | string;
+  subtitle?: TemplateResult;
 
   /**
    * The headline shown at the top of the content section
    *
-   * @type {(TemplateResult | string | undefined)}
+   * @type {(TemplateResult | undefined)}
    * @memberof ModalConfig
    */
-  headline?: TemplateResult | string;
+  headline?: TemplateResult;
 
   /**
    * The text shown below the headline in the content section
    *
-   * @type {(TemplateResult | string | undefined)}
+   * @type {(TemplateResult | undefined)}
    * @memberof ModalConfig
    */
-  message?: TemplateResult | string;
+  message?: TemplateResult;
 
   /**
    * The background color of the header
@@ -101,10 +101,10 @@ export class ModalConfig {
   closeOnBackdropClick: boolean;
 
   constructor(options?: {
-    title?: TemplateResult | string;
-    subtitle?: TemplateResult | string;
-    headline?: TemplateResult | string;
-    message?: TemplateResult | string;
+    title?: TemplateResult;
+    subtitle?: TemplateResult;
+    headline?: TemplateResult;
+    message?: TemplateResult;
     headerColor?: string;
     bodyColor?: string;
     showProcessingIndicator?: boolean;
