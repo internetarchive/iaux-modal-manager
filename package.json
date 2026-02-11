@@ -28,7 +28,7 @@
     "@internetarchive/ia-activity-indicator": "^0.0.6",
     "@internetarchive/icon-close": "^1.4.0",
     "@internetarchive/icon-user": "^1.4.0",
-    "lit": "^2.7.0 || ^3.0.0",
+    "lit": "^2.8.0 || ^3.3.2",
     "throttle-debounce": "^5.0.2"
   },
   "devDependencies": {
