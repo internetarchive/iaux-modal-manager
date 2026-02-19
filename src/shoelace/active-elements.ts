@@ -1,4 +1,4 @@
-/* istanbul ignore file */
+/* c8 ignore start */
 /**
  * Use a generator so we can iterate and possibly break early.
  * @example
@@ -13,7 +13,7 @@
  *   }
  */
 export function* activeElements(
-  activeElement: Element | null = document.activeElement
+  activeElement: Element | null = document.activeElement,
 ): Generator<Element> {
   if (activeElement === null || activeElement === undefined) return;
 
@@ -31,3 +31,4 @@ export function* activeElements(
 export function getDeepestActiveElement() {
   return [...activeElements()].pop();
 }
+/* c8 ignore end */

@@ -1,4 +1,4 @@
-import { TemplateResult } from 'lit';
+import type { TemplateResult } from 'lit';
 
 /**
  * Configuration to show a modal
@@ -61,7 +61,7 @@ export class ModalConfig {
   showProcessingIndicator: boolean;
 
   /**
-   * Set the processing image mode, currently `processing` or `complete`
+   * Set the processing image mode
    *
    * @memberof ModalConfig
    */

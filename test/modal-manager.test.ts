@@ -1,10 +1,11 @@
 import {
   fixture,
-  expect,
   oneEvent,
   elementUpdated,
   nextFrame,
-} from '@open-wc/testing';
+  fixtureCleanup,
+} from '@open-wc/testing-helpers';
+import { describe, it, expect, afterEach } from 'vitest';
 import { TemplateResult, html } from 'lit';
 
 import '../src/modal-manager';
@@ -16,6 +17,10 @@ import { ModalManagerInterface } from '../src/modal-manager-interface';
 import { getTabbableElements } from '../src/shoelace/tabbable';
 
 describe('Modal Manager', () => {
+  afterEach(() => {
+    fixtureCleanup();
+  });
+
   it('defaults to closed', async () => {
     const el = (await fixture(html`
       <modal-manager></modal-manager>
@@ -64,7 +69,7 @@ describe('Modal Manager', () => {
     setTimeout(() => {
       el.showModal({ config });
     });
-    const response = await oneEvent(el, 'modeChanged', false);
+    const response = await oneEvent(el, 'modeChanged');
     expect(response.detail.mode).to.equal(ModalManagerMode.Open);
   });
 
@@ -74,13 +79,14 @@ describe('Modal Manager', () => {
     `)) as ModalManager;
 
     const config = new ModalConfig();
-    el.showModal({ config });
+    await el.showModal({ config });
     await elementUpdated(el);
+    await nextFrame();
 
     setTimeout(() => {
       el.closeModal();
     });
-    const response = await oneEvent(el, 'modeChanged', false);
+    const response = await oneEvent(el, 'modeChanged');
     expect(response.detail.mode).to.equal(ModalManagerMode.Closed);
   });
 
@@ -319,6 +325,7 @@ describe('Modal Manager', () => {
     const tabEvent = new KeyboardEvent('keydown', { key: 'Tab' });
     document.dispatchEvent(tabEvent);
     await elementUpdated(el);
+    await nextFrame();
 
     // Should be only one tabbable element
     const modal = el.shadowRoot?.querySelector('modal-template') as HTMLElement;
@@ -326,13 +333,14 @@ describe('Modal Manager', () => {
     expect(tabbableElements?.length).to.equal(1);
 
     const closeButton = modal?.shadowRoot?.querySelector(
-      '.close-button'
+      '.close-button',
     ) as HTMLElement;
     expect(modal?.shadowRoot?.activeElement).to.equal(closeButton);
 
     // Tab again
     el.dispatchEvent(tabEvent);
     await elementUpdated(el);
+    await nextFrame();
 
     // Should be only one tabbable element
     expect(modal?.shadowRoot?.activeElement).to.equal(closeButton);
@@ -344,6 +352,7 @@ describe('Modal Manager', () => {
     });
     document.dispatchEvent(shiftTabEvent);
     await elementUpdated(el);
+    await nextFrame();
 
     // Should be only one tabbable element
     expect(modal?.shadowRoot?.activeElement).to.equal(closeButton);

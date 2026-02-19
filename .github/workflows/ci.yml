@@ -7,24 +7,34 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  test:
+    timeout-minutes: 60
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
+    - uses: actions/checkout@v5
+    - uses: actions/setup-node@v5
       with:
         node-version: latest
 
     - name: Install dependencies
       run: npm install
 
+    - name: Install Playwright browsers
+      run: npx playwright install --with-deps
+
     - name: Run tests
       run: npm run test
 
     - name: Upload Codecov reports
-      uses: codecov/codecov-action@main
+      uses: codecov/codecov-action@v5
       with:
         fail_ci_if_error: true
         token: ${{ secrets.CODECOV_TOKEN }}
         verbose: true
+
+    - uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
+      with:
+        name: coverage-report
+        path: coverage/
+        retention-days: 30
