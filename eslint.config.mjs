@@ -1,30 +1,10 @@
-import typescriptEslint from '@typescript-eslint/eslint-plugin';
+import tseslint from 'typescript-eslint';
 import html from 'eslint-plugin-html';
-import tsParser from '@typescript-eslint/parser';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import js from '@eslint/js';
-import { FlatCompat } from '@eslint/eslintrc';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-});
-
-export default [
-  ...compat.extends('plugin:@typescript-eslint/recommended'),
+export default tseslint.config(
+  ...tseslint.configs.recommended,
   {
-    plugins: {
-      '@typescript-eslint': typescriptEslint,
-      html,
-    },
-
-    languageOptions: {
-      parser: tsParser,
-    },
+    plugins: { html },
 
     settings: {
       'import/resolver': {
@@ -36,8 +16,8 @@ export default [
     },
 
     rules: {
-      '@typescript-eslint/no-unsafe-function-type': 'warn',
-      '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-unsafe-function-type': 'error',
+      '@typescript-eslint/no-unused-vars': 'error',
       '@typescript-eslint/no-explicit-any': 'warn',
     },
   },
@@ -50,4 +30,4 @@ export default [
       '@typescript-eslint/no-unused-expressions': 'off',
     },
   },
-];
+);

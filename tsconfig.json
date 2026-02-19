@@ -19,7 +19,7 @@
     "declaration": true,
     "rootDir": "./",
     "skipLibCheck": true,
-    "useDefineForClassFields": false,
+    "useDefineForClassFields": false
   },
   "include": ["**/*.ts"]
 }

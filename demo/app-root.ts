@@ -111,7 +111,7 @@ export class AppRoot extends LitElement {
     `;
   }
 
-  showModal() {
+  private showModal() {
     const config = new ModalConfig();
     config.headline = html`Success`;
     config.message = html`Thank you for your support!`;
@@ -121,7 +121,7 @@ export class AppRoot extends LitElement {
     });
   }
 
-  showErrorModal() {
+  private showErrorModal() {
     const config = new ModalConfig();
     config.headline = html`Error`;
     config.message = html`An error occurred while processing your donation.`;
@@ -133,15 +133,15 @@ export class AppRoot extends LitElement {
     });
   }
 
-  showBillAlert() {
+  private showBillAlert() {
     alert('Bill <3 You');
   }
 
-  buttonPress() {
+  private buttonPress() {
     alert('You pressed a button.');
   }
 
-  showAllFeaturesModal() {
+  private showAllFeaturesModal() {
     const config = new ModalConfig();
     config.title = html`Donation Received`;
     config.subtitle = html`Thanks a bunch!`;
@@ -165,7 +165,7 @@ export class AppRoot extends LitElement {
     });
   }
 
-  showCustomContentModal() {
+  private showCustomContentModal() {
     const config = new ModalConfig();
     config.title = html`Custom Content`;
     config.headline = html`<span class="sr-only"
@@ -195,7 +195,7 @@ export class AppRoot extends LitElement {
     });
   }
 
-  showSlottedContentModal() {
+  private showSlottedContentModal() {
     const config = new ModalConfig();
     config.title = html`Slotted Content`;
 
@@ -210,7 +210,7 @@ export class AppRoot extends LitElement {
     });
   }
 
-  showOverflowModal() {
+  private showOverflowModal() {
     const config = new ModalConfig();
 
     config.title = html`Lorem Ipsum`;
@@ -251,7 +251,7 @@ export class AppRoot extends LitElement {
     });
   }
 
-  showModalWithoutLogo() {
+  private showModalWithoutLogo() {
     const config = new ModalConfig();
     config.headline = html`Success`;
     config.title = html`Donation Received`;
@@ -263,7 +263,7 @@ export class AppRoot extends LitElement {
     });
   }
 
-  showCompleteModal() {
+  private showCompleteModal() {
     const config = new ModalConfig();
     config.showProcessingIndicator = true;
     config.processingImageMode = 'complete';
@@ -272,7 +272,7 @@ export class AppRoot extends LitElement {
     });
   }
 
-  showProcessingModal() {
+  private showProcessingModal() {
     const config = new ModalConfig();
     config.headerColor = '#497fbf';
     config.showProcessingIndicator = true;
@@ -286,7 +286,7 @@ export class AppRoot extends LitElement {
     setTimeout(this.showCompleteModal.bind(this), 1500);
   }
 
-  showUserClosedModalCallbackModal() {
+  private showUserClosedModalCallbackModal() {
     const config = new ModalConfig();
     config.message = html`When you close this modal another will open.`;
 
@@ -301,7 +301,7 @@ export class AppRoot extends LitElement {
     });
   }
 
-  showModalUserCannotClose() {
+  private showModalUserCannotClose() {
     const config = new ModalConfig();
     config.message = html`User cannot close this. Will close automatically in 2
     seconds.`;
@@ -314,7 +314,7 @@ export class AppRoot extends LitElement {
     setTimeout(this.modalManager.closeModal.bind(this.modalManager), 2000);
   }
 
-  showModalWithLeftNavButton() {
+  private showModalWithLeftNavButton() {
     const config = new ModalConfig();
     config.message = html`This modal has a left nav button.`;
     config.showLeftNavButton = true;
@@ -332,7 +332,7 @@ export class AppRoot extends LitElement {
     });
   }
 
-  showModalUserCannotClickBackdrop() {
+  private showModalUserCannotClickBackdrop() {
     const config = new ModalConfig();
     config.message = html`Clicking on the backdrop will not close this.`;
     config.showCloseButton = true;

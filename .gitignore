@@ -20,3 +20,5 @@ __screenshots__
 /dist/
 /out-tsc/
 /ghpages
+
+.claude

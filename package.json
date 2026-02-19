@@ -1,6 +1,6 @@
 {
   "name": "@internetarchive/modal-manager",
-  "version": "2.0.5-webdev-8155.8",
+  "version": "2.0.5",
   "description": "A Modal Manager Web Component",
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
     "build": "tsc",
     "tsc:watch": "tsc --watch",
     "format": "eslint --fix && prettier --write \"src/**/*.ts\" \"test/**/*.ts\" \"demo/**/*.ts\"",
-    "lint": "eslint && prettier --check \"src/**/*.ts\" \"test/**/*.ts\"",
+    "lint": "eslint && prettier --check \"src/**/*.ts\" \"test/**/*.ts\" \"demo/**/*.ts\"",
     "circular": "madge --circular .",
     "test": "npm run circular && npm run lint && vitest run --config ./vitest.config.ci.ts --coverage",
     "test:watch": "npm run circular && npm run lint && vitest",
@@ -35,8 +35,7 @@
     "@open-wc/testing-helpers": "^3.0.1",
     "@types/node": "^25.2.0",
     "@types/throttle-debounce": "^5.0.2",
-    "@typescript-eslint/eslint-plugin": "^8.54.0",
-    "@typescript-eslint/parser": "^8.54.0",
+    "typescript-eslint": "^8.54.0",
     "@vitest/browser": "^4.0.18",
     "@vitest/browser-playwright": "^4.0.18",
     "@vitest/coverage-v8": "^4.0.18",

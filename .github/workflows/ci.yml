@@ -26,7 +26,7 @@ jobs:
       run: npm run test
 
     - name: Upload Codecov reports
-      uses: codecov/codecov-action@main
+      uses: codecov/codecov-action@v5
       with:
         fail_ci_if_error: true
         token: ${{ secrets.CODECOV_TOKEN }}
@@ -35,6 +35,6 @@ jobs:
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
-        name: playwright-report
+        name: coverage-report
         path: coverage/
         retention-days: 30

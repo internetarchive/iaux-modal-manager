@@ -69,7 +69,6 @@ export class ModalManager extends LitElement implements ModalManagerInterface {
 
   async firstUpdated(): Promise<void> {
     // Give the browser a chance to paint
-
     await new Promise((r) => setTimeout(r, 0));
 
     if (this.closeOnBackdropClick) {
