@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
+    "target": "es2022",
+    "module": "es2022",
     "moduleResolution": "bundler",
     "noEmitOnError": true,
     "lib": [
-      "esnext",
+      "es2022",
       "dom"
     ],
     "strict": true,
