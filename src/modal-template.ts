@@ -1,12 +1,26 @@
 import { LitElement, html, css, CSSResult, TemplateResult, nothing } from 'lit';
 import { property, customElement } from 'lit/decorators.js';
 
-import '@internetarchive/ia-activity-indicator';
+import '@internetarchive/elements/ia-status-indicator/ia-status-indicator';
+import type { LoadingStatus } from '@internetarchive/elements/ia-status-indicator/ia-status-indicator';
 import '@internetarchive/icon-close';
 
 import { ModalConfig } from './modal-config';
 import IALogoIcon from './assets/ia-logo-icon';
 import arrowLeftIcon from './assets/arrow-left-icon';
+
+/**
+ * The status indicator mode to render for each of the config's processing
+ * image modes. The two vocabularies differ, so the config keeps the wording
+ * consumers pass and the template translates it here.
+ */
+const PROCESSING_INDICATOR_MODES: Record<
+  ModalConfig['processingImageMode'],
+  LoadingStatus
+> = {
+  processing: 'loading',
+  complete: 'success',
+};
 
 @customElement('modal-template')
 export class ModalTemplate extends LitElement {
@@ -48,9 +62,9 @@ export class ModalTemplate extends LitElement {
                   ? ''
                   : 'hidden'}"
               >
-                <ia-activity-indicator
-                  .mode=${this.config.processingImageMode}
-                ></ia-activity-indicator>
+                <ia-status-indicator
+                  .mode=${this.processingIndicatorMode}
+                ></ia-status-indicator>
               </div>
               ${this.config.headline
                 ? html` <h1 class="headline">${this.config.headline}</h1> `
@@ -67,6 +81,18 @@ export class ModalTemplate extends LitElement {
         </div>
       </div>
     `;
+  }
+
+  /**
+   * The mode to render the processing indicator in
+   *
+   * @readonly
+   * @private
+   * @type {LoadingStatus}
+   * @memberof ModalTemplate
+   */
+  private get processingIndicatorMode(): LoadingStatus {
+    return PROCESSING_INDICATOR_MODES[this.config.processingImageMode];
   }
 
   /**
@@ -144,6 +170,8 @@ export class ModalTemplate extends LitElement {
     const modalLogoSize = css`var(--modalLogoSize, 6.5rem)`;
 
     const processingImageSize = css`var(--processingImageSize, 7.5rem)`;
+    const processingIndicatorRingColor = css`var(--processingIndicatorRingColor, #333333)`;
+    const processingIndicatorDotColor = css`var(--processingIndicatorDotColor, #333333)`;
 
     const modalCornerRadius = css`var(--modalCornerRadius, 1rem)`;
     const modalBorder = css`var(--modalBorder, 2px solid black)`;
@@ -173,11 +201,17 @@ export class ModalTemplate extends LitElement {
         height: ${processingImageSize};
       }
 
+      .processing-logo ia-status-indicator {
+        --icon-width: ${processingImageSize};
+        --loading-ring-color--: ${processingIndicatorRingColor};
+        --loading-dot-color--: ${processingIndicatorDotColor};
+      }
+
       .processing-logo.hidden {
         height: 1rem;
       }
 
-      .processing-logo.hidden ia-activity-indicator {
+      .processing-logo.hidden ia-status-indicator {
         display: none;
       }
 

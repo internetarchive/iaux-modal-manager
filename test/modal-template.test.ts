@@ -111,6 +111,32 @@ describe('Modal Template', () => {
     expect('hidden' in classList).to.equal(false);
   });
 
+  it('renders the processing indicator in its loading mode while processing', async () => {
+    const config = new ModalConfig();
+    config.showProcessingIndicator = true;
+    config.processingImageMode = 'processing';
+
+    const el = await fixture<ModalTemplate>(html`
+      <modal-template .config=${config}></modal-template>
+    `);
+
+    const indicator = el.shadowRoot?.querySelector('ia-status-indicator');
+    expect(indicator?.mode).to.equal('loading');
+  });
+
+  it('renders the processing indicator in its success mode when complete', async () => {
+    const config = new ModalConfig();
+    config.showProcessingIndicator = true;
+    config.processingImageMode = 'complete';
+
+    const el = await fixture<ModalTemplate>(html`
+      <modal-template .config=${config}></modal-template>
+    `);
+
+    const indicator = el.shadowRoot?.querySelector('ia-status-indicator');
+    expect(indicator?.mode).to.equal('success');
+  });
+
   it('shows the left nav button if configured to', async () => {
     const config = new ModalConfig();
     config.showLeftNavButton = true;

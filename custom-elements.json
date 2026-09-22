@@ -75,6 +75,18 @@
           "default": "7.5rem"
         },
         {
+          "name": "--processingIndicatorRingColor",
+          "description": "The processing indicator ring color",
+          "type": "String",
+          "default": "#333333"
+        },
+        {
+          "name": "--processingIndicatorDotColor",
+          "description": "The processing indicator dot color",
+          "type": "String",
+          "default": "#333333"
+        },
+        {
           "name": "--modalCornerRadius",
           "description": "Modal corner radius",
           "type": "String",
