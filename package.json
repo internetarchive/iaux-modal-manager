@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@open-wc/testing-helpers": "^3.0.1",
-    "@types/node": "^25.3.0",
+    "@types/node": "^26.0.0",
     "@types/throttle-debounce": "^5.0.2",
     "typescript-eslint": "^8.54.0",
     "@vitest/browser": "^4.0.18",
